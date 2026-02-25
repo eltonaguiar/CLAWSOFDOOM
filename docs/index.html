@@ -293,9 +293,171 @@
 
 <div class="header">
   <h1>CLAWS OF DOOM v3</h1>
-  <div class="subtitle">BULLETPROOF FAILOVER // 5 API LAYERS // FULL AUDIT TRAIL</div>
+  <div class="subtitle">SYSTEM F // BULLETPROOF FAILOVER // 5 API LAYERS // FULL AUDIT TRAIL</div>
   <div class="timestamp" id="lastUpdated">Loading...</div>
+  <div style="margin-top:8px;font-size:0.75rem;color:#555;">Part of the <a href="https://github.com/eltonaguiar/findtorontoevents_antigravity.ca" style="color:#ff6600;">Antigravity Trading Suite</a></div>
 </div>
+
+<!-- Tab Bar -->
+<div style="max-width:1000px;margin:0 auto 20px;display:flex;gap:4px;">
+  <button class="tab-btn active" onclick="switchTab('live')" id="tabLive" style="flex:1;padding:12px;background:#ff3333;color:#fff;border:none;border-radius:6px 6px 0 0;font-family:inherit;font-weight:bold;cursor:pointer;font-size:0.9rem;">LIVE PICKS</button>
+  <button class="tab-btn" onclick="switchTab('methodology')" id="tabMethodology" style="flex:1;padding:12px;background:#1a1a1a;color:#888;border:1px solid #333;border-bottom:none;border-radius:6px 6px 0 0;font-family:inherit;font-weight:bold;cursor:pointer;font-size:0.9rem;">METHODOLOGY</button>
+  <button class="tab-btn" onclick="switchTab('next')" id="tabNext" style="flex:1;padding:12px;background:#1a1a1a;color:#888;border:1px solid #333;border-bottom:none;border-radius:6px 6px 0 0;font-family:inherit;font-weight:bold;cursor:pointer;font-size:0.9rem;">NEXT SCAN</button>
+  <button class="tab-btn" onclick="switchTab('kimi')" id="tabKimi" style="flex:1;padding:12px;background:#1a1a1a;color:#888;border:1px solid #333;border-bottom:none;border-radius:6px 6px 0 0;font-family:inherit;font-weight:bold;cursor:pointer;font-size:0.9rem;">KIMI TOP 20</button>
+</div>
+
+<!-- Methodology Tab Content -->
+<div id="tabContentMethodology" style="display:none;max-width:1000px;margin:0 auto 30px;">
+
+  <div style="background:#111;border:1px solid #333;border-radius:8px;padding:20px;margin-bottom:20px;">
+    <h2 style="color:#ff3333;margin-bottom:15px;">How Claws of Doom Works</h2>
+    <p style="color:#ccc;margin-bottom:15px;">Claws of Doom (System F) is a <strong style="color:#ff6600;">fully autonomous crypto trading signal generator</strong> running 24/7 via GitHub Actions. It scans 3 major cryptocurrencies every 15 minutes using 6 distinct strategies, generates entry/TP/SL signals, and tracks performance with a full audit trail.</p>
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">Asset Coverage</h3>
+    <p style="color:#ccc;margin-bottom:8px;"><strong>Crypto only</strong> — BTC, ETH, SOL (the 3 highest-liquidity coins)</p>
+    <p style="color:#888;font-size:0.85rem;">Why only 3? Unlike our other systems that scan 10-200 symbols, Claws of Doom focuses on <em>depth over breadth</em>. Fewer symbols = more API redundancy per symbol = zero missed scans. The "bulletproof" guarantee requires tight scope.</p>
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">Data Sources (5 API Fallback Layers)</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:10px;">
+      <tr style="border-bottom:1px solid #333;"><th style="text-align:left;padding:6px;color:#ff6600;">Layer</th><th style="text-align:left;padding:6px;color:#ff6600;">API</th><th style="text-align:left;padding:6px;color:#ff6600;">Data</th><th style="text-align:left;padding:6px;color:#ff6600;">Rate Limit</th></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#00ff66;">1 (Primary)</td><td style="padding:6px;color:#ccc;">Binance</td><td style="padding:6px;color:#888;">Spot + 24h change + funding rates</td><td style="padding:6px;color:#888;">1200/min</td></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#ffcc00;">2</td><td style="padding:6px;color:#ccc;">CoinGecko</td><td style="padding:6px;color:#888;">Spot + 24h change</td><td style="padding:6px;color:#888;">30/min (free)</td></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#ffcc00;">3</td><td style="padding:6px;color:#ccc;">CryptoCompare</td><td style="padding:6px;color:#888;">Spot + 24h change</td><td style="padding:6px;color:#888;">100K/month</td></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#ff6600;">4</td><td style="padding:6px;color:#ccc;">CoinCap</td><td style="padding:6px;color:#888;">Spot + 24h change</td><td style="padding:6px;color:#888;">200/min</td></tr>
+      <tr><td style="padding:6px;color:#ff3333;">5 (Emergency)</td><td style="padding:6px;color:#ccc;">Hardcoded estimates</td><td style="padding:6px;color:#888;">Last-known prices</td><td style="padding:6px;color:#888;">N/A</td></tr>
+    </table>
+    <p style="color:#888;font-size:0.8rem;">+ <strong>Fear & Greed Index</strong> from <a href="https://alternative.me/crypto/fear-and-greed-index/" style="color:#ff6600;">alternative.me/crypto</a> — the most widely used crypto sentiment index. It aggregates volatility (25%), market momentum (25%), social media (15%), surveys (15%), BTC dominance (10%), and Google Trends (10%) into a single 0-100 score. When it drops below 25, historically that marks buying opportunities.</p>
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">The 6 Strategies</h3>
+
+    <div style="background:#0d0d0d;border-left:3px solid #00ff66;padding:12px;margin-bottom:10px;border-radius:0 6px 6px 0;">
+      <div style="color:#00ff66;font-weight:bold;margin-bottom:4px;">1. Extreme Fear Contrarian (LONG)</div>
+      <div style="color:#ccc;font-size:0.85rem;">Buys when F&G drops to 25 or below. Retail panic-sells at bottoms while smart money accumulates. Backtest (2018-2024): buying at F&G &le; 20 yields median +12% over 30 days for BTC.</div>
+      <div style="color:#888;font-size:0.8rem;margin-top:4px;">TP: +6% | SL: -5% | Position: 3.5% of capital</div>
+    </div>
+
+    <div style="background:#0d0d0d;border-left:3px solid #00ff66;padding:12px;margin-bottom:10px;border-radius:0 6px 6px 0;">
+      <div style="color:#00ff66;font-weight:bold;margin-bottom:4px;">2. Crash Reversal Bounce (LONG)</div>
+      <div style="color:#ccc;font-size:0.85rem;">Triggers when a coin drops &gt;10% in 24h. Large single-day drops mean-revert within 3-7 days due to short covering and bargain hunting.</div>
+      <div style="color:#888;font-size:0.8rem;margin-top:4px;">TP: +5% | SL: -4% | Position: 3.0% of capital</div>
+    </div>
+
+    <div style="background:#0d0d0d;border-left:3px solid #00ff66;padding:12px;margin-bottom:10px;border-radius:0 6px 6px 0;">
+      <div style="color:#00ff66;font-weight:bold;margin-bottom:4px;">3. Momentum Breakout (LONG)</div>
+      <div style="color:#ccc;font-size:0.85rem;">Buys when a coin is up &gt;5% in 24h AND F&G &gt; 50 (Greed territory). Momentum persists in crypto — breakouts with positive sentiment continue 2-5 more days.</div>
+      <div style="color:#888;font-size:0.8rem;margin-top:4px;">TP: +8% | SL: -6% | Position: 2.5% of capital</div>
+    </div>
+
+    <div style="background:#0d0d0d;border-left:3px solid #ff3333;padding:12px;margin-bottom:10px;border-radius:0 6px 6px 0;">
+      <div style="color:#ff3333;font-weight:bold;margin-bottom:4px;">4. RSI Overbought + SMA Breakdown (SHORT)</div>
+      <div style="color:#ccc;font-size:0.85rem;">Shorts when RSI(14) &gt; 70 AND price is below 200-SMA. Exhaustion rallies in downtrends tend to reverse. 60-65% historical win rate (QuantifiedStrategies).</div>
+      <div style="color:#888;font-size:0.8rem;margin-top:4px;">TP: -5% | SL: +3% | Position: 2.5% of capital</div>
+    </div>
+
+    <div style="background:#0d0d0d;border-left:3px solid #ff3333;padding:12px;margin-bottom:10px;border-radius:0 6px 6px 0;">
+      <div style="color:#ff3333;font-weight:bold;margin-bottom:4px;">5. EMA Bearish Cross + RSI Divergence (SHORT)</div>
+      <div style="color:#ccc;font-size:0.85rem;">Triggers when EMA(12) crosses below EMA(50) with RSI divergence, filtered by F&G &lt; 40. 51.72% net profit on XRP/USDT 3H during 2022 bear (altFINS research).</div>
+      <div style="color:#888;font-size:0.8rem;margin-top:4px;">TP: -6% | SL: +4% | Position: 2.0% of capital</div>
+    </div>
+
+    <div style="background:#0d0d0d;border-left:3px solid #ffcc00;padding:12px;margin-bottom:10px;border-radius:0 6px 6px 0;">
+      <div style="color:#ffcc00;font-weight:bold;margin-bottom:4px;">6. Funding Rate Carry (LONG or SHORT)</div>
+      <div style="color:#ccc;font-size:0.85rem;">Market-neutral: when Binance perp funding &gt;0.05%, shorts perp (longs pay shorts). When funding &lt;-0.03%, goes long. Documented 15-45% annually (CoinCryptoRank, Gate.io).</div>
+      <div style="color:#888;font-size:0.8rem;margin-top:4px;">TP: &plusmn;3% | SL: &plusmn;2% | Position: 4.0% of capital</div>
+    </div>
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">Confidence Scoring Formula</h3>
+    <div style="background:#0d0d0d;padding:15px;border-radius:6px;font-size:0.85rem;">
+      <code style="color:#00ff66;">confidence = base(0.55) + fear_bonus(0-0.15) + momentum_bonus(0-0.10)</code>
+      <ul style="color:#ccc;margin:10px 0 0 20px;">
+        <li><strong style="color:#ff6600;">Base = 0.55</strong> — Just above coin flip. Honest about uncertainty.</li>
+        <li><strong style="color:#ff6600;">Fear bonus (0-0.15)</strong> — Scales with how extreme the F&G reading is. F&G=10 gets full bonus.</li>
+        <li><strong style="color:#ff6600;">Momentum bonus (0-0.10)</strong> — Scales with the size of the 24h price move.</li>
+        <li><strong style="color:#ff6600;">Max = 0.80</strong> — Capped to prevent overconfidence.</li>
+      </ul>
+    </div>
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">Why These Picks?</h3>
+    <p style="color:#ccc;font-size:0.85rem;margin-bottom:10px;">Every pick includes a <code style="color:#00ff66;background:#0a0a0a;padding:2px 6px;border-radius:3px;">reason</code> field explaining exactly why it was generated. The system only generates a pick when a strategy's conditions are met — there are no random or filler picks. If no conditions trigger, the dashboard shows "No active picks."</p>
+    <p style="color:#ccc;font-size:0.85rem;">Each pick card shows: the strategy name, a full strategy description, the documented edge, the confidence formula breakdown, entry/TP/SL levels, position sizing, and the specific market condition that triggered it (e.g., "Fear & Greed = 11 (Extreme Fear), SOL +7.4% 24h").</p>
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">Automation Pipeline</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:0.85rem;">
+      <tr style="border-bottom:1px solid #333;"><th style="text-align:left;padding:6px;color:#ff6600;">Step</th><th style="text-align:left;padding:6px;color:#ff6600;">What Happens</th></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#ccc;">1. Trigger</td><td style="padding:6px;color:#888;">GitHub Actions cron fires every 15 minutes</td></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#ccc;">2. Price Fetch</td><td style="padding:6px;color:#888;">Try Binance &rarr; CoinGecko &rarr; CryptoCompare &rarr; CoinCap &rarr; Emergency estimates</td></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#ccc;">3. F&G Fetch</td><td style="padding:6px;color:#888;">Fetch Fear & Greed from alternative.me (with fallback estimation)</td></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#ccc;">4. Strategy Eval</td><td style="padding:6px;color:#888;">Run all 6 strategies against current market data</td></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#ccc;">5. TP/SL Check</td><td style="padding:6px;color:#888;">Validate active picks against current prices (close if TP/SL hit)</td></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#ccc;">6. Commit</td><td style="padding:6px;color:#888;">Write picks.json, active_picks.json, closed_picks.json, picks_history.json</td></tr>
+      <tr><td style="padding:6px;color:#ccc;">7. Deploy</td><td style="padding:6px;color:#888;">GitHub Pages auto-deploys updated dashboard</td></tr>
+    </table>
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">Capital & Risk Model</h3>
+    <ul style="color:#ccc;font-size:0.85rem;margin-left:20px;">
+      <li>Base capital: <strong>$10,000</strong> (simulated)</li>
+      <li>Position sizes: 2.0%-4.0% per trade depending on strategy</li>
+      <li>Max concurrent picks: no hard limit (but 3 symbols limits exposure naturally)</li>
+      <li>All P&L tracked in both % and $ terms</li>
+    </ul>
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">Source Code</h3>
+    <ul style="color:#ccc;font-size:0.85rem;margin-left:20px;">
+      <li><a href="https://github.com/eltonaguiar/CLAWSOFDOOM" style="color:#ff6600;">CLAWSOFDOOM repo</a> — Engine, dashboard, workflow</li>
+      <li><a href="https://github.com/eltonaguiar/findtorontoevents_antigravity.ca" style="color:#ff6600;">Antigravity main repo</a> — Mirrored as System F</li>
+      <li>Engine: <code style="color:#00ff66;">systems/claws_engine.py</code> (~52KB, full strategy logic)</li>
+      <li>Bulletproof fallback: <code style="color:#00ff66;">systems/claws_bulletproof.py</code></li>
+      <li>Workflow: <code style="color:#00ff66;">.github/workflows/trade.yml</code> (every 15 min)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Next Scan Tab Content -->
+<div id="tabContentNext" style="display:none;max-width:1000px;margin:0 auto 30px;">
+  <div style="background:#111;border:1px solid #333;border-radius:8px;padding:20px;">
+    <h2 style="color:#ff3333;margin-bottom:15px;">Next Scan Schedule</h2>
+    <div style="background:#0d0d0d;border:1px solid #333;border-radius:8px;padding:20px;text-align:center;margin-bottom:20px;">
+      <div style="color:#888;font-size:0.85rem;">NEXT SCAN IN</div>
+      <div id="nextScanCountdown" style="color:#ff3333;font-size:2.5rem;font-weight:bold;text-shadow:0 0 10px #ff3333;">--:--</div>
+      <div style="color:#555;font-size:0.8rem;margin-top:8px;">Scans run at :00, :15, :30, :45 every hour (UTC)</div>
+    </div>
+    <h3 style="color:#ff6600;margin:20px 0 10px;">What Happens Each Scan</h3>
+    <ul style="color:#ccc;font-size:0.85rem;margin-left:20px;line-height:2;">
+      <li>Fetches live prices from up to 5 APIs (guaranteed price data)</li>
+      <li>Checks Fear & Greed Index for regime context</li>
+      <li>Evaluates all 6 strategies against BTC, ETH, SOL</li>
+      <li>Validates existing picks (close at TP or SL if hit)</li>
+      <li>Generates new picks ONLY when strategy conditions are met</li>
+      <li>Updates dashboard JSON — page auto-refreshes every 5 minutes</li>
+    </ul>
+    <h3 style="color:#ff6600;margin:20px 0 10px;">When Will New Picks Be Issued?</h3>
+    <p style="color:#ccc;font-size:0.85rem;">New picks are issued <strong>only when market conditions trigger a strategy</strong>. In current extreme fear (F&G=11), the <span style="color:#00ff66;">Extreme Fear Contrarian</span> strategy is active. Other strategies will trigger when:</p>
+    <ul style="color:#888;font-size:0.85rem;margin-left:20px;line-height:2;">
+      <li><strong style="color:#ccc;">Crash Reversal:</strong> Any of BTC/ETH/SOL drops &gt;10% in 24h</li>
+      <li><strong style="color:#ccc;">Momentum Breakout:</strong> F&G rises above 50 AND a coin is up &gt;5%</li>
+      <li><strong style="color:#ccc;">RSI Short:</strong> RSI(14) &gt; 70 while below 200-SMA</li>
+      <li><strong style="color:#ccc;">EMA Cross Short:</strong> EMA(12) crosses below EMA(50) with RSI divergence</li>
+      <li><strong style="color:#ccc;">Funding Carry:</strong> Binance funding rate exceeds &plusmn;0.03-0.05%</li>
+    </ul>
+  </div>
+</div>
+
+<!-- KIMI Top 20 Strategies Tab Content -->
+<div id="tabContentKimi" style="display:none;max-width:1000px;margin:0 auto 30px;">
+  <div style="background:#111;border:1px solid #333;border-radius:8px;padding:20px;">
+    <h2 style="color:#ff3333;margin-bottom:8px;">KIMI Rise of the Claw — Top 20 Strategies</h2>
+    <p style="color:#888;font-size:0.85rem;margin-bottom:15px;">Forward-tested performance of the top 20 strategies from KIMI's 81-algorithm engine (v11.0). Ranked by Sharpe ratio. Data from live forward testing.</p>
+    <div id="kimiTableContainer" style="overflow-x:auto;">
+      <div style="text-align:center;padding:20px;color:#888;">Loading KIMI strategies...</div>
+    </div>
+    <div style="margin-top:15px;padding:12px;background:#0d0d0d;border-radius:6px;font-size:0.8rem;color:#888;">
+      <strong style="color:#ff6600;">About KIMI Rise of the Claw:</strong> An autonomous 81-algorithm crypto/forex trading engine running every 15 minutes via GitHub Actions. Features an elimination engine (danger zone &rarr; probation &rarr; elimination), ML signal ranker, and SQLite persistence. See the <a href="https://eltonaguiar.github.io/findtorontoevents_antigravity.ca/monitor/" style="color:#ff6600;">Cross-System Monitor</a> for live aggregated data.
+    </div>
+  </div>
+</div>
+
+<!-- Live Tab Content (wraps existing UI) -->
+<div id="tabContentLive">
 
 <div class="market-snapshot" id="marketSnapshot" style="display:none;">
   <h3>MARKET SNAPSHOT</h3>
@@ -347,8 +509,11 @@
 <div class="section-title" id="auditTitle" style="display:none;">AUDIT TRAIL</div>
 <div class="audit-container" id="auditContainer" style="display:none;"></div>
 
+<!-- End of Live tab content -->
+</div>
+
 <div class="footer">
-  Updates every 15 minutes via GitHub Actions | 6 strategies (3 long, 2 short, 1 carry) | 5 API fallbacks | Full audit trail | EST timestamps
+  System F — Claws of Doom v3 | Updates every 15 minutes via GitHub Actions | 6 strategies (3 long, 2 short, 1 carry) | 5 API fallbacks | Full audit trail | EST timestamps
 </div>
 
 <script>
@@ -687,6 +852,120 @@ function renderAll(data) {
 
 loadPicks();
 setInterval(loadPicks, 5 * 60 * 1000);
+
+// Tab switching
+const tabMap = {live:'tabLive', methodology:'tabMethodology', next:'tabNext', kimi:'tabKimi'};
+function switchTab(tab) {
+  ['Live','Methodology','Next','Kimi'].forEach(t => {
+    const key = t.toLowerCase();
+    document.getElementById('tabContent'+t).style.display = key === tab ? 'block' : 'none';
+    const btn = document.getElementById('tab'+t);
+    if (key === tab) {
+      btn.style.background = '#ff3333';
+      btn.style.color = '#fff';
+      btn.style.border = 'none';
+    } else {
+      btn.style.background = '#1a1a1a';
+      btn.style.color = '#888';
+      btn.style.border = '1px solid #333';
+      btn.style.borderBottom = 'none';
+    }
+  });
+  if (tab === 'kimi') loadKimiStrategies();
+}
+
+// KIMI Top 20 Strategies loader
+let kimiLoaded = false;
+async function loadKimiStrategies() {
+  if (kimiLoaded) return;
+  const sources = [
+    './kimi_top20.json',
+    'kimi_top20.json',
+    'https://raw.githubusercontent.com/eltonaguiar/CLAWSOFDOOM/main/docs/kimi_top20.json'
+  ];
+  for (const url of sources) {
+    try {
+      const resp = await fetch(url, {cache:'no-store'});
+      if (!resp.ok) continue;
+      const data = await resp.json();
+      renderKimiTable(data);
+      kimiLoaded = true;
+      return;
+    } catch(e) {}
+  }
+  document.getElementById('kimiTableContainer').innerHTML = '<div style="color:#ff3333;text-align:center;">Failed to load KIMI strategies data.</div>';
+}
+
+function renderKimiTable(strategies) {
+  const medalColors = ['#ffd700','#c0c0c0','#cd7f32'];
+  let html = `<table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+    <thead>
+      <tr style="border-bottom:2px solid #ff3333;">
+        <th style="padding:8px;text-align:center;color:#ff6600;">#</th>
+        <th style="padding:8px;text-align:left;color:#ff6600;">Strategy</th>
+        <th style="padding:8px;text-align:right;color:#ff6600;">Sharpe</th>
+        <th style="padding:8px;text-align:right;color:#ff6600;">Return</th>
+        <th style="padding:8px;text-align:right;color:#ff6600;">Win Rate</th>
+        <th style="padding:8px;text-align:right;color:#ff6600;">Max DD</th>
+        <th style="padding:8px;text-align:right;color:#ff6600;">PF</th>
+        <th style="padding:8px;text-align:right;color:#ff6600;">Trades</th>
+      </tr>
+    </thead><tbody>`;
+
+  strategies.forEach(s => {
+    const medal = s.rank <= 3 ? ` style="color:${medalColors[s.rank-1]};font-weight:bold;"` : '';
+    const retColor = s.return_pct >= 0 ? '#00ff66' : '#ff3333';
+    const ddColor = '#ff3333';
+    const wrColor = s.win_rate_pct >= 60 ? '#00ff66' : (s.win_rate_pct >= 50 ? '#ffcc00' : '#ff3333');
+    const bg = s.rank % 2 === 0 ? 'background:#111;' : '';
+    const name = s.name.length > 50 ? s.name.substring(0,47) + '...' : s.name;
+
+    html += `<tr style="${bg}border-bottom:1px solid #1a1a1a;">
+      <td style="padding:6px;text-align:center;"${medal}>${s.rank}</td>
+      <td style="padding:6px;color:#ccc;" title="${s.name}">${name}</td>
+      <td style="padding:6px;text-align:right;color:#00ff66;font-weight:bold;">${s.sharpe.toFixed(2)}</td>
+      <td style="padding:6px;text-align:right;color:${retColor};">${s.return_pct >= 0 ? '+' : ''}${s.return_pct.toFixed(1)}%</td>
+      <td style="padding:6px;text-align:right;color:${wrColor};">${s.win_rate_pct.toFixed(1)}%</td>
+      <td style="padding:6px;text-align:right;color:${ddColor};">${s.max_drawdown_pct.toFixed(1)}%</td>
+      <td style="padding:6px;text-align:right;color:#ccc;">${s.profit_factor.toFixed(2)}</td>
+      <td style="padding:6px;text-align:right;color:#888;">${s.trades}</td>
+    </tr>`;
+  });
+
+  html += '</tbody></table>';
+
+  // Summary stats
+  const avgSharpe = strategies.reduce((a,b) => a + b.sharpe, 0) / strategies.length;
+  const avgWR = strategies.reduce((a,b) => a + b.win_rate_pct, 0) / strategies.length;
+  const avgReturn = strategies.reduce((a,b) => a + b.return_pct, 0) / strategies.length;
+  const totalTrades = strategies.reduce((a,b) => a + b.trades, 0);
+
+  html = `<div style="display:flex;gap:20px;justify-content:center;margin-bottom:15px;flex-wrap:wrap;">
+    <div style="text-align:center;"><div style="color:#00ff66;font-size:1.5rem;font-weight:bold;">${avgSharpe.toFixed(2)}</div><div style="color:#888;font-size:0.75rem;">AVG SHARPE</div></div>
+    <div style="text-align:center;"><div style="color:#00ff66;font-size:1.5rem;font-weight:bold;">${avgWR.toFixed(1)}%</div><div style="color:#888;font-size:0.75rem;">AVG WIN RATE</div></div>
+    <div style="text-align:center;"><div style="color:#00ff66;font-size:1.5rem;font-weight:bold;">+${avgReturn.toFixed(1)}%</div><div style="color:#888;font-size:0.75rem;">AVG RETURN</div></div>
+    <div style="text-align:center;"><div style="color:#ffcc00;font-size:1.5rem;font-weight:bold;">${totalTrades}</div><div style="color:#888;font-size:0.75rem;">TOTAL TRADES</div></div>
+  </div>` + html;
+
+  document.getElementById('kimiTableContainer').innerHTML = html;
+}
+
+// Next scan countdown
+function updateCountdown() {
+  const now = new Date();
+  const mins = now.getUTCMinutes();
+  const secs = now.getUTCSeconds();
+  const nextQuarter = Math.ceil((mins + 1) / 15) * 15;
+  const minsLeft = (nextQuarter - mins - 1 + 60) % 60 || (mins % 15 === 0 && secs === 0 ? 0 : (15 - (mins % 15) - 1));
+  const secsLeft = (60 - secs) % 60;
+  const totalSecs = minsLeft * 60 + secsLeft;
+  const m = Math.floor(totalSecs / 60);
+  const s = totalSecs % 60;
+  const el = document.getElementById('nextScanCountdown');
+  if (el) el.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
 </script>
 
 </body>
