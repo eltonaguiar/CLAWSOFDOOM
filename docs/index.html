@@ -428,7 +428,7 @@
       <li>Evaluates all 6 strategies against BTC, ETH, SOL</li>
       <li>Validates existing picks (close at TP or SL if hit)</li>
       <li>Generates new picks ONLY when strategy conditions are met</li>
-      <li>Updates dashboard JSON — page auto-refreshes every 5 minutes</li>
+      <li>Updates dashboard JSON — page auto-refreshes every 60 seconds</li>
     </ul>
     <h3 style="color:#ff6600;margin:20px 0 10px;">When Will New Picks Be Issued?</h3>
     <p style="color:#ccc;font-size:0.85rem;">New picks are issued <strong>only when market conditions trigger a strategy</strong>. In current extreme fear (F&G=11), the <span style="color:#00ff66;">Extreme Fear Contrarian</span> strategy is active. Other strategies will trigger when:</p>
@@ -493,20 +493,43 @@
 
 <div id="formulaBox" class="formula-box" style="display:none;"></div>
 
+<!-- Auto-refresh indicator -->
+<div style="max-width:1000px;margin:0 auto 15px;display:flex;justify-content:space-between;align-items:center;padding:8px 15px;background:#111;border:1px solid #222;border-radius:6px;font-size:0.75rem;">
+  <span style="color:#888;">Auto-refreshes every 60 seconds</span>
+  <span id="refreshCountdown" style="color:#ff6600;">Next refresh: --s</span>
+</div>
+
+<!-- ACTIVE PICKS section -->
 <div class="section-title" id="activeTitle" style="display:none;">ACTIVE PICKS — LIVE PERFORMANCE</div>
+<div id="activeInfoBox" class="formula-box" style="display:none;border-left:3px solid #00ff66;margin-bottom:15px;">
+  <strong style="color:#00ff66;">What are Active Picks?</strong> These are trades currently open — the system bought (or shorted) at the Entry price and is watching for the Target (TP) or Stop Loss (SL) to be hit. The live P&L shows how each position is performing right now against the current market price. Picks auto-close when TP or SL is hit, or after a time limit.
+</div>
 <div class="picks" id="activePicksContainer"></div>
 
+<!-- LATEST SCAN PICKS section -->
 <div class="picks" id="picksContainer">
   <div class="loading">Loading picks...</div>
 </div>
 
+<!-- RECENTLY CLOSED PICKS section -->
 <div class="section-title" id="closedTitle" style="display:none;">RECENTLY CLOSED PICKS</div>
+<div id="closedInfoBox" class="formula-box" style="display:none;border-left:3px solid #ffcc00;margin-bottom:10px;">
+  <strong style="color:#ffcc00;">What are Closed Picks?</strong> These are trades that have been resolved — either the price hit our Take Profit target (WIN) or our Stop Loss (LOSS). The realized P&L shows the actual profit or loss from each completed trade. This is the real performance record.
+</div>
 <div class="history-container" id="closedContainer" style="display:none;"></div>
 
+<!-- PICK HISTORY section -->
 <div class="section-title" id="historyTitle" style="display:none;">PICK HISTORY (Last 50)</div>
+<div id="historyInfoBox" class="formula-box" style="display:none;border-left:3px solid #ff6600;margin-bottom:10px;">
+  <strong style="color:#ff6600;">What is Pick History?</strong> This is a chronological log of <em>every signal the system has generated</em>, including picks that may have already been closed or replaced. It shows what the system was thinking at each 15-minute scan — useful for auditing decisions and understanding how strategies respond to market conditions over time. Unlike Active Picks (current positions) or Closed Picks (completed trades), this is the full decision history.
+</div>
 <div class="history-container" id="historyContainer" style="display:none;"></div>
 
+<!-- AUDIT TRAIL section -->
 <div class="section-title" id="auditTitle" style="display:none;">AUDIT TRAIL</div>
+<div id="auditInfoBox" class="formula-box" style="display:none;border-left:3px solid #555;margin-bottom:10px;">
+  <strong style="color:#888;">What is the Audit Trail?</strong> A detailed log of every system action — which APIs were called (and which failed), when picks were opened/closed, price data sources used, and any errors encountered. Full transparency into the system's decision-making process.
+</div>
 <div class="audit-container" id="auditContainer" style="display:none;"></div>
 
 <!-- End of Live tab content -->
@@ -721,6 +744,7 @@ function renderAll(data) {
   const activeWithPnl = activePicks.filter(p => p.current_price);
   if (activeWithPnl.length > 0) {
     document.getElementById('activeTitle').style.display = 'block';
+    document.getElementById('activeInfoBox').style.display = 'block';
     document.getElementById('activePicksContainer').innerHTML = activeWithPnl.map(p => renderPickCard(p, true)).join('');
     document.getElementById('totalPicks').textContent = activeWithPnl.length;
     const avgConf = (activeWithPnl.reduce((a,b) => a + b.confidence, 0) / activeWithPnl.length * 100).toFixed(0) + '%';
@@ -737,6 +761,9 @@ function renderAll(data) {
     // Show new scan picks (without live P&L since they're brand new)
     document.getElementById('picksContainer').innerHTML =
       `<div class="section-title">LATEST SCAN PICKS</div>` +
+      `<div class="formula-box" style="border-left:3px solid #ff3333;margin-bottom:15px;">
+        <strong style="color:#ff3333;">What are Latest Scan Picks?</strong> These are signals generated in the most recent 15-minute scan. They show what the system is recommending <em>right now</em> based on current market conditions. Once a pick is acted on, it moves to Active Picks where its live P&L is tracked. Not all scan picks become active — duplicates of existing positions are filtered out.
+      </div>` +
       picks.map(p => renderPickCard(p, false)).join('');
     if (activeWithPnl.length === 0) {
       document.getElementById('totalPicks').textContent = picks.length;
@@ -751,6 +778,7 @@ function renderAll(data) {
   const closed = data.closed_picks_recent || [];
   if (closed.length > 0) {
     document.getElementById('closedTitle').style.display = 'block';
+    document.getElementById('closedInfoBox').style.display = 'block';
     const cc = document.getElementById('closedContainer');
     cc.style.display = 'block';
     cc.innerHTML = `
@@ -791,6 +819,7 @@ function renderAll(data) {
   const audit = data.audit_trail || [];
   if (audit.length > 0) {
     document.getElementById('auditTitle').style.display = 'block';
+    document.getElementById('auditInfoBox').style.display = 'block';
     const ac = document.getElementById('auditContainer');
     ac.style.display = 'block';
     ac.innerHTML = `
@@ -812,6 +841,7 @@ function renderAll(data) {
   loadHistory().then(history => {
     if (!history || history.length === 0) return;
     document.getElementById('historyTitle').style.display = 'block';
+    document.getElementById('historyInfoBox').style.display = 'block';
     const hc = document.getElementById('historyContainer');
     hc.style.display = 'block';
 
@@ -851,7 +881,18 @@ function renderAll(data) {
 }
 
 loadPicks();
-setInterval(loadPicks, 5 * 60 * 1000);
+const REFRESH_INTERVAL = 60; // seconds
+setInterval(loadPicks, REFRESH_INTERVAL * 1000);
+
+// Refresh countdown
+let refreshSecondsLeft = REFRESH_INTERVAL;
+function updateRefreshCountdown() {
+  refreshSecondsLeft--;
+  if (refreshSecondsLeft <= 0) refreshSecondsLeft = REFRESH_INTERVAL;
+  const el = document.getElementById('refreshCountdown');
+  if (el) el.textContent = `Next refresh: ${refreshSecondsLeft}s`;
+}
+setInterval(updateRefreshCountdown, 1000);
 
 // Tab switching
 const tabMap = {live:'tabLive', methodology:'tabMethodology', next:'tabNext', kimi:'tabKimi'};
