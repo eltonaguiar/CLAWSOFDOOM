@@ -303,7 +303,7 @@
   <button class="tab-btn active" onclick="switchTab('live')" id="tabLive" style="flex:1;padding:12px;background:#ff3333;color:#fff;border:none;border-radius:6px 6px 0 0;font-family:inherit;font-weight:bold;cursor:pointer;font-size:0.9rem;">LIVE PICKS</button>
   <button class="tab-btn" onclick="switchTab('methodology')" id="tabMethodology" style="flex:1;padding:12px;background:#1a1a1a;color:#888;border:1px solid #333;border-bottom:none;border-radius:6px 6px 0 0;font-family:inherit;font-weight:bold;cursor:pointer;font-size:0.9rem;">METHODOLOGY</button>
   <button class="tab-btn" onclick="switchTab('next')" id="tabNext" style="flex:1;padding:12px;background:#1a1a1a;color:#888;border:1px solid #333;border-bottom:none;border-radius:6px 6px 0 0;font-family:inherit;font-weight:bold;cursor:pointer;font-size:0.9rem;">NEXT SCAN</button>
-  <button class="tab-btn" onclick="switchTab('kimi')" id="tabKimi" style="flex:1;padding:12px;background:#1a1a1a;color:#888;border:1px solid #333;border-bottom:none;border-radius:6px 6px 0 0;font-family:inherit;font-weight:bold;cursor:pointer;font-size:0.9rem;">KIMI TOP 20</button>
+  <button class="tab-btn" onclick="switchTab('summary')" id="tabSummary" style="flex:1;padding:12px;background:#1a1a1a;color:#888;border:1px solid #333;border-bottom:none;border-radius:6px 6px 0 0;font-family:inherit;font-weight:bold;cursor:pointer;font-size:0.9rem;">SUMMARY</button>
 </div>
 
 <!-- Methodology Tab Content -->
@@ -401,6 +401,12 @@
       <li>All P&L tracked in both % and $ terms</li>
     </ul>
 
+    <h3 style="color:#ff6600;margin:20px 0 10px;">Strategy Performance Breakdown</h3>
+    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">All performance below is <strong style="color:#ff3333;">FORWARD-TEST (live)</strong> — generated in real-time against live Binance prices. Updated automatically every 15 minutes.</p>
+    <div id="strategyBreakdown" style="background:#0d0d0d;padding:15px;border-radius:6px;font-size:0.85rem;color:#888;">
+      Loading strategy breakdown...
+    </div>
+
     <h3 style="color:#ff6600;margin:20px 0 10px;">Source Code</h3>
     <ul style="color:#ccc;font-size:0.85rem;margin-left:20px;">
       <li><a href="https://github.com/eltonaguiar/CLAWSOFDOOM" style="color:#ff6600;">CLAWSOFDOOM repo</a> — Engine, dashboard, workflow</li>
@@ -442,16 +448,102 @@
   </div>
 </div>
 
-<!-- KIMI Top 20 Strategies Tab Content -->
-<div id="tabContentKimi" style="display:none;max-width:1000px;margin:0 auto 30px;">
-  <div style="background:#111;border:1px solid #333;border-radius:8px;padding:20px;">
-    <h2 style="color:#ff3333;margin-bottom:8px;">KIMI Rise of the Claw — Top 20 Strategies</h2>
-    <p style="color:#888;font-size:0.85rem;margin-bottom:15px;">Forward-tested performance of the top 20 strategies from KIMI's 81-algorithm engine (v11.0). Ranked by Sharpe ratio. Data from live forward testing.</p>
-    <div id="kimiTableContainer" style="overflow-x:auto;">
-      <div style="text-align:center;padding:20px;color:#888;">Loading KIMI strategies...</div>
+<!-- Summary Tab Content -->
+<div id="tabContentSummary" style="display:none;max-width:1000px;margin:0 auto 30px;">
+  <div style="background:#111;border:1px solid #333;border-radius:8px;padding:20px;margin-bottom:20px;">
+    <h2 style="color:#ff3333;margin-bottom:15px;">System Summary</h2>
+    <p style="color:#ccc;margin-bottom:15px;">CLAWSOFDOOM is a <strong style="color:#ff6600;">fully autonomous, rule-based crypto trading signal generator</strong> (no ML dependencies). It runs 24/7 via GitHub Actions every 15 minutes, scanning BTC, ETH, and SOL using 6 proven strategies with 5 API fallback layers.</p>
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">How Picks Are Generated</h3>
+    <p style="color:#ccc;font-size:0.85rem;margin-bottom:10px;">All strategies are <strong>rule-based</strong> (not machine learning). Each strategy has specific, deterministic entry criteria — when conditions are met, a pick is generated. When no conditions trigger, no picks are issued.</p>
+    <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:15px;">
+      <tr style="border-bottom:1px solid #333;"><th style="text-align:left;padding:6px;color:#ff6600;">Strategy</th><th style="text-align:left;padding:6px;color:#ff6600;">Direction</th><th style="text-align:left;padding:6px;color:#ff6600;">Entry Criteria</th><th style="text-align:right;padding:6px;color:#ff6600;">Expected WR</th></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#00ff66;">Extreme Fear Contrarian</td><td style="padding:6px;color:#ccc;">LONG</td><td style="padding:6px;color:#888;">F&G &le; 25 + negative/volatile 24h</td><td style="padding:6px;text-align:right;color:#ccc;">65-71%</td></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#00ff66;">Crash Reversal Bounce</td><td style="padding:6px;color:#ccc;">LONG</td><td style="padding:6px;color:#888;">24h decline &gt;10% + volume spike</td><td style="padding:6px;text-align:right;color:#ccc;">62%</td></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#00ff66;">Momentum Breakout</td><td style="padding:6px;color:#ccc;">LONG</td><td style="padding:6px;color:#888;">24h gain &gt;5% + F&G &gt; 50</td><td style="padding:6px;text-align:right;color:#ccc;">58-63%</td></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#ff3333;">RSI Overbought + SMA</td><td style="padding:6px;color:#ccc;">SHORT</td><td style="padding:6px;color:#888;">RSI(14) &gt; 70 + price &lt; 200-SMA</td><td style="padding:6px;text-align:right;color:#ccc;">60-65%</td></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#ff3333;">EMA Cross + RSI Div</td><td style="padding:6px;color:#ccc;">SHORT</td><td style="padding:6px;color:#888;">EMA(12) &lt; EMA(50) + RSI div + F&G &lt; 40</td><td style="padding:6px;text-align:right;color:#ccc;">55-60%</td></tr>
+      <tr><td style="padding:6px;color:#ffcc00;">Funding Rate Carry</td><td style="padding:6px;color:#ccc;">BOTH</td><td style="padding:6px;color:#888;">Binance funding &gt;0.05% or &lt;-0.03%</td><td style="padding:6px;text-align:right;color:#ccc;">60-70%</td></tr>
+    </table>
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">Schedule & Frequency</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:15px;">
+      <tr style="border-bottom:1px solid #333;"><th style="text-align:left;padding:6px;color:#ff6600;">Version</th><th style="text-align:left;padding:6px;color:#ff6600;">Frequency</th><th style="text-align:left;padding:6px;color:#ff6600;">Cron</th><th style="text-align:left;padding:6px;color:#ff6600;">Status</th></tr>
+      <tr style="border-bottom:1px solid #1a1a1a;"><td style="padding:6px;color:#888;">CLAWSOFDOOM v1</td><td style="padding:6px;color:#888;">Every 30 minutes</td><td style="padding:6px;color:#666;font-family:monospace;">*/30 * * * *</td><td style="padding:6px;color:#666;">Retired</td></tr>
+      <tr><td style="padding:6px;color:#00ff66;">CLAWSOFDOOM v2/v3 (current)</td><td style="padding:6px;color:#ccc;">Every 15 minutes</td><td style="padding:6px;color:#00ff66;font-family:monospace;">*/15 * * * *</td><td style="padding:6px;color:#00ff66;">ACTIVE</td></tr>
+    </table>
+    <p style="color:#888;font-size:0.85rem;">Next picks: Within 15 minutes of the last run (continuous, 24/7). Can also be triggered manually via <code style="color:#00ff66;background:#0a0a0a;padding:2px 6px;border-radius:3px;">workflow_dispatch</code>.</p>
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">System Architecture</h3>
+    <div style="background:#0d0d0d;padding:15px;border-radius:6px;font-family:'Courier New',monospace;font-size:0.8rem;color:#ccc;line-height:1.8;">
+      CLAWSOFDOOM/<br>
+      &nbsp;&nbsp;&boxvr;&nbsp;6 Core Strategies (all rule-based, <span style="color:#ff3333;">zero ML</span>)<br>
+      &nbsp;&nbsp;&boxv;&nbsp;&nbsp;&nbsp;&boxvr;&nbsp;<span style="color:#00ff66;">3 LONG</span> &mdash; Fear Contrarian, Crash Reversal, Momentum<br>
+      &nbsp;&nbsp;&boxv;&nbsp;&nbsp;&nbsp;&boxvr;&nbsp;<span style="color:#ff3333;">2 SHORT</span> &mdash; RSI Overbought, EMA Bearish Cross<br>
+      &nbsp;&nbsp;&boxv;&nbsp;&nbsp;&nbsp;&boxur;&nbsp;<span style="color:#ffcc00;">1 CARRY</span> &mdash; Funding Rate Arbitrage<br>
+      &nbsp;&nbsp;&boxvr;&nbsp;5 API Fallback Layers (bulletproof data)<br>
+      &nbsp;&nbsp;&boxvr;&nbsp;Full Audit Trail (EST timestamps)<br>
+      &nbsp;&nbsp;&boxvr;&nbsp;Discord Notifications (every scan)<br>
+      &nbsp;&nbsp;&boxur;&nbsp;GitHub Pages Dashboard (auto-refreshes every 60s)
     </div>
-    <div style="margin-top:15px;padding:12px;background:#0d0d0d;border-radius:6px;font-size:0.8rem;color:#888;">
-      <strong style="color:#ff6600;">About KIMI Rise of the Claw:</strong> An autonomous 81-algorithm crypto/forex trading engine running every 15 minutes via GitHub Actions. Features an elimination engine (danger zone &rarr; probation &rarr; elimination), ML signal ranker, and SQLite persistence. See the <a href="https://eltonaguiar.github.io/findtorontoevents_antigravity.ca/monitor/" style="color:#ff6600;">Cross-System Monitor</a> for live aggregated data.
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">How CLAWSOFDOOM Compares</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:0.8rem;margin-bottom:15px;">
+      <tr style="border-bottom:1px solid #333;">
+        <th style="text-align:left;padding:6px;color:#ff6600;">Feature</th>
+        <th style="text-align:center;padding:6px;color:#ff3333;">CLAWSOFDOOM</th>
+        <th style="text-align:center;padding:6px;color:#888;">Mercury 2</th>
+        <th style="text-align:center;padding:6px;color:#888;">Alpha Engine</th>
+        <th style="text-align:center;padding:6px;color:#888;">KIMI</th>
+      </tr>
+      <tr style="border-bottom:1px solid #1a1a1a;">
+        <td style="padding:6px;color:#ccc;">Strategy Type</td>
+        <td style="padding:6px;text-align:center;color:#00ff66;">Rule-based (proven)</td>
+        <td style="padding:6px;text-align:center;color:#888;">XGBoost ML</td>
+        <td style="padding:6px;text-align:center;color:#888;">100 mixed</td>
+        <td style="padding:6px;text-align:center;color:#888;">81 algorithms</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1a1a1a;">
+        <td style="padding:6px;color:#ccc;">Scan Frequency</td>
+        <td style="padding:6px;text-align:center;color:#ccc;">15 min</td>
+        <td style="padding:6px;text-align:center;color:#888;">30 min</td>
+        <td style="padding:6px;text-align:center;color:#888;">15 min</td>
+        <td style="padding:6px;text-align:center;color:#888;">15 min</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1a1a1a;">
+        <td style="padding:6px;color:#ccc;">Assets</td>
+        <td style="padding:6px;text-align:center;color:#ccc;">3 crypto</td>
+        <td style="padding:6px;text-align:center;color:#888;">10+ crypto</td>
+        <td style="padding:6px;text-align:center;color:#888;">Crypto+FX+Equity</td>
+        <td style="padding:6px;text-align:center;color:#888;">Crypto+FX</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1a1a1a;">
+        <td style="padding:6px;color:#ccc;">ML Dependencies</td>
+        <td style="padding:6px;text-align:center;color:#00ff66;font-weight:bold;">None</td>
+        <td style="padding:6px;text-align:center;color:#888;">LightGBM/XGBoost</td>
+        <td style="padding:6px;text-align:center;color:#888;">Multiple</td>
+        <td style="padding:6px;text-align:center;color:#888;">RF ranker</td>
+      </tr>
+      <tr>
+        <td style="padding:6px;color:#ccc;">API Resilience</td>
+        <td style="padding:6px;text-align:center;color:#00ff66;font-weight:bold;">5 layers</td>
+        <td style="padding:6px;text-align:center;color:#888;">3 layers</td>
+        <td style="padding:6px;text-align:center;color:#888;">Standard</td>
+        <td style="padding:6px;text-align:center;color:#888;">3 layers</td>
+      </tr>
+    </table>
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">Forward-Test Performance</h3>
+    <p style="color:#888;font-size:0.85rem;margin-bottom:10px;">All performance shown on this dashboard is <strong style="color:#ff3333;">FORWARD-TEST (live)</strong> — not backtested. Picks are generated in real-time against live market prices and tracked to TP/SL resolution. Every trade is auditable with entry/exit timestamps in EST.</p>
+    <div id="summaryPerformance" style="background:#0d0d0d;padding:15px;border-radius:6px;font-size:0.85rem;color:#888;">
+      Performance data loads from live picks... Switch to the <span style="color:#ff3333;cursor:pointer;" onclick="switchTab('live')">LIVE PICKS</span> tab to see current positions.
+    </div>
+
+    <h3 style="color:#ff6600;margin:20px 0 10px;">Design Philosophy</h3>
+    <p style="color:#ccc;font-size:0.85rem;">CLAWSOFDOOM is designed to be <strong style="color:#ff6600;">"bulletproof"</strong> — it will never fail to produce a scan, even if every API goes down. The 5-layer fallback system guarantees data availability. Zero ML dependencies mean no model drift, no retraining, no surprise failures. Every decision is transparent and deterministic.</p>
+
+    <div style="margin-top:20px;padding:12px;background:#0d0d0d;border-radius:6px;font-size:0.8rem;color:#888;border-left:3px solid #ff3333;">
+      <strong style="color:#ff6600;">Part of the Antigravity Trading Suite:</strong> CLAWSOFDOOM (System F) is one of 7+ trading systems running in parallel. See the <a href="https://eltonaguiar.github.io/findtorontoevents_antigravity.ca/monitor/" style="color:#ff6600;">Cross-System Monitor</a> for aggregated data across all systems.
     </div>
   </div>
 </div>
@@ -787,12 +879,15 @@ function renderAll(data) {
           <tr>
             <th>Symbol</th>
             <th>Strategy</th>
-            <th>Entry</th>
-            <th>Exit</th>
+            <th>Dir</th>
+            <th>Entry Price</th>
+            <th>TP Target</th>
+            <th>SL Target</th>
+            <th>Exit Price</th>
             <th>Result</th>
-            <th>P&L %</th>
-            <th>P&L $</th>
-            <th>Exit Time</th>
+            <th>P&L</th>
+            <th>Opened (EST)</th>
+            <th>Closed (EST)</th>
           </tr>
         </thead>
         <tbody>
@@ -800,15 +895,20 @@ function renderAll(data) {
             const isWin = c.exit_reason === 'TP_HIT';
             const color = isWin ? '#00ff66' : '#ff3333';
             const badge = isWin ? 'WIN' : 'LOSS';
+            const dir = c.direction || 'LONG';
+            const dirColor = dir === 'SHORT' ? '#ff3333' : '#00ff66';
             return `<tr>
               <td style="color:#ff3333;font-weight:bold;">${c.symbol}</td>
-              <td>${c.strategy}</td>
+              <td style="font-size:0.7rem;">${c.strategy}</td>
+              <td style="color:${dirColor};font-weight:bold;">${dir}</td>
               <td>$${fmt(c.entry_price)}</td>
+              <td style="color:#00ff66">$${fmt(c.tp_price || 0)}</td>
+              <td style="color:#ff3333">$${fmt(c.sl_price || 0)}</td>
               <td>$${fmt(c.exit_price)}</td>
               <td style="color:${color};font-weight:bold;">${badge}</td>
-              <td style="color:${color}">${pnlSign(c.realized_pnl_pct)}${(c.realized_pnl_pct||0).toFixed(2)}%</td>
-              <td style="color:${color}">${pnlSign(c.realized_pnl_dollar)}$${Math.abs(c.realized_pnl_dollar||0).toFixed(2)}</td>
-              <td>${c.exit_time_est || ''}</td>
+              <td style="color:${color}">${pnlSign(c.realized_pnl_pct)}${(c.realized_pnl_pct||0).toFixed(2)}% (${pnlSign(c.realized_pnl_dollar)}$${Math.abs(c.realized_pnl_dollar||0).toFixed(2)})</td>
+              <td style="font-size:0.7rem;">${c.timestamp_est || ''}</td>
+              <td style="font-size:0.7rem;">${c.exit_time_est || ''}</td>
             </tr>`;
           }).join('')}
         </tbody>
@@ -834,6 +934,82 @@ function renderAll(data) {
             <span class="audit-detail">${a.detail || ''}</span>
           </div>
         `).join('')}
+      </div>`;
+  }
+
+  // Strategy performance breakdown (for Methodology + Summary tabs)
+  const allClosed = data.closed_picks_recent || [];
+  const stratMap = {};
+  allClosed.forEach(c => {
+    const s = c.strategy || 'unknown';
+    if (!stratMap[s]) stratMap[s] = {wins: 0, losses: 0, pnl: 0, pnl_dollar: 0, trades: []};
+    const isWin = c.exit_reason === 'TP_HIT';
+    if (isWin) stratMap[s].wins++; else stratMap[s].losses++;
+    stratMap[s].pnl += (c.realized_pnl_pct || 0);
+    stratMap[s].pnl_dollar += (c.realized_pnl_dollar || 0);
+    stratMap[s].trades.push(c);
+  });
+  const totalActive = activePicks.length;
+
+  // Render strategy breakdown
+  const sbEl = document.getElementById('strategyBreakdown');
+  if (sbEl) {
+    if (allClosed.length === 0 && totalActive === 0) {
+      sbEl.innerHTML = '<span style="color:#888;">No completed trades yet. System is live and tracking — check back after picks resolve.</span>';
+    } else {
+      let sbHtml = `<div style="margin-bottom:12px;"><strong style="color:#ff6600;">Overall:</strong> <span style="color:#ccc;">${allClosed.length} closed trades | ${totalActive} active positions</span></div>`;
+      sbHtml += `<table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
+        <tr style="border-bottom:1px solid #333;"><th style="text-align:left;padding:6px;color:#ff6600;">Strategy</th><th style="text-align:right;padding:6px;color:#ff6600;">Trades</th><th style="text-align:right;padding:6px;color:#ff6600;">W/L</th><th style="text-align:right;padding:6px;color:#ff6600;">Win Rate</th><th style="text-align:right;padding:6px;color:#ff6600;">PnL %</th><th style="text-align:right;padding:6px;color:#ff6600;">PnL $</th></tr>`;
+      Object.entries(stratMap).forEach(([name, s]) => {
+        const total = s.wins + s.losses;
+        const wr = total > 0 ? (s.wins / total * 100).toFixed(1) : '0.0';
+        const wrColor = parseFloat(wr) >= 60 ? '#00ff66' : (parseFloat(wr) >= 40 ? '#ffcc00' : '#ff3333');
+        const pnlColor2 = s.pnl >= 0 ? '#00ff66' : '#ff3333';
+        sbHtml += `<tr style="border-bottom:1px solid #1a1a1a;">
+          <td style="padding:6px;color:#ccc;">${name}</td>
+          <td style="padding:6px;text-align:right;color:#888;">${total}</td>
+          <td style="padding:6px;text-align:right;color:#ccc;">${s.wins}W / ${s.losses}L</td>
+          <td style="padding:6px;text-align:right;color:${wrColor};font-weight:bold;">${wr}%</td>
+          <td style="padding:6px;text-align:right;color:${pnlColor2};">${pnlSign(s.pnl)}${s.pnl.toFixed(2)}%</td>
+          <td style="padding:6px;text-align:right;color:${pnlColor2};">${pnlSign(s.pnl_dollar)}$${Math.abs(s.pnl_dollar).toFixed(2)}</td>
+        </tr>`;
+      });
+      sbHtml += '</table>';
+      // Active positions by strategy
+      if (totalActive > 0) {
+        const activeStrats = {};
+        activePicks.forEach(p => {
+          const s = p.strategy || 'unknown';
+          if (!activeStrats[s]) activeStrats[s] = [];
+          activeStrats[s].push(p);
+        });
+        sbHtml += `<div style="margin-top:12px;"><strong style="color:#ff6600;">Currently Active:</strong></div>`;
+        Object.entries(activeStrats).forEach(([name, picks]) => {
+          const unrealized = picks.reduce((a, p) => a + (p.unrealized_pnl_pct || 0), 0);
+          const uColor = unrealized >= 0 ? '#00ff66' : '#ff3333';
+          sbHtml += `<div style="padding:4px 0;color:#ccc;">&nbsp;&nbsp;${name}: ${picks.length} open (unrealized: <span style="color:${uColor}">${pnlSign(unrealized)}${unrealized.toFixed(2)}%</span>)</div>`;
+        });
+      }
+      sbEl.innerHTML = sbHtml;
+    }
+  }
+
+  // Summary tab performance
+  const spEl = document.getElementById('summaryPerformance');
+  if (spEl && (allClosed.length > 0 || totalActive > 0)) {
+    const wins = allClosed.filter(c => c.exit_reason === 'TP_HIT').length;
+    const wr = allClosed.length > 0 ? (wins / allClosed.length * 100).toFixed(1) : '0.0';
+    const totalPnlPct = allClosed.reduce((a, c) => a + (c.realized_pnl_pct || 0), 0);
+    const totalPnlDollar = allClosed.reduce((a, c) => a + (c.realized_pnl_dollar || 0), 0);
+    const unrealizedPnl = activePicks.reduce((a, p) => a + (p.unrealized_pnl_pct || 0), 0);
+    const wrColor = parseFloat(wr) >= 60 ? '#00ff66' : (parseFloat(wr) >= 40 ? '#ffcc00' : '#ff3333');
+    spEl.innerHTML = `
+      <div style="display:flex;gap:30px;flex-wrap:wrap;">
+        <div><span style="color:#888;">Closed Trades:</span> <strong style="color:#ccc;">${allClosed.length}</strong></div>
+        <div><span style="color:#888;">Win Rate:</span> <strong style="color:${wrColor};">${wr}%</strong> (${wins}W / ${allClosed.length - wins}L)</div>
+        <div><span style="color:#888;">Realized PnL:</span> <strong style="color:${pnlColor(totalPnlPct)};">${pnlSign(totalPnlPct)}${totalPnlPct.toFixed(2)}% (${pnlSign(totalPnlDollar)}$${Math.abs(totalPnlDollar).toFixed(2)})</strong></div>
+        <div><span style="color:#888;">Active Positions:</span> <strong style="color:#ccc;">${totalActive}</strong></div>
+        ${totalActive > 0 ? `<div><span style="color:#888;">Unrealized:</span> <strong style="color:${pnlColor(unrealizedPnl)};">${pnlSign(unrealizedPnl)}${unrealizedPnl.toFixed(2)}%</strong></div>` : ''}
       </div>`;
   }
 
@@ -895,9 +1071,8 @@ function updateRefreshCountdown() {
 setInterval(updateRefreshCountdown, 1000);
 
 // Tab switching
-const tabMap = {live:'tabLive', methodology:'tabMethodology', next:'tabNext', kimi:'tabKimi'};
 function switchTab(tab) {
-  ['Live','Methodology','Next','Kimi'].forEach(t => {
+  ['Live','Methodology','Next','Summary'].forEach(t => {
     const key = t.toLowerCase();
     document.getElementById('tabContent'+t).style.display = key === tab ? 'block' : 'none';
     const btn = document.getElementById('tab'+t);
@@ -912,83 +1087,6 @@ function switchTab(tab) {
       btn.style.borderBottom = 'none';
     }
   });
-  if (tab === 'kimi') loadKimiStrategies();
-}
-
-// KIMI Top 20 Strategies loader
-let kimiLoaded = false;
-async function loadKimiStrategies() {
-  if (kimiLoaded) return;
-  const sources = [
-    './kimi_top20.json',
-    'kimi_top20.json',
-    'https://raw.githubusercontent.com/eltonaguiar/CLAWSOFDOOM/main/docs/kimi_top20.json'
-  ];
-  for (const url of sources) {
-    try {
-      const resp = await fetch(url, {cache:'no-store'});
-      if (!resp.ok) continue;
-      const data = await resp.json();
-      renderKimiTable(data);
-      kimiLoaded = true;
-      return;
-    } catch(e) {}
-  }
-  document.getElementById('kimiTableContainer').innerHTML = '<div style="color:#ff3333;text-align:center;">Failed to load KIMI strategies data.</div>';
-}
-
-function renderKimiTable(strategies) {
-  const medalColors = ['#ffd700','#c0c0c0','#cd7f32'];
-  let html = `<table style="width:100%;border-collapse:collapse;font-size:0.8rem;">
-    <thead>
-      <tr style="border-bottom:2px solid #ff3333;">
-        <th style="padding:8px;text-align:center;color:#ff6600;">#</th>
-        <th style="padding:8px;text-align:left;color:#ff6600;">Strategy</th>
-        <th style="padding:8px;text-align:right;color:#ff6600;">Sharpe</th>
-        <th style="padding:8px;text-align:right;color:#ff6600;">Return</th>
-        <th style="padding:8px;text-align:right;color:#ff6600;">Win Rate</th>
-        <th style="padding:8px;text-align:right;color:#ff6600;">Max DD</th>
-        <th style="padding:8px;text-align:right;color:#ff6600;">PF</th>
-        <th style="padding:8px;text-align:right;color:#ff6600;">Trades</th>
-      </tr>
-    </thead><tbody>`;
-
-  strategies.forEach(s => {
-    const medal = s.rank <= 3 ? ` style="color:${medalColors[s.rank-1]};font-weight:bold;"` : '';
-    const retColor = s.return_pct >= 0 ? '#00ff66' : '#ff3333';
-    const ddColor = '#ff3333';
-    const wrColor = s.win_rate_pct >= 60 ? '#00ff66' : (s.win_rate_pct >= 50 ? '#ffcc00' : '#ff3333');
-    const bg = s.rank % 2 === 0 ? 'background:#111;' : '';
-    const name = s.name.length > 50 ? s.name.substring(0,47) + '...' : s.name;
-
-    html += `<tr style="${bg}border-bottom:1px solid #1a1a1a;">
-      <td style="padding:6px;text-align:center;"${medal}>${s.rank}</td>
-      <td style="padding:6px;color:#ccc;" title="${s.name}">${name}</td>
-      <td style="padding:6px;text-align:right;color:#00ff66;font-weight:bold;">${s.sharpe.toFixed(2)}</td>
-      <td style="padding:6px;text-align:right;color:${retColor};">${s.return_pct >= 0 ? '+' : ''}${s.return_pct.toFixed(1)}%</td>
-      <td style="padding:6px;text-align:right;color:${wrColor};">${s.win_rate_pct.toFixed(1)}%</td>
-      <td style="padding:6px;text-align:right;color:${ddColor};">${s.max_drawdown_pct.toFixed(1)}%</td>
-      <td style="padding:6px;text-align:right;color:#ccc;">${s.profit_factor.toFixed(2)}</td>
-      <td style="padding:6px;text-align:right;color:#888;">${s.trades}</td>
-    </tr>`;
-  });
-
-  html += '</tbody></table>';
-
-  // Summary stats
-  const avgSharpe = strategies.reduce((a,b) => a + b.sharpe, 0) / strategies.length;
-  const avgWR = strategies.reduce((a,b) => a + b.win_rate_pct, 0) / strategies.length;
-  const avgReturn = strategies.reduce((a,b) => a + b.return_pct, 0) / strategies.length;
-  const totalTrades = strategies.reduce((a,b) => a + b.trades, 0);
-
-  html = `<div style="display:flex;gap:20px;justify-content:center;margin-bottom:15px;flex-wrap:wrap;">
-    <div style="text-align:center;"><div style="color:#00ff66;font-size:1.5rem;font-weight:bold;">${avgSharpe.toFixed(2)}</div><div style="color:#888;font-size:0.75rem;">AVG SHARPE</div></div>
-    <div style="text-align:center;"><div style="color:#00ff66;font-size:1.5rem;font-weight:bold;">${avgWR.toFixed(1)}%</div><div style="color:#888;font-size:0.75rem;">AVG WIN RATE</div></div>
-    <div style="text-align:center;"><div style="color:#00ff66;font-size:1.5rem;font-weight:bold;">+${avgReturn.toFixed(1)}%</div><div style="color:#888;font-size:0.75rem;">AVG RETURN</div></div>
-    <div style="text-align:center;"><div style="color:#ffcc00;font-size:1.5rem;font-weight:bold;">${totalTrades}</div><div style="color:#888;font-size:0.75rem;">TOTAL TRADES</div></div>
-  </div>` + html;
-
-  document.getElementById('kimiTableContainer').innerHTML = html;
 }
 
 // Next scan countdown
