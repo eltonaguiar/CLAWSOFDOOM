@@ -149,16 +149,27 @@
 
 <script>
 async function loadPicks() {
-  try {
-    const resp = await fetch('./picks.json', { cache: 'no-store' });
-    if (resp.ok) {
-      const data = await resp.json();
-      renderPicks(data);
+  const urls = [
+    './picks.json',
+    'picks.json',
+    'https://raw.githubusercontent.com/eltonaguiar/CLAWSOFDOOM/main/docs/picks.json'
+  ];
+  
+  for (const url of urls) {
+    try {
+      const resp = await fetch(url, { cache: 'no-store' });
+      if (resp.ok) {
+        const data = await resp.json();
+        renderPicks(data);
+        return;
+      }
+    } catch (e) {
+      console.warn('Failed to load from:', url);
     }
-  } catch (e) {
-    document.getElementById('picksContainer').innerHTML = 
-      '<div class="loading">Error loading picks. Retrying...</div>';
   }
+  
+  document.getElementById('picksContainer').innerHTML = 
+    '<div class="loading">Error loading picks. Please refresh.</div>';
 }
 
 function renderPicks(data) {
