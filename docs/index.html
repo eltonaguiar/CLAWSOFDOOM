@@ -149,27 +149,66 @@
 
 <script>
 async function loadPicks() {
-  const urls = [
+  // BULLETPROOF: Try multiple sources with fallbacks
+  const sources = [
+    // Primary: Same domain
     './picks.json',
     'picks.json',
-    'https://raw.githubusercontent.com/eltonaguiar/CLAWSOFDOOM/main/docs/picks.json'
+    '/picks.json',
+    
+    // Backup: Raw GitHub
+    'https://raw.githubusercontent.com/eltonaguiar/CLAWSOFDOOM/main/docs/picks.json',
+    
+    // Ultimate backup: JSDelivr CDN
+    'https://cdn.jsdelivr.net/gh/eltonaguiar/CLAWSOFDOOM@main/docs/picks.json'
   ];
   
-  for (const url of urls) {
+  let lastError = null;
+  
+  for (const url of sources) {
     try {
-      const resp = await fetch(url, { cache: 'no-store' });
+      console.log('Trying:', url);
+      const resp = await fetch(url, { 
+        cache: 'no-store',
+        headers: { 'Accept': 'application/json' }
+      });
+      
       if (resp.ok) {
         const data = await resp.json();
+        console.log('✓ Loaded from:', url);
         renderPicks(data);
         return;
       }
     } catch (e) {
-      console.warn('Failed to load from:', url);
+      console.warn('✗ Failed:', url, e.message);
+      lastError = e;
     }
   }
   
-  document.getElementById('picksContainer').innerHTML = 
-    '<div class="loading">Error loading picks. Please refresh.</div>';
+  // Ultimate fallback: Show error with manual refresh
+  document.getElementById('picksContainer').innerHTML = `
+    <div style="text-align: center; padding: 40px;">
+      <div style="color: #ff3333; font-size: 1.2rem; margin-bottom: 15px;">
+        ⚠️ UNABLE TO LOAD PICKS
+      </div>
+      <div style="color: #888; margin-bottom: 20px;">
+        All data sources failed. Retrying automatically...
+      </div>
+      <button onclick="location.reload()" style="
+        background: #ff3333;
+        color: white;
+        border: none;
+        padding: 10px 30px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1rem;
+      ">REFRESH NOW</button>
+    </div>
+  `;
+  
+  // Auto-retry in 10 seconds
+  setTimeout(loadPicks, 10000);
 }
 
 function renderPicks(data) {
