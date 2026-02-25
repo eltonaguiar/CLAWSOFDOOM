@@ -30,12 +30,6 @@ jobs:
       run: python systems/claws_engine.py
       timeout-minutes: 2
 
-    - name: Send Discord Notifications
-      if: always()
-      env:
-        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-      run: python systems/discord_notify.py || true
-
     - name: Commit updated data files
       run: |
         git config user.name "CLAWS OF DOOM Bot"
