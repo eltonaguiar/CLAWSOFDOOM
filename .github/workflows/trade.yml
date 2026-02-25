@@ -17,11 +17,8 @@ jobs:
       with:
         python-version: '3.11'
     
-    - name: Install dependencies
-      run: pip install pandas numpy requests
-    
-    - name: Run Trading System
-      run: python systems/claws_engine.py
+    - name: Run Trading System (Fallback Mode)
+      run: python systems/claws_engine_fallback.py
     
     - name: Deploy to Pages
       uses: peaceiris/actions-gh-pages@v3
