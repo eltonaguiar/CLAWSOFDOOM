@@ -1,29 +1,40 @@
-name: CLAWS OF DOOM - Bulletproof Trading
+name: CLAWS OF DOOM v3 - Bulletproof Trading
 on:
   push:
     branches: [ main ]
   schedule:
-    - cron: '*/15 * * * *'  # Every 15 minutes (more frequent)
+    - cron: '*/15 * * * *'  # Every 15 minutes
   workflow_dispatch:
 
 jobs:
   trade:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    
+    - uses: actions/checkout@v4
+
     - name: Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.11'
-    
+
+    - name: Install dependencies
+      run: pip install requests
+
     - name: Run Bulletproof Trading System
       run: python systems/claws_engine.py
-      timeout-minutes: 2  # Fail fast if stuck
-    
+      timeout-minutes: 2
+
+    - name: Commit updated data files
+      run: |
+        git config user.name "CLAWS OF DOOM Bot"
+        git config user.email "bot@clawsofdoom.io"
+        git add docs/picks.json docs/active_picks.json docs/closed_picks.json docs/picks_history.json || true
+        git diff --staged --quiet || git commit -m "CLAWS v3 [$(date -u '+%Y-%m-%d %H:%M UTC')] - auto-update picks + performance"
+        git push || true
+
     - name: Deploy to Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
-        keep_files: true  # Don't delete old files
+        keep_files: true

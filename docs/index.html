@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CLAWS OF DOOM v2 - Live Picks</title>
+<title>CLAWS OF DOOM v3 - Live Picks</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -24,19 +24,62 @@
     color: #ff3333;
     text-shadow: 0 0 20px #ff3333;
   }
-  .header p {
+  .header .subtitle {
     color: #ff6600;
     margin-top: 10px;
   }
+  .header .timestamp {
+    color: #666;
+    font-size: 0.8rem;
+    margin-top: 8px;
+  }
+  .market-snapshot {
+    max-width: 1000px;
+    margin: 0 auto 25px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 15px 20px;
+  }
+  .market-snapshot h3 {
+    color: #ff6600;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  .market-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .market-item {
+    text-align: center;
+    flex: 1;
+    min-width: 100px;
+  }
+  .market-item .coin { color: #ff3333; font-weight: bold; }
+  .market-item .price { font-size: 1.1rem; }
+  .market-item .change { font-size: 0.85rem; }
+  .fg-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.85rem;
+  }
+  .fg-extreme-fear { background: #ff0000; color: #fff; }
+  .fg-fear { background: #ff6600; color: #fff; }
+  .fg-neutral { background: #ffcc00; color: #000; }
+  .fg-greed { background: #66cc00; color: #000; }
+  .fg-extreme-greed { background: #00cc00; color: #000; }
   .stats {
     display: flex;
     justify-content: center;
     gap: 40px;
     margin-bottom: 30px;
+    flex-wrap: wrap;
   }
-  .stat {
-    text-align: center;
-  }
+  .stat { text-align: center; }
   .stat-value {
     font-size: 2rem;
     font-weight: bold;
@@ -68,39 +111,163 @@
     font-weight: bold;
     color: #ff3333;
   }
-  .pick-strategy {
-    font-size: 0.8rem;
-    color: #888;
+  .pick-strategy-name {
+    font-size: 0.85rem;
+    color: #ff6600;
+    font-weight: bold;
+  }
+  .pick-strategy-tag {
+    font-size: 0.7rem;
+    color: #666;
   }
   .pick-confidence {
+    text-align: right;
+  }
+  .pick-confidence .value {
     background: #00ff66;
     color: #000;
     padding: 5px 15px;
     border-radius: 4px;
     font-weight: bold;
+    display: inline-block;
+  }
+  .pick-confidence .explanation {
+    font-size: 0.65rem;
+    color: #666;
+    margin-top: 4px;
+    max-width: 200px;
   }
   .pick-details {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
   }
-  .detail {
-    text-align: center;
-  }
+  .detail { text-align: center; }
   .detail-value {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
   }
   .detail-label {
     font-size: 0.7rem;
     color: #888;
   }
+  .pick-strategy-desc {
+    margin-top: 12px;
+    padding: 10px;
+    background: #0d0d0d;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: #999;
+    border-left: 3px solid #ff6600;
+  }
+  .pick-strategy-desc .edge-label {
+    color: #ff6600;
+    font-weight: bold;
+  }
   .pick-reason {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #333;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #222;
     font-size: 0.85rem;
     color: #aaa;
+  }
+  .pick-timestamp {
+    font-size: 0.7rem;
+    color: #555;
+    margin-top: 6px;
+  }
+  .section-title {
+    max-width: 1000px;
+    margin: 30px auto 15px;
+    color: #ff6600;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 8px;
+  }
+  .audit-container {
+    max-width: 1000px;
+    margin: 0 auto 30px;
+  }
+  .audit-toggle {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #ff6600;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    width: 100%;
+    text-align: left;
+  }
+  .audit-toggle:hover { background: #222; }
+  .audit-log {
+    display: none;
+    background: #0d0d0d;
+    border: 1px solid #222;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    max-height: 400px;
+    overflow-y: auto;
+    font-size: 0.75rem;
+  }
+  .audit-log.open { display: block; }
+  .audit-entry {
+    padding: 6px 12px;
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    gap: 12px;
+  }
+  .audit-entry:nth-child(even) { background: #111; }
+  .audit-ts { color: #555; white-space: nowrap; min-width: 170px; }
+  .audit-event { color: #ff6600; min-width: 140px; font-weight: bold; }
+  .audit-detail { color: #999; }
+  .history-container {
+    max-width: 1000px;
+    margin: 0 auto 30px;
+  }
+  .history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+  }
+  .history-table th {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 2px solid #333;
+    color: #ff6600;
+  }
+  .history-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #1a1a1a;
+    color: #ccc;
+  }
+  .history-table tr:nth-child(even) { background: #111; }
+  .warning-banner {
+    background: #331100;
+    border: 2px solid #ff3333;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #ff6600;
+    font-weight: bold;
+  }
+  .formula-box {
+    max-width: 1000px;
+    margin: 0 auto 20px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 0.8rem;
+    color: #888;
+  }
+  .formula-box code {
+    color: #00ff66;
+    background: #0a0a0a;
+    padding: 2px 6px;
+    border-radius: 3px;
   }
   .loading {
     text-align: center;
@@ -115,13 +282,24 @@
     color: #666;
     font-size: 0.8rem;
   }
+  @media (max-width: 600px) {
+    .pick-details { grid-template-columns: repeat(3, 1fr); }
+    .stats { gap: 20px; }
+    .market-row { flex-direction: column; }
+  }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>☠️ CLAWS OF DOOM v2 ☠️</h1>
-  <p>WORKING SYSTEM // NO BROKEN ML PIPELINE</p>
+  <h1>CLAWS OF DOOM v3</h1>
+  <div class="subtitle">BULLETPROOF FAILOVER // 5 API LAYERS // FULL AUDIT TRAIL</div>
+  <div class="timestamp" id="lastUpdated">Loading...</div>
+</div>
+
+<div class="market-snapshot" id="marketSnapshot" style="display:none;">
+  <h3>MARKET SNAPSHOT</h3>
+  <div id="marketContent"></div>
 </div>
 
 <div class="stats">
@@ -134,129 +312,374 @@
     <div class="stat-label">AVG CONFIDENCE</div>
   </div>
   <div class="stat">
-    <div class="stat-value">3</div>
-    <div class="stat-label">STRATEGIES</div>
+    <div class="stat-value" id="fearGreed">--</div>
+    <div class="stat-label">FEAR & GREED</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" id="priceSource">--</div>
+    <div class="stat-label">DATA SOURCE</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" id="winRate">--</div>
+    <div class="stat-label">WIN RATE</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" id="totalPnl">--</div>
+    <div class="stat-label">TOTAL P&L</div>
   </div>
 </div>
+
+<div id="formulaBox" class="formula-box" style="display:none;"></div>
+
+<div class="section-title" id="activeTitle" style="display:none;">ACTIVE PICKS — LIVE PERFORMANCE</div>
+<div class="picks" id="activePicksContainer"></div>
 
 <div class="picks" id="picksContainer">
   <div class="loading">Loading picks...</div>
 </div>
 
+<div class="section-title" id="closedTitle" style="display:none;">RECENTLY CLOSED PICKS</div>
+<div class="history-container" id="closedContainer" style="display:none;"></div>
+
+<div class="section-title" id="historyTitle" style="display:none;">PICK HISTORY (Last 50)</div>
+<div class="history-container" id="historyContainer" style="display:none;"></div>
+
+<div class="section-title" id="auditTitle" style="display:none;">AUDIT TRAIL</div>
+<div class="audit-container" id="auditContainer" style="display:none;"></div>
+
 <div class="footer">
-  Updates every 30 minutes via GitHub Actions | No ML dependencies | Proven strategies only
+  Updates every 15 minutes via GitHub Actions | 5 API fallbacks | Full audit trail | EST timestamps
 </div>
 
 <script>
 async function loadPicks() {
-  // BULLETPROOF: Try multiple sources with fallbacks
   const sources = [
-    // Primary: Same domain
     './picks.json',
     'picks.json',
-    '/picks.json',
-    
-    // Backup: Raw GitHub
     'https://raw.githubusercontent.com/eltonaguiar/CLAWSOFDOOM/main/docs/picks.json',
-    
-    // Ultimate backup: JSDelivr CDN
     'https://cdn.jsdelivr.net/gh/eltonaguiar/CLAWSOFDOOM@main/docs/picks.json'
   ];
-  
-  let lastError = null;
-  
+
   for (const url of sources) {
     try {
-      console.log('Trying:', url);
-      const resp = await fetch(url, { 
-        cache: 'no-store',
-        headers: { 'Accept': 'application/json' }
-      });
-      
+      const resp = await fetch(url, { cache: 'no-store' });
       if (resp.ok) {
         const data = await resp.json();
-        console.log('✓ Loaded from:', url);
-        renderPicks(data);
+        renderAll(data);
         return;
       }
     } catch (e) {
-      console.warn('✗ Failed:', url, e.message);
-      lastError = e;
+      console.warn('Failed:', url, e.message);
     }
   }
-  
-  // Ultimate fallback: Show error with manual refresh
+
   document.getElementById('picksContainer').innerHTML = `
-    <div style="text-align: center; padding: 40px;">
-      <div style="color: #ff3333; font-size: 1.2rem; margin-bottom: 15px;">
-        ⚠️ UNABLE TO LOAD PICKS
-      </div>
-      <div style="color: #888; margin-bottom: 20px;">
-        All data sources failed. Retrying automatically...
-      </div>
-      <button onclick="location.reload()" style="
-        background: #ff3333;
-        color: white;
-        border: none;
-        padding: 10px 30px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-family: inherit;
-        font-size: 1rem;
-      ">REFRESH NOW</button>
-    </div>
-  `;
-  
-  // Auto-retry in 10 seconds
+    <div style="text-align:center;padding:40px;">
+      <div style="color:#ff3333;font-size:1.2rem;margin-bottom:15px;">UNABLE TO LOAD PICKS</div>
+      <div style="color:#888;margin-bottom:20px;">Retrying in 10s...</div>
+      <button onclick="location.reload()" style="background:#ff3333;color:#fff;border:none;padding:10px 30px;border-radius:4px;cursor:pointer;font-family:inherit;">REFRESH</button>
+    </div>`;
   setTimeout(loadPicks, 10000);
 }
 
-function renderPicks(data) {
-  const picks = data.picks || [];
-  
-  document.getElementById('totalPicks').textContent = picks.length;
-  
-  const avgConf = picks.length > 0 
-    ? (picks.reduce((a,b) => a + b.confidence, 0) / picks.length * 100).toFixed(0) + '%'
-    : '--';
-  document.getElementById('avgConfidence').textContent = avgConf;
-  
-  if (picks.length === 0) {
-    document.getElementById('picksContainer').innerHTML = 
-      '<div class="loading">No active picks. Markets scanning...</div>';
-    return;
+async function loadHistory() {
+  const sources = [
+    './picks_history.json',
+    'picks_history.json',
+    'https://raw.githubusercontent.com/eltonaguiar/CLAWSOFDOOM/main/docs/picks_history.json'
+  ];
+  for (const url of sources) {
+    try {
+      const resp = await fetch(url, { cache: 'no-store' });
+      if (resp.ok) return await resp.json();
+    } catch(e) {}
   }
-  
-  document.getElementById('picksContainer').innerHTML = picks.map(p => `
+  return null;
+}
+
+function fgClass(value) {
+  if (value <= 20) return 'fg-extreme-fear';
+  if (value <= 40) return 'fg-fear';
+  if (value <= 60) return 'fg-neutral';
+  if (value <= 80) return 'fg-greed';
+  return 'fg-extreme-greed';
+}
+
+function fgLabel(value) {
+  if (value <= 20) return 'Extreme Fear';
+  if (value <= 40) return 'Fear';
+  if (value <= 60) return 'Neutral';
+  if (value <= 80) return 'Greed';
+  return 'Extreme Greed';
+}
+
+function fmt(n) {
+  return Number(n).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+
+function pnlColor(v) { return v >= 0 ? '#00ff66' : '#ff3333'; }
+function pnlSign(v) { return v >= 0 ? '+' : ''; }
+
+function renderPickCard(p, showLivePnl) {
+  const hasFallback = p.strategy === 'ULTIMATE_FALLBACK';
+  const warningHtml = hasFallback
+    ? `<div class="warning-banner">${p.WARNING || 'VERIFY PRICE BEFORE TRADING'}</div>` : '';
+
+  const stratDesc = p.strategy_description
+    ? `<div class="pick-strategy-desc">
+        <div>${p.strategy_description}</div>
+        ${p.strategy_edge ? `<div style="margin-top:6px;"><span class="edge-label">Edge:</span> ${p.strategy_edge}</div>` : ''}
+       </div>` : '';
+
+  const confExpl = p.confidence_explanation
+    ? `<div class="explanation">${p.confidence_explanation}</div>` : '';
+
+  // Live P&L section
+  let livePnl = '';
+  if (showLivePnl && p.current_price) {
+    const pnlPct = p.unrealized_pnl_pct || ((p.current_price - p.entry_price) / p.entry_price * 100);
+    const pnlDollar = p.unrealized_pnl_dollar || 0;
+    const color = pnlColor(pnlPct);
+    livePnl = `
+      <div style="background:#0d0d0d;border:1px solid #333;border-radius:6px;padding:12px;margin-top:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+          <div>
+            <span style="color:#888;font-size:0.75rem;">CURRENT PRICE</span>
+            <div style="font-size:1.3rem;font-weight:bold;">$${fmt(p.current_price)}</div>
+          </div>
+          <div style="text-align:center;">
+            <span style="color:#888;font-size:0.75rem;">UNREALIZED P&L</span>
+            <div style="font-size:1.3rem;font-weight:bold;color:${color}">${pnlSign(pnlPct)}${pnlPct.toFixed(2)}%</div>
+          </div>
+          <div style="text-align:right;">
+            <span style="color:#888;font-size:0.75rem;">DOLLAR P&L</span>
+            <div style="font-size:1.3rem;font-weight:bold;color:${color}">${pnlSign(pnlDollar)}$${Math.abs(pnlDollar).toFixed(2)}</div>
+          </div>
+          <div style="text-align:right;">
+            <span style="color:#888;font-size:0.75rem;">LAST CHECK</span>
+            <div style="font-size:0.8rem;color:#666;">${p.last_checked_est || ''}</div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  return `
     <div class="pick">
+      ${warningHtml}
       <div class="pick-header">
         <div>
           <div class="pick-symbol">${p.symbol}</div>
-          <div class="pick-strategy">${p.strategy.toUpperCase()}</div>
+          <div class="pick-strategy-name">${p.strategy_name || p.strategy.toUpperCase()}</div>
+          <div class="pick-strategy-tag">${p.strategy}</div>
         </div>
-        <div class="pick-confidence">${(p.confidence * 100).toFixed(0)}%</div>
+        <div class="pick-confidence">
+          <div class="value">${(p.confidence * 100).toFixed(0)}%</div>
+          ${confExpl}
+        </div>
       </div>
       <div class="pick-details">
         <div class="detail">
-          <div class="detail-value">$${p.entry_price.toFixed(2)}</div>
+          <div class="detail-value">$${fmt(p.entry_price)}</div>
           <div class="detail-label">ENTRY</div>
         </div>
         <div class="detail">
-          <div class="detail-value" style="color: #00ff66">$${p.tp_price.toFixed(2)}</div>
-          <div class="detail-label">TARGET</div>
+          <div class="detail-value" style="color:#00ff66">$${fmt(p.tp_price)}</div>
+          <div class="detail-label">TARGET (+${((p.tp_price/p.entry_price-1)*100).toFixed(1)}%)</div>
         </div>
         <div class="detail">
-          <div class="detail-value" style="color: #ff3333">$${p.sl_price.toFixed(2)}</div>
-          <div class="detail-label">STOP</div>
+          <div class="detail-value" style="color:#ff3333">$${fmt(p.sl_price)}</div>
+          <div class="detail-label">STOP (-${((1-p.sl_price/p.entry_price)*100).toFixed(1)}%)</div>
+        </div>
+        <div class="detail">
+          <div class="detail-value">${p.risk_reward_ratio || 'N/A'}</div>
+          <div class="detail-label">R:R RATIO</div>
         </div>
         <div class="detail">
           <div class="detail-value">${(p.position_pct * 100).toFixed(1)}%</div>
-          <div class="detail-label">SIZE</div>
+          <div class="detail-label">SIZE ($${(p.position_pct * 10000).toFixed(0)})</div>
         </div>
       </div>
+      ${livePnl}
+      ${stratDesc}
       <div class="pick-reason">${p.reason}</div>
-    </div>
-  `).join('');
+      <div class="pick-timestamp">${p.timestamp_est || p.timestamp || ''} | Source: ${p.data_source || 'unknown'}</div>
+    </div>`;
+}
+
+function renderAll(data) {
+  // Header timestamp
+  const ts = data.generated_at_est || data.generated_at || 'unknown';
+  document.getElementById('lastUpdated').textContent = `Last updated: ${ts}`;
+
+  // Market snapshot
+  const ms = data.market_snapshot;
+  if (ms && ms.prices && Object.keys(ms.prices).length > 0) {
+    document.getElementById('marketSnapshot').style.display = 'block';
+    const fg = ms.fear_greed;
+    let html = `<div style="margin-bottom:10px;">Fear & Greed: <span class="fg-badge ${fgClass(fg)}">${fg} — ${fgLabel(fg)}</span> <span style="color:#555;font-size:0.75rem;">(${ms.fear_greed_source || 'unknown'})</span></div>`;
+    html += '<div class="market-row">';
+    for (const [coin, info] of Object.entries(ms.prices)) {
+      const changeColor = info.change_24h_pct >= 0 ? '#00ff66' : '#ff3333';
+      html += `<div class="market-item">
+        <div class="coin">${coin}</div>
+        <div class="price">$${fmt(info.price)}</div>
+        <div class="change" style="color:${changeColor}">${info.change_24h_pct >= 0 ? '+' : ''}${info.change_24h_pct.toFixed(1)}%</div>
+      </div>`;
+    }
+    html += '</div>';
+    document.getElementById('marketContent').innerHTML = html;
+    document.getElementById('fearGreed').textContent = fg;
+    document.getElementById('priceSource').textContent = (ms.price_source || '--').toUpperCase();
+  }
+
+  // Performance stats
+  const perf = data.performance || {};
+  if (perf.total_closed > 0) {
+    document.getElementById('winRate').textContent = perf.win_rate_pct + '%';
+    const totalPnl = (perf.total_realized_pnl_dollar || 0) + (perf.total_unrealized_pnl_dollar || 0);
+    document.getElementById('totalPnl').textContent = `${pnlSign(totalPnl)}$${Math.abs(totalPnl).toFixed(2)}`;
+    document.getElementById('totalPnl').style.color = pnlColor(totalPnl);
+  }
+
+  // Confidence formula
+  if (data.confidence_formula) {
+    const fb = document.getElementById('formulaBox');
+    fb.style.display = 'block';
+    fb.innerHTML = `<strong style="color:#ff6600;">How confidence is calculated:</strong> ${data.confidence_formula}`;
+  }
+
+  // Active picks with live P&L
+  const activePicks = data.active_picks || [];
+  const activeWithPnl = activePicks.filter(p => p.current_price);
+  if (activeWithPnl.length > 0) {
+    document.getElementById('activeTitle').style.display = 'block';
+    document.getElementById('activePicksContainer').innerHTML = activeWithPnl.map(p => renderPickCard(p, true)).join('');
+    document.getElementById('totalPicks').textContent = activeWithPnl.length;
+    const avgConf = (activeWithPnl.reduce((a,b) => a + b.confidence, 0) / activeWithPnl.length * 100).toFixed(0) + '%';
+    document.getElementById('avgConfidence').textContent = avgConf;
+  }
+
+  // New picks (latest scan)
+  const picks = data.picks || [];
+  if (picks.length === 0 && activeWithPnl.length === 0) {
+    document.getElementById('picksContainer').innerHTML =
+      '<div class="loading">No active picks. No strategies triggered for current market conditions.</div>';
+    document.getElementById('totalPicks').textContent = '0';
+  } else if (picks.length > 0) {
+    // Show new scan picks (without live P&L since they're brand new)
+    document.getElementById('picksContainer').innerHTML =
+      `<div class="section-title">LATEST SCAN PICKS</div>` +
+      picks.map(p => renderPickCard(p, false)).join('');
+    if (activeWithPnl.length === 0) {
+      document.getElementById('totalPicks').textContent = picks.length;
+      const avgConf = (picks.reduce((a,b) => a + b.confidence, 0) / picks.length * 100).toFixed(0) + '%';
+      document.getElementById('avgConfidence').textContent = avgConf;
+    }
+  } else {
+    document.getElementById('picksContainer').innerHTML = '';
+  }
+
+  // Closed picks
+  const closed = data.closed_picks_recent || [];
+  if (closed.length > 0) {
+    document.getElementById('closedTitle').style.display = 'block';
+    const cc = document.getElementById('closedContainer');
+    cc.style.display = 'block';
+    cc.innerHTML = `
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Strategy</th>
+            <th>Entry</th>
+            <th>Exit</th>
+            <th>Result</th>
+            <th>P&L %</th>
+            <th>P&L $</th>
+            <th>Exit Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${closed.reverse().map(c => {
+            const isWin = c.exit_reason === 'TP_HIT';
+            const color = isWin ? '#00ff66' : '#ff3333';
+            const badge = isWin ? 'WIN' : 'LOSS';
+            return `<tr>
+              <td style="color:#ff3333;font-weight:bold;">${c.symbol}</td>
+              <td>${c.strategy}</td>
+              <td>$${fmt(c.entry_price)}</td>
+              <td>$${fmt(c.exit_price)}</td>
+              <td style="color:${color};font-weight:bold;">${badge}</td>
+              <td style="color:${color}">${pnlSign(c.realized_pnl_pct)}${(c.realized_pnl_pct||0).toFixed(2)}%</td>
+              <td style="color:${color}">${pnlSign(c.realized_pnl_dollar)}$${Math.abs(c.realized_pnl_dollar||0).toFixed(2)}</td>
+              <td>${c.exit_time_est || ''}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>`;
+  }
+
+  // Audit trail
+  const audit = data.audit_trail || [];
+  if (audit.length > 0) {
+    document.getElementById('auditTitle').style.display = 'block';
+    const ac = document.getElementById('auditContainer');
+    ac.style.display = 'block';
+    ac.innerHTML = `
+      <button class="audit-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+        Show/Hide Audit Trail (${audit.length} entries)
+      </button>
+      <div class="audit-log">
+        ${audit.map(a => `
+          <div class="audit-entry">
+            <span class="audit-ts">${a.timestamp_est || ''}</span>
+            <span class="audit-event">${a.event}</span>
+            <span class="audit-detail">${a.detail || ''}</span>
+          </div>
+        `).join('')}
+      </div>`;
+  }
+
+  // Load history
+  loadHistory().then(history => {
+    if (!history || history.length === 0) return;
+    document.getElementById('historyTitle').style.display = 'block';
+    const hc = document.getElementById('historyContainer');
+    hc.style.display = 'block';
+
+    const recent = history.slice(-50).reverse();
+    hc.innerHTML = `
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Time (EST)</th>
+            <th>Symbol</th>
+            <th>Strategy</th>
+            <th>Dir</th>
+            <th>Entry</th>
+            <th>TP</th>
+            <th>SL</th>
+            <th>Conf</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${recent.map(h => `
+            <tr>
+              <td>${h.timestamp_est || ''}</td>
+              <td style="color:#ff3333;font-weight:bold;">${h.symbol}</td>
+              <td>${h.strategy}</td>
+              <td>${h.direction}</td>
+              <td>$${fmt(h.entry_price)}</td>
+              <td style="color:#00ff66">$${fmt(h.tp_price)}</td>
+              <td style="color:#ff3333">$${fmt(h.sl_price)}</td>
+              <td>${(h.confidence*100).toFixed(0)}%</td>
+              <td>${h.data_source || ''}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>`;
+  });
 }
 
 loadPicks();
