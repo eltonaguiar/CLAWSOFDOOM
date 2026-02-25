@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLAWS OF DOOM v2 - Live Picks</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Courier New', monospace;
+    background: #0a0a0a;
+    color: #fff;
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .header {
+    text-align: center;
+    padding: 30px;
+    border-bottom: 3px solid #ff3333;
+    margin-bottom: 30px;
+  }
+  .header h1 {
+    font-size: 2.5rem;
+    color: #ff3333;
+    text-shadow: 0 0 20px #ff3333;
+  }
+  .header p {
+    color: #ff6600;
+    margin-top: 10px;
+  }
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00ff66;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: #888;
+  }
+  .picks {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .pick {
+    background: #141414;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+  }
+  .pick-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .pick-symbol {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff3333;
+  }
+  .pick-strategy {
+    font-size: 0.8rem;
+    color: #888;
+  }
+  .pick-confidence {
+    background: #00ff66;
+    color: #000;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  .pick-details {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+  .detail {
+    text-align: center;
+  }
+  .detail-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .detail-label {
+    font-size: 0.7rem;
+    color: #888;
+  }
+  .pick-reason {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #333;
+    font-size: 0.85rem;
+    color: #aaa;
+  }
+  .loading {
+    text-align: center;
+    padding: 60px;
+    color: #888;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    color: #666;
+    font-size: 0.8rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>☠️ CLAWS OF DOOM v2 ☠️</h1>
+  <p>WORKING SYSTEM // NO BROKEN ML PIPELINE</p>
+</div>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-value" id="totalPicks">--</div>
+    <div class="stat-label">ACTIVE PICKS</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" id="avgConfidence">--</div>
+    <div class="stat-label">AVG CONFIDENCE</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">3</div>
+    <div class="stat-label">STRATEGIES</div>
+  </div>
+</div>
+
+<div class="picks" id="picksContainer">
+  <div class="loading">Loading picks...</div>
+</div>
+
+<div class="footer">
+  Updates every 30 minutes via GitHub Actions | No ML dependencies | Proven strategies only
+</div>
+
+<script>
+async function loadPicks() {
+  try {
+    const resp = await fetch('./picks.json', { cache: 'no-store' });
+    if (resp.ok) {
+      const data = await resp.json();
+      renderPicks(data);
+    }
+  } catch (e) {
+    document.getElementById('picksContainer').innerHTML = 
+      '<div class="loading">Error loading picks. Retrying...</div>';
+  }
+}
+
+function renderPicks(data) {
+  const picks = data.picks || [];
+  
+  document.getElementById('totalPicks').textContent = picks.length;
+  
+  const avgConf = picks.length > 0 
+    ? (picks.reduce((a,b) => a + b.confidence, 0) / picks.length * 100).toFixed(0) + '%'
+    : '--';
+  document.getElementById('avgConfidence').textContent = avgConf;
+  
+  if (picks.length === 0) {
+    document.getElementById('picksContainer').innerHTML = 
+      '<div class="loading">No active picks. Markets scanning...</div>';
+    return;
+  }
+  
+  document.getElementById('picksContainer').innerHTML = picks.map(p => `
+    <div class="pick">
+      <div class="pick-header">
+        <div>
+          <div class="pick-symbol">${p.symbol}</div>
+          <div class="pick-strategy">${p.strategy.toUpperCase()}</div>
+        </div>
+        <div class="pick-confidence">${(p.confidence * 100).toFixed(0)}%</div>
+      </div>
+      <div class="pick-details">
+        <div class="detail">
+          <div class="detail-value">$${p.entry_price.toFixed(2)}</div>
+          <div class="detail-label">ENTRY</div>
+        </div>
+        <div class="detail">
+          <div class="detail-value" style="color: #00ff66">$${p.tp_price.toFixed(2)}</div>
+          <div class="detail-label">TARGET</div>
+        </div>
+        <div class="detail">
+          <div class="detail-value" style="color: #ff3333">$${p.sl_price.toFixed(2)}</div>
+          <div class="detail-label">STOP</div>
+        </div>
+        <div class="detail">
+          <div class="detail-value">${(p.position_pct * 100).toFixed(1)}%</div>
+          <div class="detail-label">SIZE</div>
+        </div>
+      </div>
+      <div class="pick-reason">${p.reason}</div>
+    </div>
+  `).join('');
+}
+
+loadPicks();
+setInterval(loadPicks, 5 * 60 * 1000);
+</script>
+
+</body>
+</html>
