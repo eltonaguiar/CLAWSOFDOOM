@@ -348,7 +348,7 @@
 <div class="audit-container" id="auditContainer" style="display:none;"></div>
 
 <div class="footer">
-  Updates every 15 minutes via GitHub Actions | 5 API fallbacks | Full audit trail | EST timestamps
+  Updates every 15 minutes via GitHub Actions | 6 strategies (3 long, 2 short, 1 carry) | 5 API fallbacks | Full audit trail | EST timestamps
 </div>
 
 <script>
@@ -463,12 +463,15 @@ function renderPickCard(p, showLivePnl) {
       </div>`;
   }
 
+  const dirColor = p.direction === 'SHORT' ? '#ff3333' : (p.direction === 'LONG' ? '#00ff66' : '#ffcc00');
+  const dirBadge = `<span style="background:${dirColor};color:#000;padding:2px 8px;border-radius:3px;font-size:0.75rem;font-weight:bold;margin-left:8px;">${p.direction || 'LONG'}</span>`;
+
   return `
-    <div class="pick">
+    <div class="pick" style="border-left:3px solid ${dirColor}">
       ${warningHtml}
       <div class="pick-header">
         <div>
-          <div class="pick-symbol">${p.symbol}</div>
+          <div class="pick-symbol">${p.symbol} ${dirBadge}</div>
           <div class="pick-strategy-name">${p.strategy_name || p.strategy.toUpperCase()}</div>
           <div class="pick-strategy-tag">${p.strategy}</div>
         </div>
