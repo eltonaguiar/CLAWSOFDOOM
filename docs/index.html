@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CLAWS OF DOOM v2 - Live Picks</title>
+<title>CLAWS OF DOOM v2 - Live Picks with Performance</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -33,6 +33,7 @@
     justify-content: center;
     gap: 40px;
     margin-bottom: 30px;
+    flex-wrap: wrap;
   }
   .stat {
     text-align: center;
@@ -55,7 +56,7 @@
     border: 1px solid #333;
     border-radius: 8px;
     padding: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
   .pick-header {
     display: flex;
@@ -72,23 +73,51 @@
     font-size: 0.8rem;
     color: #888;
   }
+  .pick-time {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 5px;
+  }
   .pick-confidence {
-    background: #00ff66;
-    color: #000;
+    display: inline-block;
     padding: 5px 15px;
     border-radius: 4px;
     font-weight: bold;
+    font-size: 0.9rem;
   }
+  .performance-box {
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 4px;
+    margin: 15px 0;
+  }
+  .performance-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    text-align: center;
+  }
+  .perf-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .perf-label {
+    font-size: 0.7rem;
+    color: #888;
+  }
+  .positive { color: #00ff66; }
+  .negative { color: #ff3333; }
   .pick-details {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
+    margin-top: 15px;
   }
   .detail {
     text-align: center;
   }
   .detail-value {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
   }
   .detail-label {
@@ -99,8 +128,34 @@
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid #333;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: #aaa;
+  }
+  .audit-section {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #333;
+  }
+  .audit-toggle {
+    font-size: 0.8rem;
+    color: #ff6600;
+    cursor: pointer;
+  }
+  .audit-content {
+    display: none;
+    margin-top: 10px;
+    padding: 15px;
+    background: rgba(255,102,0,0.1);
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+  .warning-box {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(255,51,51,0.2);
+    border-radius: 4px;
+    color: #ff3333;
+    font-size: 0.8rem;
   }
   .loading {
     text-align: center;
@@ -120,8 +175,8 @@
 <body>
 
 <div class="header">
-  <h1>☠️ CLAWS OF DOOM v2 ☠️</h1>
-  <p>WORKING SYSTEM // NO BROKEN ML PIPELINE</p>
+  <h1>☠️ CLAWS OF DOOM ☠️</h1>
+  <p>LIVE PERFORMANCE TRACKING // FULL AUDIT TRAIL</p>
 </div>
 
 <div class="stats">
@@ -130,91 +185,62 @@
     <div class="stat-label">ACTIVE PICKS</div>
   </div>
   <div class="stat">
-    <div class="stat-value" id="avgConfidence">--</div>
-    <div class="stat-label">AVG CONFIDENCE</div>
+    <div class="stat-value" id="totalPnL">--</div>
+    <div class="stat-label">TOTAL P&L ($)</div>
   </div>
   <div class="stat">
-    <div class="stat-value">3</div>
-    <div class="stat-label">STRATEGIES</div>
+    <div class="stat-value" id="avgConfidence">--</div>
+    <div class="stat-label">AVG CONFIDENCE</div>
   </div>
 </div>
 
 <div class="picks" id="picksContainer">
-  <div class="loading">Loading picks...</div>
+  <div class="loading">Loading picks with live performance...</div>
 </div>
 
 <div class="footer">
-  Updates every 30 minutes via GitHub Actions | No ML dependencies | Proven strategies only
+  Updates every 15 minutes | Live P&L tracking | Full audit trails
 </div>
 
 <script>
 async function loadPicks() {
-  // BULLETPROOF: Try multiple sources with fallbacks
   const sources = [
-    // Primary: Same domain
     './picks.json',
-    'picks.json',
-    '/picks.json',
-    
-    // Backup: Raw GitHub
     'https://raw.githubusercontent.com/eltonaguiar/CLAWSOFDOOM/main/docs/picks.json',
-    
-    // Ultimate backup: JSDelivr CDN
     'https://cdn.jsdelivr.net/gh/eltonaguiar/CLAWSOFDOOM@main/docs/picks.json'
   ];
   
-  let lastError = null;
-  
   for (const url of sources) {
     try {
-      console.log('Trying:', url);
-      const resp = await fetch(url, { 
-        cache: 'no-store',
-        headers: { 'Accept': 'application/json' }
-      });
-      
+      const resp = await fetch(url, { cache: 'no-store' });
       if (resp.ok) {
         const data = await resp.json();
-        console.log('✓ Loaded from:', url);
         renderPicks(data);
         return;
       }
     } catch (e) {
-      console.warn('✗ Failed:', url, e.message);
-      lastError = e;
+      console.warn('Failed:', url);
     }
   }
   
-  // Ultimate fallback: Show error with manual refresh
-  document.getElementById('picksContainer').innerHTML = `
-    <div style="text-align: center; padding: 40px;">
-      <div style="color: #ff3333; font-size: 1.2rem; margin-bottom: 15px;">
-        ⚠️ UNABLE TO LOAD PICKS
-      </div>
-      <div style="color: #888; margin-bottom: 20px;">
-        All data sources failed. Retrying automatically...
-      </div>
-      <button onclick="location.reload()" style="
-        background: #ff3333;
-        color: white;
-        border: none;
-        padding: 10px 30px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-family: inherit;
-        font-size: 1rem;
-      ">REFRESH NOW</button>
-    </div>
-  `;
-  
-  // Auto-retry in 10 seconds
-  setTimeout(loadPicks, 10000);
+  document.getElementById('picksContainer').innerHTML = 
+    '<div class="loading">Error loading. <button onclick="location.reload()">Refresh</button></div>';
 }
 
 function renderPicks(data) {
   const picks = data.picks || [];
   
   document.getElementById('totalPicks').textContent = picks.length;
+  
+  // Calculate totals
+  let totalPnL = 0;
+  picks.forEach(p => {
+    if (p.performance) totalPnL += p.performance.pnl_amount || 0;
+  });
+  
+  const pnlEl = document.getElementById('totalPnL');
+  pnlEl.textContent = (totalPnL >= 0 ? '+' : '') + '$' + totalPnL.toFixed(0);
+  pnlEl.style.color = totalPnL >= 0 ? '#00ff66' : '#ff3333';
   
   const avgConf = picks.length > 0 
     ? (picks.reduce((a,b) => a + b.confidence, 0) / picks.length * 100).toFixed(0) + '%'
@@ -223,44 +249,127 @@ function renderPicks(data) {
   
   if (picks.length === 0) {
     document.getElementById('picksContainer').innerHTML = 
-      '<div class="loading">No active picks. Markets scanning...</div>';
+      '<div class="loading">No active picks. Scanning...</div>';
     return;
   }
   
-  document.getElementById('picksContainer').innerHTML = picks.map(p => `
-    <div class="pick">
+  document.getElementById('picksContainer').innerHTML = picks.map(p => {
+    const perf = p.performance || {};
+    const statusColor = perf.status === 'TP_HIT' ? '#00ff66' : 
+                       perf.status === 'SL_HIT' ? '#ff3333' : '#ffcc00';
+    
+    return `
+    <div class="pick" style="border-left: 4px solid ${statusColor}">
       <div class="pick-header">
         <div>
           <div class="pick-symbol">${p.symbol}</div>
-          <div class="pick-strategy">${p.strategy.toUpperCase()}</div>
+          <div class="pick-strategy">${p.strategy_full_name || p.strategy}</div>
+          <div class="pick-time">${p.timestamp_est || 'Time N/A'}</div>
         </div>
-        <div class="pick-confidence">${(p.confidence * 100).toFixed(0)}%</div>
+        <div style="text-align: right;">
+          <div class="pick-confidence" style="background: ${statusColor}; color: #000;">
+            ${(p.confidence * 100).toFixed(0)}%
+          </div>
+          ${perf.status ? `<div style="font-size: 0.75rem; margin-top: 5px; color: ${statusColor};">${perf.status}</div>` : ''}
+        </div>
       </div>
+      
+      ${perf.current_price ? `
+      <div class="performance-box">
+        <div class="performance-grid">
+          <div>
+            <div class="perf-value ${perf.pnl_pct >= 0 ? 'positive' : 'negative'}">
+              ${perf.pnl_pct > 0 ? '+' : ''}${perf.pnl_pct.toFixed(2)}%
+            </div>
+            <div class="perf-label">P&L</div>
+          </div>
+          <div>
+            <div class="perf-value">$${perf.current_price.toLocaleString()}</div>
+            <div class="perf-label">CURRENT PRICE</div>
+          </div>
+          <div>
+            <div class="perf-value ${perf.pnl_amount >= 0 ? 'positive' : 'negative'}">
+              ${perf.pnl_amount > 0 ? '+' : ''}$${perf.pnl_amount.toFixed(2)}
+            </div>
+            <div class="perf-label">$ P&L</div>
+          </div>
+        </div>
+        ${perf.status === 'ACTIVE' ? `
+        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #333; display: flex; justify-content: space-between; font-size: 0.8rem;">
+          <span style="color: #00ff66;">→ TP: ${perf.tp_distance ? perf.tp_distance.toFixed(1) : '--'}%</span>
+          <span style="color: #666;">Updated: ${perf.updated_at_est || 'N/A'}</span>
+          <span style="color: #ff3333;">SL: ${perf.sl_distance ? perf.sl_distance.toFixed(1) : '--'}% ←</span>
+        </div>
+        ` : ''}
+      </div>
+      ` : ''}
+      
       <div class="pick-details">
         <div class="detail">
-          <div class="detail-value">$${p.entry_price.toFixed(2)}</div>
+          <div class="detail-value">$${p.entry_price.toLocaleString()}</div>
           <div class="detail-label">ENTRY</div>
         </div>
         <div class="detail">
-          <div class="detail-value" style="color: #00ff66">$${p.tp_price.toFixed(2)}</div>
-          <div class="detail-label">TARGET</div>
+          <div class="detail-value" style="color: #00ff66">$${p.tp_price.toLocaleString()}</div>
+          <div class="detail-label">TARGET (+${((p.tp_price/p.entry_price-1)*100).toFixed(1)}%)</div>
         </div>
         <div class="detail">
-          <div class="detail-value" style="color: #ff3333">$${p.sl_price.toFixed(2)}</div>
-          <div class="detail-label">STOP</div>
+          <div class="detail-value" style="color: #ff3333">$${p.sl_price.toLocaleString()}</div>
+          <div class="detail-label">STOP (-${((1-p.sl_price/p.entry_price)*100).toFixed(1)}%)</div>
         </div>
         <div class="detail">
           <div class="detail-value">${(p.position_pct * 100).toFixed(1)}%</div>
           <div class="detail-label">SIZE</div>
         </div>
       </div>
-      <div class="pick-reason">${p.reason}</div>
+      
+      <div class="pick-reason">
+        <strong>Signal:</strong> ${p.reason}
+      </div>
+      
+      ${p.audit ? `
+      <div class="audit-section">
+        <div class="audit-toggle" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none'">
+          📋 Show Full Audit Trail
+        </div>
+        <div class="audit-content" style="display: none;">
+          <div style="margin-bottom: 10px;"><strong>Strategy:</strong> ${p.audit.description || 'N/A'}</div>
+          
+          ${p.audit.academic_basis ? `
+          <div style="margin-bottom: 10px;">
+            <strong>Academic Basis:</strong>
+            <ul style="margin-left: 20px; margin-top: 5px;">
+              ${p.audit.academic_basis.map(b => `<li>${b}</li>`).join('')}
+            </ul>
+          </div>` : ''}
+          
+          ${p.audit.entry_criteria ? `
+          <div style="margin-bottom: 10px;">
+            <strong>Entry Criteria:</strong>
+            <ul style="margin-left: 20px; margin-top: 5px;">
+              ${p.audit.entry_criteria.map(c => `<li>${c}</li>`).join('')}
+            </ul>
+          </div>` : ''}
+          
+          ${p.audit.historical_performance ? `
+          <div>
+            <strong>Historical Performance:</strong>
+            <div style="margin-left: 10px; margin-top: 5px;">
+              Win Rate: ${p.audit.historical_performance.win_rate_fg_under_15 || p.audit.historical_performance.win_rate || 'N/A'}<br>
+              Expectancy: ${p.audit.historical_performance.expectancy || 'N/A'}
+            </div>
+          </div>` : ''}
+        </div>
+      </div>
+      ` : ''}
+      
+      ${p.WARNING ? `<div class="warning-box">${p.WARNING}</div>` : ''}
     </div>
-  `).join('');
+  `}).join('');
 }
 
 loadPicks();
-setInterval(loadPicks, 5 * 60 * 1000);
+setInterval(loadPicks, 60 * 1000); // Refresh every minute for live P&L
 </script>
 
 </body>

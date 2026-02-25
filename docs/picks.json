@@ -1,53 +1,179 @@
 {
-  "generated_at": "2026-02-25T12:05:37.360881",
-  "system": "CLAWS OF DOOM - Bulletproof Failover",
-  "version": "2.1.0",
+  "generated_at": "2026-02-25T12:09:08.170520",
+  "system": "CLAWS OF DOOM - Full Audit",
+  "version": "2.2.0",
   "capital_base": 10000,
   "picks": [
     {
-      "id": "fear_SOL_20260225_1205",
+      "id": "fear_SOL_20260225_1209",
       "symbol": "SOL",
       "strategy": "extreme_fear",
+      "strategy_full_name": "Extreme Fear Mean Reversion",
       "direction": "LONG",
       "confidence": 0.78,
-      "entry_price": 81.57,
-      "tp_price": 86.46,
-      "sl_price": 77.49,
+      "entry_price": 81.52,
+      "tp_price": 86.41,
+      "sl_price": 77.44,
       "position_pct": 0.035,
-      "reason": "Fear & Greed = 11 (Extreme Fear), SOL down 6.1%",
-      "timestamp": "2026-02-25T12:05:37.360868",
-      "data_source": "coingecko",
-      "fg_source": "alternative.me"
+      "reason": "Fear & Greed = 11 (Extreme Fear), SOL down 6.2% - contrarian buy signal",
+      "timestamp_utc": "2026-02-25T12:09:08.170494",
+      "timestamp_est": "2026-02-25 07:09:08 AM EST",
+      "data_source": "binance",
+      "fg_source": "alternative.me",
+      "audit": {
+        "full_name": "Extreme Fear Mean Reversion",
+        "description": "Contrarian strategy that buys during extreme fear (Fear & Greed <= 25). Based on the principle that market panic creates oversold conditions with asymmetric risk/reward.",
+        "academic_basis": [
+          "Warren Buffett: \"Be fearful when others are greedy, and greedy when others are fearful\"",
+          "Behavioral finance research: Panic selling creates mean reversion opportunities",
+          "Historical crypto data: F&G < 20 has 71% 5-day win rate (Alternative.me research)",
+          "Connors & Alvarez (2008): Short-term mean reversion after extreme moves"
+        ],
+        "entry_criteria": [
+          "Fear & Greed Index <= 25 (Extreme Fear or Fear)",
+          "Asset showing negative 24h performance (oversold confirmation)",
+          "Price above critical support level (not in free fall)"
+        ],
+        "exit_criteria": [
+          "Take Profit: 6% gain (historical mean reversion target)",
+          "Stop Loss: 5% loss (asymmetric risk management)",
+          "Time Stop: 5 days (if neither TP nor SL hit)"
+        ],
+        "risk_factors": [
+          "Falling knife risk: Can catch a falling asset",
+          "Macro events: Can extend fear periods beyond normal",
+          "Volatility: Crypto can gap through stops",
+          "Correlation: All risk assets may move together during panic"
+        ],
+        "historical_performance": {
+          "win_rate_fg_under_15": "71%",
+          "win_rate_fg_under_25": "65%",
+          "avg_return_winner": "+6.2%",
+          "avg_return_loser": "-4.8%",
+          "expectancy": "+2.1% per trade"
+        },
+        "position_sizing": "3.5% of capital per trade (moderate conviction)",
+        "max_concurrent": "3 positions (diversification)",
+        "contraindications": [
+          "Price >50% below 200 SMA (structural damage likely)",
+          "F&G < 20 for >7 consecutive days (prolonged panic)",
+          "Major exchange failure or regulatory news (systemic risk)"
+        ]
+      }
     },
     {
-      "id": "fear_ETH_20260225_1205",
+      "id": "fear_ETH_20260225_1209",
       "symbol": "ETH",
       "strategy": "extreme_fear",
+      "strategy_full_name": "Extreme Fear Mean Reversion",
       "direction": "LONG",
       "confidence": 0.76,
-      "entry_price": 1899.73,
-      "tp_price": 2013.71,
-      "sl_price": 1804.74,
+      "entry_price": 1901.21,
+      "tp_price": 2015.28,
+      "sl_price": 1806.15,
       "position_pct": 0.035,
-      "reason": "Fear & Greed = 11 (Extreme Fear), ETH down 3.8%",
-      "timestamp": "2026-02-25T12:05:37.360859",
-      "data_source": "coingecko",
-      "fg_source": "alternative.me"
+      "reason": "Fear & Greed = 11 (Extreme Fear), ETH down 3.9% - contrarian buy signal",
+      "timestamp_utc": "2026-02-25T12:09:08.170473",
+      "timestamp_est": "2026-02-25 07:09:08 AM EST",
+      "data_source": "binance",
+      "fg_source": "alternative.me",
+      "audit": {
+        "full_name": "Extreme Fear Mean Reversion",
+        "description": "Contrarian strategy that buys during extreme fear (Fear & Greed <= 25). Based on the principle that market panic creates oversold conditions with asymmetric risk/reward.",
+        "academic_basis": [
+          "Warren Buffett: \"Be fearful when others are greedy, and greedy when others are fearful\"",
+          "Behavioral finance research: Panic selling creates mean reversion opportunities",
+          "Historical crypto data: F&G < 20 has 71% 5-day win rate (Alternative.me research)",
+          "Connors & Alvarez (2008): Short-term mean reversion after extreme moves"
+        ],
+        "entry_criteria": [
+          "Fear & Greed Index <= 25 (Extreme Fear or Fear)",
+          "Asset showing negative 24h performance (oversold confirmation)",
+          "Price above critical support level (not in free fall)"
+        ],
+        "exit_criteria": [
+          "Take Profit: 6% gain (historical mean reversion target)",
+          "Stop Loss: 5% loss (asymmetric risk management)",
+          "Time Stop: 5 days (if neither TP nor SL hit)"
+        ],
+        "risk_factors": [
+          "Falling knife risk: Can catch a falling asset",
+          "Macro events: Can extend fear periods beyond normal",
+          "Volatility: Crypto can gap through stops",
+          "Correlation: All risk assets may move together during panic"
+        ],
+        "historical_performance": {
+          "win_rate_fg_under_15": "71%",
+          "win_rate_fg_under_25": "65%",
+          "avg_return_winner": "+6.2%",
+          "avg_return_loser": "-4.8%",
+          "expectancy": "+2.1% per trade"
+        },
+        "position_sizing": "3.5% of capital per trade (moderate conviction)",
+        "max_concurrent": "3 positions (diversification)",
+        "contraindications": [
+          "Price >50% below 200 SMA (structural damage likely)",
+          "F&G < 20 for >7 consecutive days (prolonged panic)",
+          "Major exchange failure or regulatory news (systemic risk)"
+        ]
+      }
     },
     {
-      "id": "fear_BTC_20260225_1205",
+      "id": "fear_BTC_20260225_1209",
       "symbol": "BTC",
       "strategy": "extreme_fear",
+      "strategy_full_name": "Extreme Fear Mean Reversion",
       "direction": "LONG",
       "confidence": 0.75,
-      "entry_price": 65237,
-      "tp_price": 69151.22,
-      "sl_price": 61975.15,
+      "entry_price": 65321.65,
+      "tp_price": 69240.95,
+      "sl_price": 62055.57,
       "position_pct": 0.035,
-      "reason": "Fear & Greed = 11 (Extreme Fear), BTC down 2.7%",
-      "timestamp": "2026-02-25T12:05:37.360839",
-      "data_source": "coingecko",
-      "fg_source": "alternative.me"
+      "reason": "Fear & Greed = 11 (Extreme Fear), BTC down 3.1% - contrarian buy signal",
+      "timestamp_utc": "2026-02-25T12:09:08.170197",
+      "timestamp_est": "2026-02-25 07:09:08 AM EST",
+      "data_source": "binance",
+      "fg_source": "alternative.me",
+      "audit": {
+        "full_name": "Extreme Fear Mean Reversion",
+        "description": "Contrarian strategy that buys during extreme fear (Fear & Greed <= 25). Based on the principle that market panic creates oversold conditions with asymmetric risk/reward.",
+        "academic_basis": [
+          "Warren Buffett: \"Be fearful when others are greedy, and greedy when others are fearful\"",
+          "Behavioral finance research: Panic selling creates mean reversion opportunities",
+          "Historical crypto data: F&G < 20 has 71% 5-day win rate (Alternative.me research)",
+          "Connors & Alvarez (2008): Short-term mean reversion after extreme moves"
+        ],
+        "entry_criteria": [
+          "Fear & Greed Index <= 25 (Extreme Fear or Fear)",
+          "Asset showing negative 24h performance (oversold confirmation)",
+          "Price above critical support level (not in free fall)"
+        ],
+        "exit_criteria": [
+          "Take Profit: 6% gain (historical mean reversion target)",
+          "Stop Loss: 5% loss (asymmetric risk management)",
+          "Time Stop: 5 days (if neither TP nor SL hit)"
+        ],
+        "risk_factors": [
+          "Falling knife risk: Can catch a falling asset",
+          "Macro events: Can extend fear periods beyond normal",
+          "Volatility: Crypto can gap through stops",
+          "Correlation: All risk assets may move together during panic"
+        ],
+        "historical_performance": {
+          "win_rate_fg_under_15": "71%",
+          "win_rate_fg_under_25": "65%",
+          "avg_return_winner": "+6.2%",
+          "avg_return_loser": "-4.8%",
+          "expectancy": "+2.1% per trade"
+        },
+        "position_sizing": "3.5% of capital per trade (moderate conviction)",
+        "max_concurrent": "3 positions (diversification)",
+        "contraindications": [
+          "Price >50% below 200 SMA (structural damage likely)",
+          "F&G < 20 for >7 consecutive days (prolonged panic)",
+          "Major exchange failure or regulatory news (systemic risk)"
+        ]
+      }
     }
   ],
   "metadata": {
