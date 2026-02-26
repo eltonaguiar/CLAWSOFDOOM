@@ -17,7 +17,20 @@ import time
 from datetime import datetime, timezone, timedelta
 
 CAPITAL_BASE = 10000
-VERSION = "3.2.0"
+VERSION = "3.2.1"
+
+
+def smart_round(price):
+    """Round price to appropriate precision based on magnitude.
+    BTC ($60k) → 2 decimals. DOGE ($0.09) → 6 decimals."""
+    if price >= 100:
+        return round(price, 2)
+    elif price >= 1:
+        return round(price, 4)
+    elif price >= 0.01:
+        return round(price, 6)
+    else:
+        return round(price, 8)
 
 # Expanded symbol universe — top liquid crypto assets
 SYMBOLS = {
@@ -465,8 +478,8 @@ class BulletproofClaws:
                 continue
 
             confidence, conf_explanation = self._confidence_score("extreme_fear", fg=fg, change_pct=change)
-            tp = round(price * info["tp_multiplier"], 2)
-            sl = round(price * info["sl_multiplier"], 2)
+            tp = smart_round(price * info["tp_multiplier"])
+            sl = smart_round(price * info["sl_multiplier"])
             rr_ratio = round((tp - price) / (price - sl), 2) if price > sl else 0
 
             pick = {
@@ -479,7 +492,7 @@ class BulletproofClaws:
                 'direction': 'LONG',
                 'confidence': confidence,
                 'confidence_explanation': conf_explanation,
-                'entry_price': round(price, 2),
+                'entry_price': smart_round(price),
                 'tp_price': tp,
                 'sl_price': sl,
                 'risk_reward_ratio': rr_ratio,
@@ -513,8 +526,8 @@ class BulletproofClaws:
 
             triggered = True
             confidence, conf_explanation = self._confidence_score("crash_reversal", fg=fg, change_pct=change)
-            tp = round(price * info["tp_multiplier"], 2)
-            sl = round(price * info["sl_multiplier"], 2)
+            tp = smart_round(price * info["tp_multiplier"])
+            sl = smart_round(price * info["sl_multiplier"])
             rr_ratio = round((tp - price) / (price - sl), 2) if price > sl else 0
 
             pick = {
@@ -527,7 +540,7 @@ class BulletproofClaws:
                 'direction': 'LONG',
                 'confidence': confidence,
                 'confidence_explanation': conf_explanation,
-                'entry_price': round(price, 2),
+                'entry_price': smart_round(price),
                 'tp_price': tp,
                 'sl_price': sl,
                 'risk_reward_ratio': rr_ratio,
@@ -566,8 +579,8 @@ class BulletproofClaws:
 
             triggered = True
             confidence, conf_explanation = self._confidence_score("momentum_breakout", fg=fg, change_pct=change)
-            tp = round(price * info["tp_multiplier"], 2)
-            sl = round(price * info["sl_multiplier"], 2)
+            tp = smart_round(price * info["tp_multiplier"])
+            sl = smart_round(price * info["sl_multiplier"])
             rr_ratio = round((tp - price) / (price - sl), 2) if price > sl else 0
 
             pick = {
@@ -580,7 +593,7 @@ class BulletproofClaws:
                 'direction': 'LONG',
                 'confidence': confidence,
                 'confidence_explanation': conf_explanation,
-                'entry_price': round(price, 2),
+                'entry_price': smart_round(price),
                 'tp_price': tp,
                 'sl_price': sl,
                 'risk_reward_ratio': rr_ratio,
@@ -627,16 +640,16 @@ class BulletproofClaws:
             if rate > info["high_funding_threshold"]:
                 # Overleveraged longs → SHORT
                 direction = 'SHORT'
-                tp = round(price * info["tp_multiplier_short"], 2)
-                sl = round(price * info["sl_multiplier_short"], 2)
+                tp = smart_round(price * info["tp_multiplier_short"])
+                sl = smart_round(price * info["sl_multiplier_short"])
                 rr_ratio = round((price - tp) / (sl - price), 2) if sl > price else 0
                 reason = (f'{coin} funding rate {rate:+.4f}% — overleveraged longs paying shorts. '
                           f'Short perp to collect carry + directional downside.')
             elif rate < info["low_funding_threshold"]:
                 # Overleveraged shorts → LONG
                 direction = 'LONG'
-                tp = round(price * info["tp_multiplier_long"], 2)
-                sl = round(price * info["sl_multiplier_long"], 2)
+                tp = smart_round(price * info["tp_multiplier_long"])
+                sl = smart_round(price * info["sl_multiplier_long"])
                 rr_ratio = round((tp - price) / (price - sl), 2) if price > sl else 0
                 reason = (f'{coin} funding rate {rate:+.4f}% — overleveraged shorts paying longs. '
                           f'Long spot/perp to collect carry + directional upside.')
@@ -658,7 +671,7 @@ class BulletproofClaws:
                 'direction': direction,
                 'confidence': confidence,
                 'confidence_explanation': conf_explanation,
-                'entry_price': round(price, 2),
+                'entry_price': smart_round(price),
                 'tp_price': tp,
                 'sl_price': sl,
                 'risk_reward_ratio': rr_ratio,
@@ -709,8 +722,8 @@ class BulletproofClaws:
             # Short only when RSI overbought AND below 200 SMA (bearish trend)
             if rsi > info["rsi_threshold"] and current_price < sma200:
                 price, change = prices[coin]
-                tp = round(price * info["tp_multiplier"], 2)
-                sl = round(price * info["sl_multiplier"], 2)
+                tp = smart_round(price * info["tp_multiplier"])
+                sl = smart_round(price * info["sl_multiplier"])
                 rr_ratio = round((price - tp) / (sl - price), 2) if sl > price else 0
 
                 # RSI distance above 70 gives technical bonus
@@ -729,7 +742,7 @@ class BulletproofClaws:
                     'direction': 'SHORT',
                     'confidence': confidence,
                     'confidence_explanation': conf_explanation,
-                    'entry_price': round(price, 2),
+                    'entry_price': smart_round(price),
                     'tp_price': tp,
                     'sl_price': sl,
                     'risk_reward_ratio': rr_ratio,
@@ -799,8 +812,8 @@ class BulletproofClaws:
 
             if bearish_cross:
                 price, change = prices[coin]
-                tp = round(price * info["tp_multiplier"], 2)
-                sl = round(price * info["sl_multiplier"], 2)
+                tp = smart_round(price * info["tp_multiplier"])
+                sl = smart_round(price * info["sl_multiplier"])
                 rr_ratio = round((price - tp) / (sl - price), 2) if sl > price else 0
 
                 tech_bonus = 0.05  # Cross confirmed
@@ -819,7 +832,7 @@ class BulletproofClaws:
                     'direction': 'SHORT',
                     'confidence': confidence,
                     'confidence_explanation': conf_explanation,
-                    'entry_price': round(price, 2),
+                    'entry_price': smart_round(price),
                     'tp_price': tp,
                     'sl_price': sl,
                     'risk_reward_ratio': rr_ratio,
@@ -942,7 +955,7 @@ class BulletproofClaws:
 
             pnl_dollar = round(pnl_pct / 100 * pick.get('position_pct', 0.03) * CAPITAL_BASE, 2)
 
-            pick['current_price'] = round(current_price, 2)
+            pick['current_price'] = smart_round(current_price)
             pick['unrealized_pnl_pct'] = pnl_pct
             pick['unrealized_pnl_dollar'] = pnl_dollar
             pick['last_checked_est'] = est_iso()
@@ -957,7 +970,7 @@ class BulletproofClaws:
 
             if tp_hit:
                 pick['status'] = 'CLOSED_TP'
-                pick['exit_price'] = round(current_price, 2)
+                pick['exit_price'] = smart_round(current_price)
                 pick['exit_reason'] = 'TP_HIT'
                 pick['exit_time_est'] = est_iso()
                 pick['realized_pnl_pct'] = pnl_pct
@@ -966,7 +979,7 @@ class BulletproofClaws:
                 self.audit.log("PICK_CLOSED", f"{sym} {pick.get('direction','LONG')} HIT TP @ ${current_price:,.2f} — P&L: {pnl_pct:+.2f}%", status="WIN")
             elif sl_hit:
                 pick['status'] = 'CLOSED_SL'
-                pick['exit_price'] = round(current_price, 2)
+                pick['exit_price'] = smart_round(current_price)
                 pick['exit_reason'] = 'SL_HIT'
                 pick['exit_time_est'] = est_iso()
                 pick['realized_pnl_pct'] = pnl_pct
