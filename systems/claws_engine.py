@@ -17,7 +17,21 @@ import time
 from datetime import datetime, timezone, timedelta
 
 CAPITAL_BASE = 10000
-VERSION = "3.1.0"
+VERSION = "3.2.0"
+
+# Expanded symbol universe — top liquid crypto assets
+SYMBOLS = {
+    'BTC':  {'binance': 'BTCUSDT', 'coingecko': 'bitcoin',  'coincap': 'bitcoin'},
+    'ETH':  {'binance': 'ETHUSDT', 'coingecko': 'ethereum', 'coincap': 'ethereum'},
+    'SOL':  {'binance': 'SOLUSDT', 'coingecko': 'solana',   'coincap': 'solana'},
+    'BNB':  {'binance': 'BNBUSDT', 'coingecko': 'binancecoin', 'coincap': 'binance-coin'},
+    'XRP':  {'binance': 'XRPUSDT', 'coingecko': 'ripple',  'coincap': 'xrp'},
+    'DOGE': {'binance': 'DOGEUSDT','coingecko': 'dogecoin', 'coincap': 'dogecoin'},
+    'ADA':  {'binance': 'ADAUSDT', 'coingecko': 'cardano',  'coincap': 'cardano'},
+    'AVAX': {'binance': 'AVAXUSDT','coingecko': 'avalanche-2','coincap': 'avalanche'},
+    'LINK': {'binance': 'LINKUSDT','coingecko': 'chainlink','coincap': 'chainlink'},
+    'DOT':  {'binance': 'DOTUSDT', 'coingecko': 'polkadot', 'coincap': 'polkadot'},
+}
 
 # EST timezone (UTC-5)
 EST = timezone(timedelta(hours=-5))
@@ -184,12 +198,12 @@ class BulletproofClaws:
         """Primary: Binance (no API key needed, generous rate limits)"""
         try:
             prices = {}
-            for sym in ['BTCUSDT', 'ETHUSDT', 'SOLUSDT']:
+            for coin, cfg in SYMBOLS.items():
+                sym = cfg['binance']
                 url = f"https://api.binance.com/api/v3/ticker/24hr?symbol={sym}"
                 r = requests.get(url, timeout=5)
                 if r.status_code == 200:
                     d = r.json()
-                    coin = sym.replace('USDT', '')
                     prices[coin] = (float(d['lastPrice']), float(d['priceChangePercent']))
                     self.audit.log("API_CALL", f"Binance {sym}: ${float(d['lastPrice']):,.2f} ({float(d['priceChangePercent']):+.1f}%)", status="OK")
                 else:
@@ -203,17 +217,19 @@ class BulletproofClaws:
     def api_coingecko(self):
         """Backup 1: CoinGecko"""
         try:
-            url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true"
-            r = requests.get(url, timeout=5)
+            ids = ','.join(cfg['coingecko'] for cfg in SYMBOLS.values())
+            url = f"https://api.coingecko.com/api/v3/simple/price?ids={ids}&vs_currencies=usd&include_24hr_change=true"
+            r = requests.get(url, timeout=10)
             if r.status_code == 200:
                 d = r.json()
-                prices = {
-                    'BTC': (d['bitcoin']['usd'], d['bitcoin'].get('usd_24h_change', 0)),
-                    'ETH': (d['ethereum']['usd'], d['ethereum'].get('usd_24h_change', 0)),
-                    'SOL': (d['solana']['usd'], d['solana'].get('usd_24h_change', 0))
-                }
-                self.audit.log("API_CALL", "CoinGecko: OK", status="OK")
-                return prices, 'coingecko'
+                prices = {}
+                for coin, cfg in SYMBOLS.items():
+                    cg_id = cfg['coingecko']
+                    if cg_id in d:
+                        prices[coin] = (d[cg_id]['usd'], d[cg_id].get('usd_24h_change', 0))
+                self.audit.log("API_CALL", f"CoinGecko: {len(prices)} coins OK", status="OK")
+                if prices:
+                    return prices, 'coingecko'
             else:
                 self.audit.log("API_CALL", f"CoinGecko: HTTP {r.status_code}", status="FAIL")
         except Exception as e:
@@ -223,16 +239,17 @@ class BulletproofClaws:
     def api_cryptocompare(self):
         """Backup 2: CryptoCompare"""
         try:
-            url = "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,SOL&tsyms=USD"
+            syms = ','.join(SYMBOLS.keys())
+            url = f"https://min-api.cryptocompare.com/data/pricemultifull?fsyms={syms}&tsyms=USD"
             r = requests.get(url, timeout=5)
             if r.status_code == 200:
                 d = r.json()['RAW']
                 prices = {}
-                for coin in ['BTC', 'ETH', 'SOL']:
+                for coin in SYMBOLS:
                     if coin in d:
                         prices[coin] = (d[coin]['USD']['PRICE'], d[coin]['USD']['CHANGEPCT24HOUR'])
                 if prices:
-                    self.audit.log("API_CALL", "CryptoCompare: OK", status="OK")
+                    self.audit.log("API_CALL", f"CryptoCompare: {len(prices)} coins OK", status="OK")
                     return prices, 'cryptocompare'
             else:
                 self.audit.log("API_CALL", f"CryptoCompare: HTTP {r.status_code}", status="FAIL")
@@ -244,14 +261,15 @@ class BulletproofClaws:
         """Backup 3: CoinCap"""
         try:
             prices = {}
-            for coin_id, symbol in [('bitcoin', 'BTC'), ('ethereum', 'ETH'), ('solana', 'SOL')]:
-                url = f"https://api.coincap.io/v2/assets/{coin_id}"
+            for coin, cfg in SYMBOLS.items():
+                cap_id = cfg['coincap']
+                url = f"https://api.coincap.io/v2/assets/{cap_id}"
                 r = requests.get(url, timeout=5)
                 if r.status_code == 200:
                     d = r.json()['data']
-                    prices[symbol] = (float(d['priceUsd']), float(d['changePercent24Hr']))
+                    prices[coin] = (float(d['priceUsd']), float(d['changePercent24Hr']))
             if prices:
-                self.audit.log("API_CALL", "CoinCap: OK", status="OK")
+                self.audit.log("API_CALL", f"CoinCap: {len(prices)} coins OK", status="OK")
                 return prices, 'coincap'
             else:
                 self.audit.log("API_CALL", "CoinCap: no data", status="FAIL")
@@ -267,7 +285,7 @@ class BulletproofClaws:
             if r.status_code == 200:
                 d = r.json()
                 prices = {}
-                symbol_map = {'BTC': 'BTC', 'ETH': 'ETH', 'SOL': 'SOL'}
+                symbol_map = {s: s for s in SYMBOLS}
                 for item in d.get('data', []):
                     sym = item.get('symbol', '')
                     if sym in symbol_map:
@@ -326,7 +344,8 @@ class BulletproofClaws:
     def get_funding_rates(self):
         """Fetch Binance perpetual funding rates (no API key needed)."""
         rates = {}
-        for sym in ['BTCUSDT', 'ETHUSDT', 'SOLUSDT']:
+        for coin, cfg in SYMBOLS.items():
+            sym = cfg['binance']
             try:
                 url = f"https://fapi.binance.com/fapi/v1/fundingRate?symbol={sym}&limit=1"
                 r = requests.get(url, timeout=5)
@@ -334,7 +353,6 @@ class BulletproofClaws:
                     data = r.json()
                     if data:
                         rate = float(data[0]['fundingRate']) * 100  # Convert to percentage
-                        coin = sym.replace('USDT', '')
                         rates[coin] = rate
                         self.audit.log("FUNDING_RATE", f"{coin}: {rate:+.4f}%")
             except Exception as e:
