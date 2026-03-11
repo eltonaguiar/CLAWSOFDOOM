@@ -1,6 +1,6 @@
 {
-  "generated_at_est": "2026-03-11T13:33:56 EST",
-  "generated_at_utc": "2026-03-11T18:33:56.717738+00:00",
+  "generated_at_est": "2026-03-11T14:06:25 EST",
+  "generated_at_utc": "2026-03-11T19:06:25.319083+00:00",
   "system": "CLAWS OF DOOM - Bulletproof Failover",
   "version": "3.2.1",
   "capital_base": 10000,
@@ -11,44 +11,44 @@
     "price_source": "coingecko",
     "prices": {
       "BTC": {
-        "price": 70715,
-        "change_24h_pct": 0.4780700613214079
+        "price": 70557,
+        "change_24h_pct": 0.65108764766068
       },
       "ETH": {
-        "price": 2072.98,
-        "change_24h_pct": 1.1656950557074333
+        "price": 2074.57,
+        "change_24h_pct": 1.7475672188090123
       },
       "SOL": {
-        "price": 87.64,
-        "change_24h_pct": 0.9683780413820628
+        "price": 87.69,
+        "change_24h_pct": 1.638208700238987
       },
       "BNB": {
-        "price": 652.59,
-        "change_24h_pct": 1.4484006484824568
+        "price": 652.46,
+        "change_24h_pct": 1.6418952778320512
       },
       "XRP": {
         "price": 1.4,
-        "change_24h_pct": 0.35629676822298245
+        "change_24h_pct": 0.672644971479067
       },
       "DOGE": {
-        "price": 0.094244,
-        "change_24h_pct": -1.6958204268422978
+        "price": 0.094393,
+        "change_24h_pct": -0.9988327627267644
       },
       "ADA": {
-        "price": 0.265813,
-        "change_24h_pct": 0.11250828310396983
+        "price": 0.266211,
+        "change_24h_pct": 0.7071217662208676
       },
       "AVAX": {
-        "price": 9.72,
-        "change_24h_pct": -0.21774115283210801
+        "price": 9.73,
+        "change_24h_pct": 0.9926331593101471
       },
       "LINK": {
         "price": 9.09,
-        "change_24h_pct": 0.9450630802129049
+        "change_24h_pct": 1.2761864006036494
       },
       "DOT": {
-        "price": 1.53,
-        "change_24h_pct": 2.0042121417248766
+        "price": 1.54,
+        "change_24h_pct": 2.4184840945890564
       }
     }
   },
@@ -62,7 +62,7 @@
   "confidence_formula": "confidence = base(0.55) + fear_bonus(0-0.15) + momentum_bonus(0-0.10). Max 0.80. Base is just above coin flip to be honest about uncertainty. Fear bonus scales with how extreme the Fear & Greed is. Momentum bonus scales with the size of the 24h price move.",
   "picks": [
     {
-      "id": "fear_ETH_20260311_1333",
+      "id": "fear_ETH_20260311_1406",
       "symbol": "ETH",
       "strategy": "extreme_fear",
       "strategy_name": "Extreme Fear Contrarian",
@@ -70,21 +70,43 @@
       "strategy_edge": "Mean reversion from retail panic selling",
       "direction": "LONG",
       "confidence": 0.62,
-      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+1.2%) = 0.62",
-      "entry_price": 2072.98,
-      "tp_price": 2197.36,
-      "sl_price": 1969.33,
+      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+1.7%) = 0.62",
+      "entry_price": 2074.57,
+      "tp_price": 2199.04,
+      "sl_price": 1970.84,
       "risk_reward_ratio": 1.2,
       "position_pct": 0.035,
-      "reason": "Fear & Greed = 15 (Extreme Fear), ETH +1.2% 24h",
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "reason": "Fear & Greed = 15 (Extreme Fear), ETH +1.7% 24h",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "data_source": "coingecko",
       "fg_value": 15,
       "fg_source": "alternative.me",
-      "change_24h_pct": 1.17
+      "change_24h_pct": 1.75
     },
     {
-      "id": "fear_BNB_20260311_1333",
+      "id": "fear_SOL_20260311_1406",
+      "symbol": "SOL",
+      "strategy": "extreme_fear",
+      "strategy_name": "Extreme Fear Contrarian",
+      "strategy_description": "Buys when the Crypto Fear & Greed Index drops to 25 or below (Extreme Fear). Historically, extreme fear marks local bottoms because retail panic-sells while smart money accumulates. Backtest data (2018-2024) shows buying at F&G <= 20 yields a median 30-day return of +12% for BTC.",
+      "strategy_edge": "Mean reversion from retail panic selling",
+      "direction": "LONG",
+      "confidence": 0.62,
+      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+1.6%) = 0.62",
+      "entry_price": 87.69,
+      "tp_price": 92.9514,
+      "sl_price": 83.3055,
+      "risk_reward_ratio": 1.2,
+      "position_pct": 0.035,
+      "reason": "Fear & Greed = 15 (Extreme Fear), SOL +1.6% 24h",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
+      "data_source": "coingecko",
+      "fg_value": 15,
+      "fg_source": "alternative.me",
+      "change_24h_pct": 1.64
+    },
+    {
+      "id": "fear_BNB_20260311_1406",
       "symbol": "BNB",
       "strategy": "extreme_fear",
       "strategy_name": "Extreme Fear Contrarian",
@@ -92,43 +114,43 @@
       "strategy_edge": "Mean reversion from retail panic selling",
       "direction": "LONG",
       "confidence": 0.62,
-      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+1.4%) = 0.62",
-      "entry_price": 652.59,
-      "tp_price": 691.75,
-      "sl_price": 619.96,
+      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+1.6%) = 0.62",
+      "entry_price": 652.46,
+      "tp_price": 691.61,
+      "sl_price": 619.84,
       "risk_reward_ratio": 1.2,
       "position_pct": 0.035,
-      "reason": "Fear & Greed = 15 (Extreme Fear), BNB +1.4% 24h",
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "reason": "Fear & Greed = 15 (Extreme Fear), BNB +1.6% 24h",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "data_source": "coingecko",
       "fg_value": 15,
       "fg_source": "alternative.me",
-      "change_24h_pct": 1.45
+      "change_24h_pct": 1.64
     },
     {
-      "id": "fear_DOGE_20260311_1333",
-      "symbol": "DOGE",
+      "id": "fear_LINK_20260311_1406",
+      "symbol": "LINK",
       "strategy": "extreme_fear",
       "strategy_name": "Extreme Fear Contrarian",
       "strategy_description": "Buys when the Crypto Fear & Greed Index drops to 25 or below (Extreme Fear). Historically, extreme fear marks local bottoms because retail panic-sells while smart money accumulates. Backtest data (2018-2024) shows buying at F&G <= 20 yields a median 30-day return of +12% for BTC.",
       "strategy_edge": "Mean reversion from retail panic selling",
       "direction": "LONG",
       "confidence": 0.62,
-      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=-1.7%) = 0.62",
-      "entry_price": 0.094244,
-      "tp_price": 0.099899,
-      "sl_price": 0.089532,
+      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+1.3%) = 0.62",
+      "entry_price": 9.09,
+      "tp_price": 9.6354,
+      "sl_price": 8.6355,
       "risk_reward_ratio": 1.2,
       "position_pct": 0.035,
-      "reason": "Fear & Greed = 15 (Extreme Fear), DOGE -1.7% 24h",
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "reason": "Fear & Greed = 15 (Extreme Fear), LINK +1.3% 24h",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "data_source": "coingecko",
       "fg_value": 15,
       "fg_source": "alternative.me",
-      "change_24h_pct": -1.7
+      "change_24h_pct": 1.28
     },
     {
-      "id": "fear_DOT_20260311_1333",
+      "id": "fear_DOT_20260311_1406",
       "symbol": "DOT",
       "strategy": "extreme_fear",
       "strategy_name": "Extreme Fear Contrarian",
@@ -136,21 +158,21 @@
       "strategy_edge": "Mean reversion from retail panic selling",
       "direction": "LONG",
       "confidence": 0.62,
-      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+2.0%) = 0.62",
-      "entry_price": 1.53,
-      "tp_price": 1.6218,
-      "sl_price": 1.4535,
+      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+2.4%) = 0.62",
+      "entry_price": 1.54,
+      "tp_price": 1.6324,
+      "sl_price": 1.463,
       "risk_reward_ratio": 1.2,
       "position_pct": 0.035,
-      "reason": "Fear & Greed = 15 (Extreme Fear), DOT +2.0% 24h",
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "reason": "Fear & Greed = 15 (Extreme Fear), DOT +2.4% 24h",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "data_source": "coingecko",
       "fg_value": 15,
       "fg_source": "alternative.me",
-      "change_24h_pct": 2.0
+      "change_24h_pct": 2.42
     },
     {
-      "id": "fear_BTC_20260311_1333",
+      "id": "fear_BTC_20260311_1406",
       "symbol": "BTC",
       "strategy": "extreme_fear",
       "strategy_name": "Extreme Fear Contrarian",
@@ -158,43 +180,21 @@
       "strategy_edge": "Mean reversion from retail panic selling",
       "direction": "LONG",
       "confidence": 0.61,
-      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+0.5%) = 0.61",
-      "entry_price": 70715,
-      "tp_price": 74957.9,
-      "sl_price": 67179.25,
+      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+0.7%) = 0.61",
+      "entry_price": 70557,
+      "tp_price": 74790.42,
+      "sl_price": 67029.15,
       "risk_reward_ratio": 1.2,
       "position_pct": 0.035,
-      "reason": "Fear & Greed = 15 (Extreme Fear), BTC +0.5% 24h",
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "reason": "Fear & Greed = 15 (Extreme Fear), BTC +0.7% 24h",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "data_source": "coingecko",
       "fg_value": 15,
       "fg_source": "alternative.me",
-      "change_24h_pct": 0.48
+      "change_24h_pct": 0.65
     },
     {
-      "id": "fear_SOL_20260311_1333",
-      "symbol": "SOL",
-      "strategy": "extreme_fear",
-      "strategy_name": "Extreme Fear Contrarian",
-      "strategy_description": "Buys when the Crypto Fear & Greed Index drops to 25 or below (Extreme Fear). Historically, extreme fear marks local bottoms because retail panic-sells while smart money accumulates. Backtest data (2018-2024) shows buying at F&G <= 20 yields a median 30-day return of +12% for BTC.",
-      "strategy_edge": "Mean reversion from retail panic selling",
-      "direction": "LONG",
-      "confidence": 0.61,
-      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+1.0%) = 0.61",
-      "entry_price": 87.64,
-      "tp_price": 92.8984,
-      "sl_price": 83.258,
-      "risk_reward_ratio": 1.2,
-      "position_pct": 0.035,
-      "reason": "Fear & Greed = 15 (Extreme Fear), SOL +1.0% 24h",
-      "timestamp_est": "2026-03-11T13:33:55 EST",
-      "data_source": "coingecko",
-      "fg_value": 15,
-      "fg_source": "alternative.me",
-      "change_24h_pct": 0.97
-    },
-    {
-      "id": "fear_XRP_20260311_1333",
+      "id": "fear_XRP_20260311_1406",
       "symbol": "XRP",
       "strategy": "extreme_fear",
       "strategy_name": "Extreme Fear Contrarian",
@@ -202,40 +202,40 @@
       "strategy_edge": "Mean reversion from retail panic selling",
       "direction": "LONG",
       "confidence": 0.61,
-      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+0.4%) = 0.61",
+      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+0.7%) = 0.61",
       "entry_price": 1.4,
       "tp_price": 1.484,
       "sl_price": 1.33,
       "risk_reward_ratio": 1.2,
       "position_pct": 0.035,
-      "reason": "Fear & Greed = 15 (Extreme Fear), XRP +0.4% 24h",
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "reason": "Fear & Greed = 15 (Extreme Fear), XRP +0.7% 24h",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "data_source": "coingecko",
       "fg_value": 15,
       "fg_source": "alternative.me",
-      "change_24h_pct": 0.36
+      "change_24h_pct": 0.67
     },
     {
-      "id": "fear_ADA_20260311_1333",
-      "symbol": "ADA",
+      "id": "fear_DOGE_20260311_1406",
+      "symbol": "DOGE",
       "strategy": "extreme_fear",
       "strategy_name": "Extreme Fear Contrarian",
       "strategy_description": "Buys when the Crypto Fear & Greed Index drops to 25 or below (Extreme Fear). Historically, extreme fear marks local bottoms because retail panic-sells while smart money accumulates. Backtest data (2018-2024) shows buying at F&G <= 20 yields a median 30-day return of +12% for BTC.",
       "strategy_edge": "Mean reversion from retail panic selling",
       "direction": "LONG",
       "confidence": 0.61,
-      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+0.1%) = 0.61",
-      "entry_price": 0.265813,
-      "tp_price": 0.281762,
-      "sl_price": 0.252522,
+      "confidence_explanation": "base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=-1.0%) = 0.61",
+      "entry_price": 0.094393,
+      "tp_price": 0.100057,
+      "sl_price": 0.089673,
       "risk_reward_ratio": 1.2,
       "position_pct": 0.035,
-      "reason": "Fear & Greed = 15 (Extreme Fear), ADA +0.1% 24h",
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "reason": "Fear & Greed = 15 (Extreme Fear), DOGE -1.0% 24h",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "data_source": "coingecko",
       "fg_value": 15,
       "fg_source": "alternative.me",
-      "change_24h_pct": 0.11
+      "change_24h_pct": -1.0
     }
   ],
   "active_picks": [
@@ -261,10 +261,10 @@
       "fg_source": "alternative.me",
       "change_24h_pct": -5.49,
       "status": "ACTIVE",
-      "current_price": 1.53,
-      "unrealized_pnl_pct": 2.0,
-      "unrealized_pnl_dollar": 7.0,
-      "last_checked_est": "2026-03-11T13:33:55 EST"
+      "current_price": 1.54,
+      "unrealized_pnl_pct": 2.67,
+      "unrealized_pnl_dollar": 9.35,
+      "last_checked_est": "2026-03-11T14:06:22 EST"
     },
     {
       "id": "fear_XRP_20260306_0753",
@@ -291,7 +291,7 @@
       "current_price": 1.4,
       "unrealized_pnl_pct": 0.72,
       "unrealized_pnl_dollar": 2.52,
-      "last_checked_est": "2026-03-11T13:33:55 EST"
+      "last_checked_est": "2026-03-11T14:06:22 EST"
     },
     {
       "id": "fear_SOL_20260306_0936",
@@ -315,10 +315,10 @@
       "fg_source": "alternative.me",
       "change_24h_pct": -6.52,
       "status": "ACTIVE",
-      "current_price": 87.64,
-      "unrealized_pnl_pct": 3.12,
-      "unrealized_pnl_dollar": 10.92,
-      "last_checked_est": "2026-03-11T13:33:55 EST"
+      "current_price": 87.69,
+      "unrealized_pnl_pct": 3.18,
+      "unrealized_pnl_dollar": 11.13,
+      "last_checked_est": "2026-03-11T14:06:22 EST"
     },
     {
       "id": "fear_LINK_20260306_0936",
@@ -345,7 +345,7 @@
       "current_price": 9.09,
       "unrealized_pnl_pct": 2.25,
       "unrealized_pnl_dollar": 7.88,
-      "last_checked_est": "2026-03-11T13:33:55 EST"
+      "last_checked_est": "2026-03-11T14:06:22 EST"
     },
     {
       "id": "fear_ETH_20260307_1423",
@@ -369,10 +369,10 @@
       "fg_source": "alternative.me",
       "change_24h_pct": -0.89,
       "status": "ACTIVE",
-      "current_price": 2072.98,
-      "unrealized_pnl_pct": 5.39,
-      "unrealized_pnl_dollar": 18.87,
-      "last_checked_est": "2026-03-11T13:33:55 EST"
+      "current_price": 2074.57,
+      "unrealized_pnl_pct": 5.47,
+      "unrealized_pnl_dollar": 19.15,
+      "last_checked_est": "2026-03-11T14:06:22 EST"
     },
     {
       "id": "fear_BTC_20260309_2138",
@@ -396,10 +396,10 @@
       "fg_source": "alternative.me",
       "change_24h_pct": 5.32,
       "status": "ACTIVE",
-      "current_price": 70715,
-      "unrealized_pnl_pct": 0.99,
-      "unrealized_pnl_dollar": 3.47,
-      "last_checked_est": "2026-03-11T13:33:55 EST"
+      "current_price": 70557,
+      "unrealized_pnl_pct": 0.76,
+      "unrealized_pnl_dollar": 2.66,
+      "last_checked_est": "2026-03-11T14:06:22 EST"
     },
     {
       "id": "fear_DOGE_20260310_0906",
@@ -423,10 +423,10 @@
       "fg_source": "alternative.me",
       "change_24h_pct": 5.25,
       "status": "ACTIVE",
-      "current_price": 0.094244,
-      "unrealized_pnl_pct": -2.08,
-      "unrealized_pnl_dollar": -7.28,
-      "last_checked_est": "2026-03-11T13:33:55 EST"
+      "current_price": 0.094393,
+      "unrealized_pnl_pct": -1.93,
+      "unrealized_pnl_dollar": -6.75,
+      "last_checked_est": "2026-03-11T14:06:22 EST"
     },
     {
       "id": "fear_AVAX_20260310_1135",
@@ -450,10 +450,10 @@
       "fg_source": "alternative.me",
       "change_24h_pct": 6.15,
       "status": "ACTIVE",
-      "current_price": 9.72,
-      "unrealized_pnl_pct": -1.72,
-      "unrealized_pnl_dollar": -6.02,
-      "last_checked_est": "2026-03-11T13:33:55 EST"
+      "current_price": 9.73,
+      "unrealized_pnl_pct": -1.62,
+      "unrealized_pnl_dollar": -5.67,
+      "last_checked_est": "2026-03-11T14:06:22 EST"
     },
     {
       "id": "fear_ADA_20260311_0246",
@@ -477,10 +477,10 @@
       "fg_source": "alternative.me",
       "change_24h_pct": -1.14,
       "status": "ACTIVE",
-      "current_price": 0.265813,
-      "unrealized_pnl_pct": 3.29,
-      "unrealized_pnl_dollar": 11.51,
-      "last_checked_est": "2026-03-11T13:33:55 EST"
+      "current_price": 0.266211,
+      "unrealized_pnl_pct": 3.44,
+      "unrealized_pnl_dollar": 12.04,
+      "last_checked_est": "2026-03-11T14:06:22 EST"
     },
     {
       "id": "fear_BNB_20260311_1233",
@@ -504,10 +504,10 @@
       "fg_source": "alternative.me",
       "change_24h_pct": 1.06,
       "status": "ACTIVE",
-      "current_price": 652.59,
-      "unrealized_pnl_pct": -0.25,
-      "unrealized_pnl_dollar": -0.88,
-      "last_checked_est": "2026-03-11T13:33:55 EST"
+      "current_price": 652.46,
+      "unrealized_pnl_pct": -0.27,
+      "unrealized_pnl_dollar": -0.95,
+      "last_checked_est": "2026-03-11T14:06:22 EST"
     }
   ],
   "closed_picks_recent": [
@@ -1158,7 +1158,7 @@
     "losses": 28,
     "win_rate_pct": 50.0,
     "total_realized_pnl_dollar": 71.77,
-    "total_unrealized_pnl_dollar": 47.99,
+    "total_unrealized_pnl_dollar": 51.36,
     "active_picks_count": 10
   },
   "metadata": {
@@ -1179,244 +1179,244 @@
   },
   "audit_trail": [
     {
-      "timestamp_est": "2026-03-11T13:33:54 EST",
+      "timestamp_est": "2026-03-11T14:06:20 EST",
       "event": "RUN_START",
       "detail": "CLAWS OF DOOM v3.2.1"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:54 EST",
+      "timestamp_est": "2026-03-11T14:06:20 EST",
       "event": "FEAR_GREED",
       "detail": "15 (Extreme Fear)",
       "source": "alternative.me"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:54 EST",
+      "timestamp_est": "2026-03-11T14:06:20 EST",
       "event": "PHASE",
       "detail": "Fetching prices from 5 API sources..."
     },
     {
-      "timestamp_est": "2026-03-11T13:33:54 EST",
+      "timestamp_est": "2026-03-11T14:06:20 EST",
       "event": "API_CALL",
       "detail": "Binance BTCUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:54 EST",
+      "timestamp_est": "2026-03-11T14:06:21 EST",
       "event": "API_CALL",
       "detail": "Binance ETHUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:54 EST",
+      "timestamp_est": "2026-03-11T14:06:21 EST",
       "event": "API_CALL",
       "detail": "Binance SOLUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:54 EST",
+      "timestamp_est": "2026-03-11T14:06:21 EST",
       "event": "API_CALL",
       "detail": "Binance BNBUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:54 EST",
+      "timestamp_est": "2026-03-11T14:06:21 EST",
       "event": "API_CALL",
       "detail": "Binance XRPUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:54 EST",
+      "timestamp_est": "2026-03-11T14:06:21 EST",
       "event": "API_CALL",
       "detail": "Binance DOGEUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:21 EST",
       "event": "API_CALL",
       "detail": "Binance ADAUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:21 EST",
       "event": "API_CALL",
       "detail": "Binance AVAXUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:21 EST",
       "event": "API_CALL",
       "detail": "Binance LINKUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "API_CALL",
       "detail": "Binance DOTUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "API_CALL",
       "detail": "CoinGecko: 10 coins OK",
       "status": "OK"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PRICES_RESOLVED",
       "detail": "Source: coingecko, coins: ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'DOGE', 'ADA', 'AVAX', 'LINK', 'DOT']"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PHASE",
       "detail": "Tracking active picks performance..."
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_TRACKED",
-      "detail": "DOT LONG @ $1.53 \u2014 unrealized: +2.00%"
+      "detail": "DOT LONG @ $1.54 \u2014 unrealized: +2.67%"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_TRACKED",
       "detail": "XRP LONG @ $1.40 \u2014 unrealized: +0.72%"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_TRACKED",
-      "detail": "SOL LONG @ $87.64 \u2014 unrealized: +3.12%"
+      "detail": "SOL LONG @ $87.69 \u2014 unrealized: +3.18%"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_TRACKED",
       "detail": "LINK LONG @ $9.09 \u2014 unrealized: +2.25%"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_TRACKED",
-      "detail": "ETH LONG @ $2,072.98 \u2014 unrealized: +5.39%"
+      "detail": "ETH LONG @ $2,074.57 \u2014 unrealized: +5.47%"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_TRACKED",
-      "detail": "BTC LONG @ $70,715.00 \u2014 unrealized: +0.99%"
+      "detail": "BTC LONG @ $70,557.00 \u2014 unrealized: +0.76%"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_TRACKED",
-      "detail": "DOGE LONG @ $0.09 \u2014 unrealized: -2.08%"
+      "detail": "DOGE LONG @ $0.09 \u2014 unrealized: -1.93%"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_TRACKED",
-      "detail": "AVAX LONG @ $9.72 \u2014 unrealized: -1.72%"
+      "detail": "AVAX LONG @ $9.73 \u2014 unrealized: -1.62%"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_TRACKED",
-      "detail": "ADA LONG @ $0.27 \u2014 unrealized: +3.29%"
+      "detail": "ADA LONG @ $0.27 \u2014 unrealized: +3.44%"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_TRACKED",
-      "detail": "BNB LONG @ $652.59 \u2014 unrealized: -0.25%"
+      "detail": "BNB LONG @ $652.46 \u2014 unrealized: -0.27%"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PHASE",
       "detail": "Running 6 strategies (3 long, 2 short, 1 carry)..."
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "STRATEGY_TRIGGERED",
       "detail": "extreme_fear: F&G=15 <= 25"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_GENERATED",
-      "detail": "extreme_fear BTC LONG @ $70,715.00, TP=$74,957.90 SL=$67,179.25, conf=0.61 (base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+0.5%) = 0.61)"
+      "detail": "extreme_fear BTC LONG @ $70,557.00, TP=$74,790.42 SL=$67,029.15, conf=0.61 (base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+0.7%) = 0.61)"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_GENERATED",
-      "detail": "extreme_fear ETH LONG @ $2,072.98, TP=$2,197.36 SL=$1,969.33, conf=0.62 (base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+1.2%) = 0.62)"
+      "detail": "extreme_fear ETH LONG @ $2,074.57, TP=$2,199.04 SL=$1,970.84, conf=0.62 (base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+1.7%) = 0.62)"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_GENERATED",
-      "detail": "extreme_fear SOL LONG @ $87.64, TP=$92.90 SL=$83.26, conf=0.61 (base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+1.0%) = 0.61)"
+      "detail": "extreme_fear SOL LONG @ $87.69, TP=$92.95 SL=$83.31, conf=0.62 (base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+1.6%) = 0.62)"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_GENERATED",
-      "detail": "extreme_fear BNB LONG @ $652.59, TP=$691.75 SL=$619.96, conf=0.62 (base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+1.4%) = 0.62)"
+      "detail": "extreme_fear BNB LONG @ $652.46, TP=$691.61 SL=$619.84, conf=0.62 (base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+1.6%) = 0.62)"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_GENERATED",
-      "detail": "extreme_fear XRP LONG @ $1.40, TP=$1.48 SL=$1.33, conf=0.61 (base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+0.4%) = 0.61)"
+      "detail": "extreme_fear XRP LONG @ $1.40, TP=$1.48 SL=$1.33, conf=0.61 (base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+0.7%) = 0.61)"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_GENERATED",
-      "detail": "extreme_fear DOGE LONG @ $0.09, TP=$0.10 SL=$0.09, conf=0.62 (base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=-1.7%) = 0.62)"
+      "detail": "extreme_fear DOGE LONG @ $0.09, TP=$0.10 SL=$0.09, conf=0.61 (base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=-1.0%) = 0.61)"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_GENERATED",
-      "detail": "extreme_fear ADA LONG @ $0.27, TP=$0.28 SL=$0.25, conf=0.61 (base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+0.1%) = 0.61)"
+      "detail": "extreme_fear ADA LONG @ $0.27, TP=$0.28 SL=$0.25, conf=0.61 (base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+0.7%) = 0.61)"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_GENERATED",
-      "detail": "extreme_fear AVAX LONG @ $9.72, TP=$10.30 SL=$9.23, conf=0.61 (base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=-0.2%) = 0.61)"
+      "detail": "extreme_fear AVAX LONG @ $9.73, TP=$10.31 SL=$9.24, conf=0.61 (base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+1.0%) = 0.61)"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_GENERATED",
-      "detail": "extreme_fear LINK LONG @ $9.09, TP=$9.64 SL=$8.64, conf=0.61 (base=0.55 + fear=0.06(F&G=15) + momentum=0.00(24h=+0.9%) = 0.61)"
+      "detail": "extreme_fear LINK LONG @ $9.09, TP=$9.64 SL=$8.64, conf=0.62 (base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+1.3%) = 0.62)"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "PICK_GENERATED",
-      "detail": "extreme_fear DOT LONG @ $1.53, TP=$1.62 SL=$1.45, conf=0.62 (base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+2.0%) = 0.62)"
+      "detail": "extreme_fear DOT LONG @ $1.54, TP=$1.63 SL=$1.46, conf=0.62 (base=0.55 + fear=0.06(F&G=15) + momentum=0.01(24h=+2.4%) = 0.62)"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "STRATEGY_SKIP",
       "detail": "crash_reversal: no coin dropped >10% in 24h"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:22 EST",
       "event": "STRATEGY_SKIP",
       "detail": "momentum_breakout: F&G=15 < 50, not triggered"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:55 EST",
+      "timestamp_est": "2026-03-11T14:06:23 EST",
       "event": "STRATEGY_SKIP",
       "detail": "funding_rate_carry: no funding rate data"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:56 EST",
+      "timestamp_est": "2026-03-11T14:06:25 EST",
       "event": "STRATEGY_SKIP",
       "detail": "ema_bearish_cross: no bearish EMA crosses detected"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:56 EST",
+      "timestamp_est": "2026-03-11T14:06:25 EST",
       "event": "PICKS_FINAL",
       "detail": "8 picks generated"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:56 EST",
+      "timestamp_est": "2026-03-11T14:06:25 EST",
       "event": "HISTORY_SAVED",
       "detail": "500 total entries in history"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:56 EST",
+      "timestamp_est": "2026-03-11T14:06:25 EST",
       "event": "PERFORMANCE",
       "detail": "Active: 10, Closed: 56 (W:28/L:28), WR: 50.0%"
     },
     {
-      "timestamp_est": "2026-03-11T13:33:56 EST",
+      "timestamp_est": "2026-03-11T14:06:25 EST",
       "event": "RUN_COMPLETE",
       "detail": "8 picks saved to docs/picks.json"
     }
