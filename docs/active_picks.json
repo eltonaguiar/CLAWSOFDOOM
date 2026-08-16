@@ -21,10 +21,10 @@
     "fg_source": "alternative.me",
     "change_24h_pct": 1.7,
     "status": "ACTIVE",
-    "current_price": 605.58,
-    "unrealized_pnl_pct": 3.95,
-    "unrealized_pnl_dollar": 13.83,
-    "last_checked_est": "2026-08-16T00:08:20 EST"
+    "current_price": 606.05,
+    "unrealized_pnl_pct": 4.03,
+    "unrealized_pnl_dollar": 14.11,
+    "last_checked_est": "2026-08-16T00:24:20 EST"
   },
   {
     "id": "fear_ETH_20260714_1734",
@@ -48,10 +48,10 @@
     "fg_source": "alternative.me",
     "change_24h_pct": 7.11,
     "status": "ACTIVE",
-    "current_price": 1879.74,
-    "unrealized_pnl_pct": -0.38,
-    "unrealized_pnl_dollar": -1.33,
-    "last_checked_est": "2026-08-16T00:08:20 EST"
+    "current_price": 1880.61,
+    "unrealized_pnl_pct": -0.33,
+    "unrealized_pnl_dollar": -1.16,
+    "last_checked_est": "2026-08-16T00:24:20 EST"
   },
   {
     "id": "fear_BTC_20260730_1907",
@@ -75,10 +75,10 @@
     "fg_source": "alternative.me",
     "change_24h_pct": 1.37,
     "status": "ACTIVE",
-    "current_price": 63042,
-    "unrealized_pnl_pct": -2.77,
-    "unrealized_pnl_dollar": -9.7,
-    "last_checked_est": "2026-08-16T00:08:20 EST"
+    "current_price": 63070.01,
+    "unrealized_pnl_pct": -2.72,
+    "unrealized_pnl_dollar": -9.52,
+    "last_checked_est": "2026-08-16T00:24:20 EST"
   },
   {
     "id": "fear_DOGE_20260730_1907",
@@ -102,10 +102,10 @@
     "fg_source": "alternative.me",
     "change_24h_pct": 0.75,
     "status": "ACTIVE",
-    "current_price": 0.069753,
-    "unrealized_pnl_pct": -1.29,
-    "unrealized_pnl_dollar": -4.52,
-    "last_checked_est": "2026-08-16T00:08:20 EST"
+    "current_price": 0.06972,
+    "unrealized_pnl_pct": -1.33,
+    "unrealized_pnl_dollar": -4.66,
+    "last_checked_est": "2026-08-16T00:24:20 EST"
   },
   {
     "id": "fear_SOL_20260803_1908",
@@ -129,9 +129,34 @@
     "fg_source": "alternative.me",
     "change_24h_pct": 0.16,
     "status": "ACTIVE",
-    "current_price": 75.39,
-    "unrealized_pnl_pct": 2.56,
-    "unrealized_pnl_dollar": 8.96,
-    "last_checked_est": "2026-08-16T00:08:20 EST"
+    "current_price": 75.41,
+    "unrealized_pnl_pct": 2.58,
+    "unrealized_pnl_dollar": 9.03,
+    "last_checked_est": "2026-08-16T00:24:20 EST"
+  },
+  {
+    "id": "ema_bear_AVAX_20260816_0024",
+    "symbol": "AVAX",
+    "strategy": "ema_bearish_cross",
+    "strategy_name": "EMA Bearish Cross + RSI Divergence",
+    "strategy_description": "Triggers when EMA(12) crosses below EMA(50) AND RSI shows bearish divergence (price making higher highs but RSI making lower highs). Research from altFINS shows 51.72% net profit on XRP/USDT 3H in the 2022 bear market. Works in bearish/ranging markets. Filtered by F&G < 40 to only trade in fearful conditions.",
+    "strategy_edge": "Trend reversal confirmation from momentum + moving average alignment",
+    "direction": "SHORT",
+    "confidence": 0.66,
+    "confidence_explanation": "base=0.55 + momentum=0.03(24h=-5.5%) + technical=0.08 = 0.66",
+    "entry_price": 6.336,
+    "tp_price": 5.9558,
+    "sl_price": 6.5894,
+    "risk_reward_ratio": 1.5,
+    "position_pct": 0.02,
+    "reason": "AVAX EMA(12) crossed below EMA(50) on 4H + F&G=34 (Fear) + RSI=43.32 \u2014 bearish trend confirmed",
+    "timestamp_est": "2026-08-16T00:24:26 EST",
+    "data_source": "binance",
+    "fg_value": 34,
+    "ema_12": 6.45,
+    "ema_50": 6.46,
+    "rsi_14": 43.32,
+    "change_24h_pct": -5.55,
+    "status": "ACTIVE"
   }
 ]
