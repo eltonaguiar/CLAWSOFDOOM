@@ -1,6 +1,6 @@
 {
-  "generated_at_est": "2026-08-21T20:47:48 EST",
-  "generated_at_utc": "2026-08-22T01:47:48.547607+00:00",
+  "generated_at_est": "2026-08-21T21:24:47 EST",
+  "generated_at_utc": "2026-08-22T02:24:47.272394+00:00",
   "system": "CLAWS OF DOOM - Bulletproof Failover",
   "version": "3.2.1",
   "capital_base": 10000,
@@ -11,44 +11,44 @@
     "price_source": "coingecko",
     "prices": {
       "BTC": {
-        "price": 77922,
-        "change_24h_pct": 4.170682533934583
+        "price": 78153,
+        "change_24h_pct": 4.626774966395791
       },
       "ETH": {
-        "price": 2513.82,
-        "change_24h_pct": 6.516250164701676
+        "price": 2512.44,
+        "change_24h_pct": 6.947477616269665
       },
       "SOL": {
-        "price": 93.76,
-        "change_24h_pct": 5.792354733924382
+        "price": 94.73,
+        "change_24h_pct": 6.532849755317005
       },
       "BNB": {
-        "price": 688.77,
-        "change_24h_pct": 3.896202300468732
+        "price": 695.53,
+        "change_24h_pct": 5.282578672060273
       },
       "XRP": {
-        "price": 1.5,
-        "change_24h_pct": 15.998546021351537
+        "price": 1.51,
+        "change_24h_pct": 16.969641886589248
       },
       "DOGE": {
-        "price": 0.091871,
-        "change_24h_pct": 11.170001384656583
+        "price": 0.092643,
+        "change_24h_pct": 13.047182449515656
       },
       "ADA": {
-        "price": 0.231852,
-        "change_24h_pct": 11.830832245185437
+        "price": 0.233293,
+        "change_24h_pct": 12.507999803010991
       },
       "AVAX": {
-        "price": 7.87,
-        "change_24h_pct": 7.938500990844781
+        "price": 7.95,
+        "change_24h_pct": 9.446874161016915
       },
       "LINK": {
-        "price": 12.03,
-        "change_24h_pct": 11.333600581721097
+        "price": 12.07,
+        "change_24h_pct": 11.443898013830472
       },
       "DOT": {
-        "price": 0.978045,
-        "change_24h_pct": 15.427965556026704
+        "price": 0.98988,
+        "change_24h_pct": 17.73604704916899
       }
     }
   },
@@ -62,7 +62,28 @@
   "confidence_formula": "confidence = base(0.55) + fear_bonus(0-0.15) + momentum_bonus(0-0.10). Max 0.80. Base is just above coin flip to be honest about uncertainty. Fear bonus scales with how extreme the Fear & Greed is. Momentum bonus scales with the size of the 24h price move.",
   "picks": [
     {
-      "id": "momentum_XRP_20260821_2047",
+      "id": "momentum_DOT_20260821_2124",
+      "symbol": "DOT",
+      "strategy": "momentum_breakout",
+      "strategy_name": "Momentum Breakout",
+      "strategy_description": "Buys when a coin is up more than 5% in 24h AND the Fear & Greed Index is above 50 (Greed territory). Momentum tends to persist in crypto \u2014 coins breaking out with positive sentiment often continue for 2-5 more days. Wider stop to avoid shakeouts.",
+      "strategy_edge": "Momentum continuation in risk-on environment",
+      "direction": "LONG",
+      "confidence": 0.64,
+      "confidence_explanation": "base=0.55 + momentum=0.09(24h=+17.7%) = 0.64",
+      "entry_price": 0.98988,
+      "tp_price": 1.0691,
+      "sl_price": 0.930487,
+      "risk_reward_ratio": 1.33,
+      "position_pct": 0.025,
+      "reason": "DOT up +17.7% with F&G=71 (Greed) \u2014 momentum continuation",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
+      "data_source": "coingecko",
+      "fg_value": 71,
+      "change_24h_pct": 17.74
+    },
+    {
+      "id": "momentum_XRP_20260821_2124",
       "symbol": "XRP",
       "strategy": "momentum_breakout",
       "strategy_name": "Momentum Breakout",
@@ -70,63 +91,41 @@
       "strategy_edge": "Momentum continuation in risk-on environment",
       "direction": "LONG",
       "confidence": 0.63,
-      "confidence_explanation": "base=0.55 + momentum=0.08(24h=+16.0%) = 0.63",
-      "entry_price": 1.5,
-      "tp_price": 1.62,
-      "sl_price": 1.41,
+      "confidence_explanation": "base=0.55 + momentum=0.08(24h=+17.0%) = 0.63",
+      "entry_price": 1.51,
+      "tp_price": 1.6308,
+      "sl_price": 1.4194,
       "risk_reward_ratio": 1.33,
       "position_pct": 0.025,
-      "reason": "XRP up +16.0% with F&G=71 (Greed) \u2014 momentum continuation",
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "reason": "XRP up +17.0% with F&G=71 (Greed) \u2014 momentum continuation",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "data_source": "coingecko",
       "fg_value": 71,
-      "change_24h_pct": 16.0
+      "change_24h_pct": 16.97
     },
     {
-      "id": "momentum_DOT_20260821_2047",
-      "symbol": "DOT",
-      "strategy": "momentum_breakout",
-      "strategy_name": "Momentum Breakout",
-      "strategy_description": "Buys when a coin is up more than 5% in 24h AND the Fear & Greed Index is above 50 (Greed territory). Momentum tends to persist in crypto \u2014 coins breaking out with positive sentiment often continue for 2-5 more days. Wider stop to avoid shakeouts.",
-      "strategy_edge": "Momentum continuation in risk-on environment",
-      "direction": "LONG",
-      "confidence": 0.63,
-      "confidence_explanation": "base=0.55 + momentum=0.08(24h=+15.4%) = 0.63",
-      "entry_price": 0.978045,
-      "tp_price": 1.0563,
-      "sl_price": 0.919362,
-      "risk_reward_ratio": 1.33,
-      "position_pct": 0.025,
-      "reason": "DOT up +15.4% with F&G=71 (Greed) \u2014 momentum continuation",
-      "timestamp_est": "2026-08-21T20:47:47 EST",
-      "data_source": "coingecko",
-      "fg_value": 71,
-      "change_24h_pct": 15.43,
-      "status": "ACTIVE"
-    },
-    {
-      "id": "momentum_DOGE_20260821_2047",
+      "id": "momentum_DOGE_20260821_2124",
       "symbol": "DOGE",
       "strategy": "momentum_breakout",
       "strategy_name": "Momentum Breakout",
       "strategy_description": "Buys when a coin is up more than 5% in 24h AND the Fear & Greed Index is above 50 (Greed territory). Momentum tends to persist in crypto \u2014 coins breaking out with positive sentiment often continue for 2-5 more days. Wider stop to avoid shakeouts.",
       "strategy_edge": "Momentum continuation in risk-on environment",
       "direction": "LONG",
-      "confidence": 0.61,
-      "confidence_explanation": "base=0.55 + momentum=0.06(24h=+11.2%) = 0.61",
-      "entry_price": 0.091871,
-      "tp_price": 0.099221,
-      "sl_price": 0.086359,
+      "confidence": 0.62,
+      "confidence_explanation": "base=0.55 + momentum=0.07(24h=+13.0%) = 0.62",
+      "entry_price": 0.092643,
+      "tp_price": 0.100054,
+      "sl_price": 0.087084,
       "risk_reward_ratio": 1.33,
       "position_pct": 0.025,
-      "reason": "DOGE up +11.2% with F&G=71 (Greed) \u2014 momentum continuation",
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "reason": "DOGE up +13.0% with F&G=71 (Greed) \u2014 momentum continuation",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "data_source": "coingecko",
       "fg_value": 71,
-      "change_24h_pct": 11.17
+      "change_24h_pct": 13.05
     },
     {
-      "id": "momentum_ADA_20260821_2047",
+      "id": "momentum_ADA_20260821_2124",
       "symbol": "ADA",
       "strategy": "momentum_breakout",
       "strategy_name": "Momentum Breakout",
@@ -134,20 +133,20 @@
       "strategy_edge": "Momentum continuation in risk-on environment",
       "direction": "LONG",
       "confidence": 0.61,
-      "confidence_explanation": "base=0.55 + momentum=0.06(24h=+11.8%) = 0.61",
-      "entry_price": 0.231852,
-      "tp_price": 0.2504,
-      "sl_price": 0.217941,
+      "confidence_explanation": "base=0.55 + momentum=0.06(24h=+12.5%) = 0.61",
+      "entry_price": 0.233293,
+      "tp_price": 0.251956,
+      "sl_price": 0.219295,
       "risk_reward_ratio": 1.33,
       "position_pct": 0.025,
-      "reason": "ADA up +11.8% with F&G=71 (Greed) \u2014 momentum continuation",
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "reason": "ADA up +12.5% with F&G=71 (Greed) \u2014 momentum continuation",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "data_source": "coingecko",
       "fg_value": 71,
-      "change_24h_pct": 11.83
+      "change_24h_pct": 12.51
     },
     {
-      "id": "momentum_LINK_20260821_2047",
+      "id": "momentum_LINK_20260821_2124",
       "symbol": "LINK",
       "strategy": "momentum_breakout",
       "strategy_name": "Momentum Breakout",
@@ -155,41 +154,41 @@
       "strategy_edge": "Momentum continuation in risk-on environment",
       "direction": "LONG",
       "confidence": 0.61,
-      "confidence_explanation": "base=0.55 + momentum=0.06(24h=+11.3%) = 0.61",
-      "entry_price": 12.03,
-      "tp_price": 12.9924,
-      "sl_price": 11.3082,
+      "confidence_explanation": "base=0.55 + momentum=0.06(24h=+11.4%) = 0.61",
+      "entry_price": 12.07,
+      "tp_price": 13.0356,
+      "sl_price": 11.3458,
       "risk_reward_ratio": 1.33,
       "position_pct": 0.025,
-      "reason": "LINK up +11.3% with F&G=71 (Greed) \u2014 momentum continuation",
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "reason": "LINK up +11.4% with F&G=71 (Greed) \u2014 momentum continuation",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "data_source": "coingecko",
       "fg_value": 71,
-      "change_24h_pct": 11.33
+      "change_24h_pct": 11.44
     },
     {
-      "id": "momentum_AVAX_20260821_2047",
+      "id": "momentum_AVAX_20260821_2124",
       "symbol": "AVAX",
       "strategy": "momentum_breakout",
       "strategy_name": "Momentum Breakout",
       "strategy_description": "Buys when a coin is up more than 5% in 24h AND the Fear & Greed Index is above 50 (Greed territory). Momentum tends to persist in crypto \u2014 coins breaking out with positive sentiment often continue for 2-5 more days. Wider stop to avoid shakeouts.",
       "strategy_edge": "Momentum continuation in risk-on environment",
       "direction": "LONG",
-      "confidence": 0.59,
-      "confidence_explanation": "base=0.55 + momentum=0.04(24h=+7.9%) = 0.59",
-      "entry_price": 7.87,
-      "tp_price": 8.4996,
-      "sl_price": 7.3978,
+      "confidence": 0.6,
+      "confidence_explanation": "base=0.55 + momentum=0.05(24h=+9.4%) = 0.60",
+      "entry_price": 7.95,
+      "tp_price": 8.586,
+      "sl_price": 7.473,
       "risk_reward_ratio": 1.33,
       "position_pct": 0.025,
-      "reason": "AVAX up +7.9% with F&G=71 (Greed) \u2014 momentum continuation",
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "reason": "AVAX up +9.4% with F&G=71 (Greed) \u2014 momentum continuation",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "data_source": "coingecko",
       "fg_value": 71,
-      "change_24h_pct": 7.94
+      "change_24h_pct": 9.45
     },
     {
-      "id": "momentum_ETH_20260821_2047",
+      "id": "momentum_ETH_20260821_2124",
       "symbol": "ETH",
       "strategy": "momentum_breakout",
       "strategy_name": "Momentum Breakout",
@@ -197,20 +196,20 @@
       "strategy_edge": "Momentum continuation in risk-on environment",
       "direction": "LONG",
       "confidence": 0.58,
-      "confidence_explanation": "base=0.55 + momentum=0.03(24h=+6.5%) = 0.58",
-      "entry_price": 2513.82,
-      "tp_price": 2714.93,
-      "sl_price": 2362.99,
+      "confidence_explanation": "base=0.55 + momentum=0.03(24h=+6.9%) = 0.58",
+      "entry_price": 2512.44,
+      "tp_price": 2713.44,
+      "sl_price": 2361.69,
       "risk_reward_ratio": 1.33,
       "position_pct": 0.025,
-      "reason": "ETH up +6.5% with F&G=71 (Greed) \u2014 momentum continuation",
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "reason": "ETH up +6.9% with F&G=71 (Greed) \u2014 momentum continuation",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "data_source": "coingecko",
       "fg_value": 71,
-      "change_24h_pct": 6.52
+      "change_24h_pct": 6.95
     },
     {
-      "id": "momentum_SOL_20260821_2047",
+      "id": "momentum_SOL_20260821_2124",
       "symbol": "SOL",
       "strategy": "momentum_breakout",
       "strategy_name": "Momentum Breakout",
@@ -218,17 +217,17 @@
       "strategy_edge": "Momentum continuation in risk-on environment",
       "direction": "LONG",
       "confidence": 0.58,
-      "confidence_explanation": "base=0.55 + momentum=0.03(24h=+5.8%) = 0.58",
-      "entry_price": 93.76,
-      "tp_price": 101.26,
-      "sl_price": 88.1344,
+      "confidence_explanation": "base=0.55 + momentum=0.03(24h=+6.5%) = 0.58",
+      "entry_price": 94.73,
+      "tp_price": 102.31,
+      "sl_price": 89.0462,
       "risk_reward_ratio": 1.33,
       "position_pct": 0.025,
-      "reason": "SOL up +5.8% with F&G=71 (Greed) \u2014 momentum continuation",
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "reason": "SOL up +6.5% with F&G=71 (Greed) \u2014 momentum continuation",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "data_source": "coingecko",
       "fg_value": 71,
-      "change_24h_pct": 5.79
+      "change_24h_pct": 6.53
     }
   ],
   "active_picks": [
@@ -253,10 +252,10 @@
       "fg_value": 72,
       "change_24h_pct": 8.17,
       "status": "ACTIVE",
-      "current_price": 77922,
-      "unrealized_pnl_pct": 3.19,
-      "unrealized_pnl_dollar": 7.98,
-      "last_checked_est": "2026-08-21T20:47:47 EST"
+      "current_price": 78153,
+      "unrealized_pnl_pct": 3.5,
+      "unrealized_pnl_dollar": 8.75,
+      "last_checked_est": "2026-08-21T21:24:45 EST"
     },
     {
       "id": "momentum_LINK_20260821_0245",
@@ -279,10 +278,10 @@
       "fg_value": 72,
       "change_24h_pct": 10.17,
       "status": "ACTIVE",
-      "current_price": 12.03,
-      "unrealized_pnl_pct": 3.8,
-      "unrealized_pnl_dollar": 9.5,
-      "last_checked_est": "2026-08-21T20:47:47 EST"
+      "current_price": 12.07,
+      "unrealized_pnl_pct": 4.14,
+      "unrealized_pnl_dollar": 10.35,
+      "last_checked_est": "2026-08-21T21:24:45 EST"
     },
     {
       "id": "momentum_SOL_20260821_0928",
@@ -305,10 +304,10 @@
       "fg_value": 72,
       "change_24h_pct": 5.63,
       "status": "ACTIVE",
-      "current_price": 93.76,
-      "unrealized_pnl_pct": 2.87,
-      "unrealized_pnl_dollar": 7.18,
-      "last_checked_est": "2026-08-21T20:47:47 EST"
+      "current_price": 94.73,
+      "unrealized_pnl_pct": 3.94,
+      "unrealized_pnl_dollar": 9.85,
+      "last_checked_est": "2026-08-21T21:24:45 EST"
     },
     {
       "id": "momentum_ADA_20260821_1255",
@@ -331,10 +330,10 @@
       "fg_value": 72,
       "change_24h_pct": 8.75,
       "status": "ACTIVE",
-      "current_price": 0.231852,
-      "unrealized_pnl_pct": 5.19,
-      "unrealized_pnl_dollar": 12.97,
-      "last_checked_est": "2026-08-21T20:47:47 EST"
+      "current_price": 0.233293,
+      "unrealized_pnl_pct": 5.84,
+      "unrealized_pnl_dollar": 14.6,
+      "last_checked_est": "2026-08-21T21:24:45 EST"
     },
     {
       "id": "momentum_ETH_20260821_1606",
@@ -357,10 +356,10 @@
       "fg_value": 72,
       "change_24h_pct": 5.38,
       "status": "ACTIVE",
-      "current_price": 2513.82,
-      "unrealized_pnl_pct": 3.03,
-      "unrealized_pnl_dollar": 7.57,
-      "last_checked_est": "2026-08-21T20:47:47 EST"
+      "current_price": 2512.44,
+      "unrealized_pnl_pct": 2.98,
+      "unrealized_pnl_dollar": 7.45,
+      "last_checked_est": "2026-08-21T21:24:45 EST"
     },
     {
       "id": "momentum_DOGE_20260821_1623",
@@ -383,10 +382,10 @@
       "fg_value": 72,
       "change_24h_pct": 10.5,
       "status": "ACTIVE",
-      "current_price": 0.091871,
-      "unrealized_pnl_pct": 3.69,
-      "unrealized_pnl_dollar": 9.23,
-      "last_checked_est": "2026-08-21T20:47:47 EST"
+      "current_price": 0.092643,
+      "unrealized_pnl_pct": 4.56,
+      "unrealized_pnl_dollar": 11.4,
+      "last_checked_est": "2026-08-21T21:24:45 EST"
     },
     {
       "id": "momentum_XRP_20260821_1806",
@@ -409,10 +408,10 @@
       "fg_value": 72,
       "change_24h_pct": 15.04,
       "status": "ACTIVE",
-      "current_price": 1.5,
-      "unrealized_pnl_pct": 3.45,
-      "unrealized_pnl_dollar": 8.63,
-      "last_checked_est": "2026-08-21T20:47:47 EST"
+      "current_price": 1.51,
+      "unrealized_pnl_pct": 4.14,
+      "unrealized_pnl_dollar": 10.35,
+      "last_checked_est": "2026-08-21T21:24:45 EST"
     },
     {
       "id": "momentum_AVAX_20260821_2009",
@@ -435,10 +434,10 @@
       "fg_value": 71,
       "change_24h_pct": 8.73,
       "status": "ACTIVE",
-      "current_price": 7.87,
-      "unrealized_pnl_pct": -0.38,
-      "unrealized_pnl_dollar": -0.95,
-      "last_checked_est": "2026-08-21T20:47:47 EST"
+      "current_price": 7.95,
+      "unrealized_pnl_pct": 0.63,
+      "unrealized_pnl_dollar": 1.57,
+      "last_checked_est": "2026-08-21T21:24:45 EST"
     },
     {
       "id": "momentum_DOT_20260821_2047",
@@ -460,7 +459,11 @@
       "data_source": "coingecko",
       "fg_value": 71,
       "change_24h_pct": 15.43,
-      "status": "ACTIVE"
+      "status": "ACTIVE",
+      "current_price": 0.98988,
+      "unrealized_pnl_pct": 1.21,
+      "unrealized_pnl_dollar": 3.03,
+      "last_checked_est": "2026-08-21T21:24:45 EST"
     }
   ],
   "closed_picks_recent": [
@@ -1093,7 +1096,7 @@
     "losses": 202,
     "win_rate_pct": 45.1,
     "total_realized_pnl_dollar": -141.55,
-    "total_unrealized_pnl_dollar": 62.11,
+    "total_unrealized_pnl_dollar": 77.35,
     "active_picks_count": 9
   },
   "metadata": {
@@ -1114,235 +1117,229 @@
   },
   "audit_trail": [
     {
-      "timestamp_est": "2026-08-21T20:47:46 EST",
+      "timestamp_est": "2026-08-21T21:24:44 EST",
       "event": "RUN_START",
       "detail": "CLAWS OF DOOM v3.2.1"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:46 EST",
+      "timestamp_est": "2026-08-21T21:24:44 EST",
       "event": "FEAR_GREED",
       "detail": "71 (Greed)",
       "source": "alternative.me"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:46 EST",
+      "timestamp_est": "2026-08-21T21:24:44 EST",
       "event": "PHASE",
       "detail": "Fetching prices from 5 API sources..."
     },
     {
-      "timestamp_est": "2026-08-21T20:47:46 EST",
+      "timestamp_est": "2026-08-21T21:24:44 EST",
       "event": "API_CALL",
       "detail": "Binance BTCUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:46 EST",
+      "timestamp_est": "2026-08-21T21:24:44 EST",
       "event": "API_CALL",
       "detail": "Binance ETHUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:44 EST",
       "event": "API_CALL",
       "detail": "Binance SOLUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:44 EST",
       "event": "API_CALL",
       "detail": "Binance BNBUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:44 EST",
       "event": "API_CALL",
       "detail": "Binance XRPUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "API_CALL",
       "detail": "Binance DOGEUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "API_CALL",
       "detail": "Binance ADAUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "API_CALL",
       "detail": "Binance AVAXUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "API_CALL",
       "detail": "Binance LINKUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "API_CALL",
       "detail": "Binance DOTUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "API_CALL",
       "detail": "CoinGecko: 10 coins OK",
       "status": "OK"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PRICES_RESOLVED",
       "detail": "Source: coingecko, coins: ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'DOGE', 'ADA', 'AVAX', 'LINK', 'DOT']"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PHASE",
       "detail": "Tracking active picks performance..."
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_TRACKED",
-      "detail": "BTC LONG @ $77,922.00 \u2014 unrealized: +3.19%"
+      "detail": "BTC LONG @ $78,153.00 \u2014 unrealized: +3.50%"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_TRACKED",
-      "detail": "LINK LONG @ $12.03 \u2014 unrealized: +3.80%"
+      "detail": "LINK LONG @ $12.07 \u2014 unrealized: +4.14%"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_TRACKED",
-      "detail": "SOL LONG @ $93.76 \u2014 unrealized: +2.87%"
+      "detail": "SOL LONG @ $94.73 \u2014 unrealized: +3.94%"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
-      "event": "PICK_CLOSED",
-      "detail": "DOT LONG HIT TP @ $0.98 \u2014 P&L: +8.58%",
-      "status": "WIN"
-    },
-    {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_TRACKED",
-      "detail": "ADA LONG @ $0.23 \u2014 unrealized: +5.19%"
+      "detail": "ADA LONG @ $0.23 \u2014 unrealized: +5.84%"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_TRACKED",
-      "detail": "ETH LONG @ $2,513.82 \u2014 unrealized: +3.03%"
+      "detail": "ETH LONG @ $2,512.44 \u2014 unrealized: +2.98%"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_TRACKED",
-      "detail": "DOGE LONG @ $0.09 \u2014 unrealized: +3.69%"
+      "detail": "DOGE LONG @ $0.09 \u2014 unrealized: +4.56%"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_TRACKED",
-      "detail": "XRP LONG @ $1.50 \u2014 unrealized: +3.45%"
+      "detail": "XRP LONG @ $1.51 \u2014 unrealized: +4.14%"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_TRACKED",
-      "detail": "AVAX LONG @ $7.87 \u2014 unrealized: -0.38%"
+      "detail": "AVAX LONG @ $7.95 \u2014 unrealized: +0.63%"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
-      "event": "CLOSED_SAVED",
-      "detail": "1 picks closed, 368 total in history"
+      "timestamp_est": "2026-08-21T21:24:45 EST",
+      "event": "PICK_TRACKED",
+      "detail": "DOT LONG @ $0.99 \u2014 unrealized: +1.21%"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PHASE",
       "detail": "Running 6 strategies (3 long, 2 short, 1 carry)..."
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "STRATEGY_SKIP",
       "detail": "extreme_fear: F&G=71 > 25, not triggered"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "STRATEGY_SKIP",
       "detail": "crash_reversal: no coin dropped >10% in 24h"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_GENERATED",
-      "detail": "momentum_breakout ETH LONG @ $2,513.82, up=+6.5%, conf=0.58"
+      "detail": "momentum_breakout ETH LONG @ $2,512.44, up=+6.9%, conf=0.58"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_GENERATED",
-      "detail": "momentum_breakout SOL LONG @ $93.76, up=+5.8%, conf=0.58"
+      "detail": "momentum_breakout SOL LONG @ $94.73, up=+6.5%, conf=0.58"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_GENERATED",
-      "detail": "momentum_breakout XRP LONG @ $1.50, up=+16.0%, conf=0.63"
+      "detail": "momentum_breakout BNB LONG @ $695.53, up=+5.3%, conf=0.58"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_GENERATED",
-      "detail": "momentum_breakout DOGE LONG @ $0.09, up=+11.2%, conf=0.61"
+      "detail": "momentum_breakout XRP LONG @ $1.51, up=+17.0%, conf=0.63"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_GENERATED",
-      "detail": "momentum_breakout ADA LONG @ $0.23, up=+11.8%, conf=0.61"
+      "detail": "momentum_breakout DOGE LONG @ $0.09, up=+13.0%, conf=0.62"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_GENERATED",
-      "detail": "momentum_breakout AVAX LONG @ $7.87, up=+7.9%, conf=0.59"
+      "detail": "momentum_breakout ADA LONG @ $0.23, up=+12.5%, conf=0.61"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_GENERATED",
-      "detail": "momentum_breakout LINK LONG @ $12.03, up=+11.3%, conf=0.61"
+      "detail": "momentum_breakout AVAX LONG @ $7.95, up=+9.4%, conf=0.6"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:47 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
       "event": "PICK_GENERATED",
-      "detail": "momentum_breakout DOT LONG @ $0.98, up=+15.4%, conf=0.63"
+      "detail": "momentum_breakout LINK LONG @ $12.07, up=+11.4%, conf=0.61"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:48 EST",
+      "timestamp_est": "2026-08-21T21:24:45 EST",
+      "event": "PICK_GENERATED",
+      "detail": "momentum_breakout DOT LONG @ $0.99, up=+17.7%, conf=0.64"
+    },
+    {
+      "timestamp_est": "2026-08-21T21:24:46 EST",
       "event": "STRATEGY_SKIP",
       "detail": "funding_rate_carry: no funding rate data"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:48 EST",
+      "timestamp_est": "2026-08-21T21:24:47 EST",
       "event": "STRATEGY_SKIP",
       "detail": "ema_bearish_cross: F&G=71 > 40, not fearful enough"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:48 EST",
+      "timestamp_est": "2026-08-21T21:24:47 EST",
       "event": "PICKS_FINAL",
       "detail": "8 picks generated"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:48 EST",
-      "event": "PICK_ACTIVATED",
-      "detail": "New active pick: DOT momentum_breakout"
-    },
-    {
-      "timestamp_est": "2026-08-21T20:47:48 EST",
+      "timestamp_est": "2026-08-21T21:24:47 EST",
       "event": "HISTORY_SAVED",
       "detail": "500 total entries in history"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:48 EST",
+      "timestamp_est": "2026-08-21T21:24:47 EST",
       "event": "PERFORMANCE",
       "detail": "Active: 9, Closed: 368 (W:166/L:202), WR: 45.1%"
     },
     {
-      "timestamp_est": "2026-08-21T20:47:48 EST",
+      "timestamp_est": "2026-08-21T21:24:47 EST",
       "event": "RUN_COMPLETE",
       "detail": "8 picks saved to docs/picks.json"
     }
