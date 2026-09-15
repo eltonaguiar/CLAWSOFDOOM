@@ -1,6 +1,6 @@
 {
-  "generated_at_est": "2026-09-15T13:52:00 EST",
-  "generated_at_utc": "2026-09-15T18:52:00.552671+00:00",
+  "generated_at_est": "2026-09-15T14:08:50 EST",
+  "generated_at_utc": "2026-09-15T19:08:50.145980+00:00",
   "system": "CLAWS OF DOOM - Bulletproof Failover",
   "version": "3.2.1",
   "capital_base": 10000,
@@ -11,79 +11,50 @@
     "price_source": "coingecko",
     "prices": {
       "BTC": {
-        "price": 75038,
-        "change_24h_pct": -5.240116874072063
+        "price": 76016,
+        "change_24h_pct": -3.8357870735909376
       },
       "ETH": {
-        "price": 2361.16,
-        "change_24h_pct": -7.047481945941961
+        "price": 2404.84,
+        "change_24h_pct": -5.173648110377194
       },
       "SOL": {
-        "price": 96.07,
-        "change_24h_pct": -7.308550095736149
+        "price": 98.26,
+        "change_24h_pct": -4.879599786169646
       },
       "BNB": {
-        "price": 708.3,
-        "change_24h_pct": -2.581458067924636
+        "price": 719.68,
+        "change_24h_pct": -0.8732648587295493
       },
       "XRP": {
-        "price": 1.29,
-        "change_24h_pct": -12.350538761052633
+        "price": 1.32,
+        "change_24h_pct": -9.507777736875077
       },
       "DOGE": {
-        "price": 0.078671,
-        "change_24h_pct": -7.530970349981511
+        "price": 0.0809,
+        "change_24h_pct": -4.575502396888846
       },
       "ADA": {
-        "price": 0.193306,
-        "change_24h_pct": -9.668908548126275
+        "price": 0.198539,
+        "change_24h_pct": -6.7288694199490555
       },
       "AVAX": {
-        "price": 7.22,
-        "change_24h_pct": -5.114563027165757
+        "price": 7.36,
+        "change_24h_pct": -3.0846977307899572
       },
       "LINK": {
-        "price": 10.83,
-        "change_24h_pct": -7.422813799049627
+        "price": 11.14,
+        "change_24h_pct": -4.560910618990576
       },
       "DOT": {
-        "price": 0.937787,
-        "change_24h_pct": -8.132731039366645
+        "price": 0.957163,
+        "change_24h_pct": -6.099281000078695
       }
     }
   },
-  "strategy_descriptions": {
-    "crash_reversal": {
-      "name": "Crash Reversal Bounce",
-      "description": "Triggers when a coin drops more than 10% in 24 hours. Large single-day drops tend to mean-revert within 3-7 days due to short covering and bargain hunting. Tighter targets and stops than extreme_fear because crash bounces are faster but less reliable.",
-      "edge": "Short squeeze + bargain hunting after >10% daily drop"
-    }
-  },
+  "strategy_descriptions": {},
   "confidence_formula": "confidence = base(0.55) + fear_bonus(0-0.15) + momentum_bonus(0-0.10). Max 0.80. Base is just above coin flip to be honest about uncertainty. Fear bonus scales with how extreme the Fear & Greed is. Momentum bonus scales with the size of the 24h price move.",
-  "picks": [
-    {
-      "id": "crash_XRP_20260915_1351",
-      "symbol": "XRP",
-      "strategy": "crash_reversal",
-      "strategy_name": "Crash Reversal Bounce",
-      "strategy_description": "Triggers when a coin drops more than 10% in 24 hours. Large single-day drops tend to mean-revert within 3-7 days due to short covering and bargain hunting. Tighter targets and stops than extreme_fear because crash bounces are faster but less reliable.",
-      "strategy_edge": "Short squeeze + bargain hunting after >10% daily drop",
-      "direction": "LONG",
-      "confidence": 0.61,
-      "confidence_explanation": "base=0.55 + momentum=0.06(24h=-12.4%) = 0.61",
-      "entry_price": 1.29,
-      "tp_price": 1.3545,
-      "sl_price": 1.2384,
-      "risk_reward_ratio": 1.25,
-      "position_pct": 0.03,
-      "reason": "XRP crashed -12.4% in 24h \u2014 mean reversion bounce expected",
-      "timestamp_est": "2026-09-15T13:51:59 EST",
-      "data_source": "coingecko",
-      "fg_value": 69,
-      "change_24h_pct": -12.35,
-      "status": "ACTIVE"
-    }
-  ],
+  "picks": [],
   "active_picks": [
     {
       "id": "momentum_ETH_20260821_1606",
@@ -106,10 +77,10 @@
       "fg_value": 72,
       "change_24h_pct": 5.38,
       "status": "ACTIVE",
-      "current_price": 2361.16,
-      "unrealized_pnl_pct": -3.22,
-      "unrealized_pnl_dollar": -8.05,
-      "last_checked_est": "2026-09-15T13:51:59 EST"
+      "current_price": 2404.84,
+      "unrealized_pnl_pct": -1.43,
+      "unrealized_pnl_dollar": -3.58,
+      "last_checked_est": "2026-09-15T14:08:47 EST"
     },
     {
       "id": "fear_ETH_20260913_1847",
@@ -133,10 +104,10 @@
       "fg_source": "alternative.me",
       "change_24h_pct": -1.94,
       "status": "ACTIVE",
-      "current_price": 2361.16,
-      "unrealized_pnl_pct": -4.62,
-      "unrealized_pnl_dollar": -16.17,
-      "last_checked_est": "2026-09-15T13:51:59 EST"
+      "current_price": 2404.84,
+      "unrealized_pnl_pct": -2.86,
+      "unrealized_pnl_dollar": -10.01,
+      "last_checked_est": "2026-09-15T14:08:47 EST"
     },
     {
       "id": "fear_SOL_20260913_1847",
@@ -160,10 +131,10 @@
       "fg_source": "alternative.me",
       "change_24h_pct": -2.19,
       "status": "ACTIVE",
-      "current_price": 96.07,
-      "unrealized_pnl_pct": -3.52,
-      "unrealized_pnl_dollar": -12.32,
-      "last_checked_est": "2026-09-15T13:51:59 EST"
+      "current_price": 98.26,
+      "unrealized_pnl_pct": -1.32,
+      "unrealized_pnl_dollar": -4.62,
+      "last_checked_est": "2026-09-15T14:08:47 EST"
     },
     {
       "id": "fear_BNB_20260913_1847",
@@ -187,10 +158,10 @@
       "fg_source": "alternative.me",
       "change_24h_pct": -1.46,
       "status": "ACTIVE",
-      "current_price": 708.3,
-      "unrealized_pnl_pct": -1.16,
-      "unrealized_pnl_dollar": -4.06,
-      "last_checked_est": "2026-09-15T13:51:59 EST"
+      "current_price": 719.68,
+      "unrealized_pnl_pct": 0.43,
+      "unrealized_pnl_dollar": 1.51,
+      "last_checked_est": "2026-09-15T14:08:47 EST"
     },
     {
       "id": "fear_DOGE_20260913_1847",
@@ -214,10 +185,10 @@
       "fg_source": "alternative.me",
       "change_24h_pct": -2.71,
       "status": "ACTIVE",
-      "current_price": 0.078671,
-      "unrealized_pnl_pct": -4.67,
-      "unrealized_pnl_dollar": -16.35,
-      "last_checked_est": "2026-09-15T13:51:59 EST"
+      "current_price": 0.0809,
+      "unrealized_pnl_pct": -1.97,
+      "unrealized_pnl_dollar": -6.9,
+      "last_checked_est": "2026-09-15T14:08:47 EST"
     },
     {
       "id": "crash_XRP_20260915_1351",
@@ -239,7 +210,11 @@
       "data_source": "coingecko",
       "fg_value": 69,
       "change_24h_pct": -12.35,
-      "status": "ACTIVE"
+      "status": "ACTIVE",
+      "current_price": 1.32,
+      "unrealized_pnl_pct": 2.33,
+      "unrealized_pnl_dollar": 6.99,
+      "last_checked_est": "2026-09-15T14:08:47 EST"
     }
   ],
   "closed_picks_recent": [
@@ -874,11 +849,11 @@
     "losses": 235,
     "win_rate_pct": 44.3,
     "total_realized_pnl_dollar": -227.3,
-    "total_unrealized_pnl_dollar": -56.95,
+    "total_unrealized_pnl_dollar": -16.61,
     "active_picks_count": 6
   },
   "metadata": {
-    "pick_count": 1,
+    "pick_count": 0,
     "strategies_evaluated": [
       "extreme_fear",
       "crash_reversal",
@@ -887,201 +862,187 @@
       "rsi_overbought_short",
       "ema_bearish_cross"
     ],
-    "strategies_triggered": [
-      "crash_reversal"
-    ],
+    "strategies_triggered": [],
     "fallback_activated": false,
     "apis_attempted": 5
   },
   "audit_trail": [
     {
-      "timestamp_est": "2026-09-15T13:51:58 EST",
+      "timestamp_est": "2026-09-15T14:08:46 EST",
       "event": "RUN_START",
       "detail": "CLAWS OF DOOM v3.2.1"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:58 EST",
+      "timestamp_est": "2026-09-15T14:08:46 EST",
       "event": "FEAR_GREED",
       "detail": "69 (Greed)",
       "source": "alternative.me"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:58 EST",
+      "timestamp_est": "2026-09-15T14:08:46 EST",
       "event": "PHASE",
       "detail": "Fetching prices from 5 API sources..."
     },
     {
-      "timestamp_est": "2026-09-15T13:51:58 EST",
+      "timestamp_est": "2026-09-15T14:08:46 EST",
       "event": "API_CALL",
       "detail": "Binance BTCUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:58 EST",
+      "timestamp_est": "2026-09-15T14:08:46 EST",
       "event": "API_CALL",
       "detail": "Binance ETHUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:58 EST",
+      "timestamp_est": "2026-09-15T14:08:46 EST",
       "event": "API_CALL",
       "detail": "Binance SOLUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:46 EST",
       "event": "API_CALL",
       "detail": "Binance BNBUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "API_CALL",
       "detail": "Binance XRPUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "API_CALL",
       "detail": "Binance DOGEUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "API_CALL",
       "detail": "Binance ADAUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "API_CALL",
       "detail": "Binance AVAXUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "API_CALL",
       "detail": "Binance LINKUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "API_CALL",
       "detail": "Binance DOTUSDT: HTTP 451",
       "status": "FAIL"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "API_CALL",
       "detail": "CoinGecko: 10 coins OK",
       "status": "OK"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "PRICES_RESOLVED",
       "detail": "Source: coingecko, coins: ['BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'DOGE', 'ADA', 'AVAX', 'LINK', 'DOT']"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "PHASE",
       "detail": "Tracking active picks performance..."
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "PICK_TRACKED",
-      "detail": "ETH LONG @ $2,361.16 \u2014 unrealized: -3.22%"
+      "detail": "ETH LONG @ $2,404.84 \u2014 unrealized: -1.43%"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
-      "event": "PICK_CLOSED",
-      "detail": "XRP LONG HIT SL @ $1.29 \u2014 P&L: -7.19%",
-      "status": "LOSS"
-    },
-    {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "PICK_TRACKED",
-      "detail": "ETH LONG @ $2,361.16 \u2014 unrealized: -4.62%"
+      "detail": "ETH LONG @ $2,404.84 \u2014 unrealized: -2.86%"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "PICK_TRACKED",
-      "detail": "SOL LONG @ $96.07 \u2014 unrealized: -3.52%"
+      "detail": "SOL LONG @ $98.26 \u2014 unrealized: -1.32%"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "PICK_TRACKED",
-      "detail": "BNB LONG @ $708.30 \u2014 unrealized: -1.16%"
+      "detail": "BNB LONG @ $719.68 \u2014 unrealized: +0.43%"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "PICK_TRACKED",
-      "detail": "DOGE LONG @ $0.08 \u2014 unrealized: -4.67%"
+      "detail": "DOGE LONG @ $0.08 \u2014 unrealized: -1.97%"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
-      "event": "PICK_CLOSED",
-      "detail": "ADA LONG HIT SL @ $0.19 \u2014 P&L: -5.29%",
-      "status": "LOSS"
+      "timestamp_est": "2026-09-15T14:08:47 EST",
+      "event": "PICK_TRACKED",
+      "detail": "XRP LONG @ $1.32 \u2014 unrealized: +2.33%"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
-      "event": "CLOSED_SAVED",
-      "detail": "2 picks closed, 422 total in history"
-    },
-    {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "PHASE",
       "detail": "Running 6 strategies (3 long, 2 short, 1 carry)..."
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "STRATEGY_SKIP",
       "detail": "extreme_fear: F&G=69 > 25, not triggered"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
-      "event": "PICK_GENERATED",
-      "detail": "crash_reversal XRP LONG @ $1.29, drop=-12.4%, conf=0.61"
+      "timestamp_est": "2026-09-15T14:08:47 EST",
+      "event": "STRATEGY_SKIP",
+      "detail": "crash_reversal: no coin dropped >10% in 24h"
     },
     {
-      "timestamp_est": "2026-09-15T13:51:59 EST",
+      "timestamp_est": "2026-09-15T14:08:47 EST",
       "event": "STRATEGY_SKIP",
       "detail": "momentum_breakout: no coin up >5% or F&G too low"
     },
     {
-      "timestamp_est": "2026-09-15T13:52:00 EST",
+      "timestamp_est": "2026-09-15T14:08:49 EST",
       "event": "STRATEGY_SKIP",
       "detail": "funding_rate_carry: no funding rate data"
     },
     {
-      "timestamp_est": "2026-09-15T13:52:00 EST",
+      "timestamp_est": "2026-09-15T14:08:50 EST",
       "event": "STRATEGY_SKIP",
       "detail": "ema_bearish_cross: F&G=69 > 40, not fearful enough"
     },
     {
-      "timestamp_est": "2026-09-15T13:52:00 EST",
+      "timestamp_est": "2026-09-15T14:08:50 EST",
+      "event": "NO_PICKS",
+      "detail": "No strategies triggered. Market conditions don't match any entry criteria."
+    },
+    {
+      "timestamp_est": "2026-09-15T14:08:50 EST",
       "event": "PICKS_FINAL",
-      "detail": "1 picks generated"
+      "detail": "0 picks generated"
     },
     {
-      "timestamp_est": "2026-09-15T13:52:00 EST",
-      "event": "PICK_ACTIVATED",
-      "detail": "New active pick: XRP crash_reversal"
-    },
-    {
-      "timestamp_est": "2026-09-15T13:52:00 EST",
+      "timestamp_est": "2026-09-15T14:08:50 EST",
       "event": "HISTORY_SAVED",
       "detail": "500 total entries in history"
     },
     {
-      "timestamp_est": "2026-09-15T13:52:00 EST",
+      "timestamp_est": "2026-09-15T14:08:50 EST",
       "event": "PERFORMANCE",
       "detail": "Active: 6, Closed: 422 (W:187/L:235), WR: 44.3%"
     },
     {
-      "timestamp_est": "2026-09-15T13:52:00 EST",
+      "timestamp_est": "2026-09-15T14:08:50 EST",
       "event": "RUN_COMPLETE",
-      "detail": "1 picks saved to docs/picks.json"
+      "detail": "0 picks saved to docs/picks.json"
     }
   ]
 }
