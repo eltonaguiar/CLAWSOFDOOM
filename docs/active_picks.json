@@ -20,10 +20,10 @@
     "fg_value": 56,
     "change_24h_pct": 5.15,
     "status": "ACTIVE",
-    "current_price": 84507,
-    "unrealized_pnl_pct": 4.54,
-    "unrealized_pnl_dollar": 11.35,
-    "last_checked_est": "2026-09-23T17:47:56 EST"
+    "current_price": 84545,
+    "unrealized_pnl_pct": 4.59,
+    "unrealized_pnl_dollar": 11.47,
+    "last_checked_est": "2026-09-23T18:08:00 EST"
   },
   {
     "id": "momentum_ETH_20260918_1447",
@@ -46,10 +46,10 @@
     "fg_value": 56,
     "change_24h_pct": 7.85,
     "status": "ACTIVE",
-    "current_price": 2687.3,
-    "unrealized_pnl_pct": 1.89,
-    "unrealized_pnl_dollar": 4.73,
-    "last_checked_est": "2026-09-23T17:47:56 EST"
+    "current_price": 2688.85,
+    "unrealized_pnl_pct": 1.95,
+    "unrealized_pnl_dollar": 4.88,
+    "last_checked_est": "2026-09-23T18:08:00 EST"
   },
   {
     "id": "momentum_BNB_20260921_0911",
@@ -72,10 +72,10 @@
     "fg_value": 70,
     "change_24h_pct": 5.33,
     "status": "ACTIVE",
-    "current_price": 767.29,
-    "unrealized_pnl_pct": -3.34,
-    "unrealized_pnl_dollar": -8.35,
-    "last_checked_est": "2026-09-23T17:47:56 EST"
+    "current_price": 766.65,
+    "unrealized_pnl_pct": -3.42,
+    "unrealized_pnl_dollar": -8.55,
+    "last_checked_est": "2026-09-23T18:08:00 EST"
   },
   {
     "id": "momentum_SOL_20260921_1648",
@@ -98,9 +98,31 @@
     "fg_value": 70,
     "change_24h_pct": 8.76,
     "status": "ACTIVE",
-    "current_price": 114.94,
-    "unrealized_pnl_pct": -3.72,
-    "unrealized_pnl_dollar": -9.3,
-    "last_checked_est": "2026-09-23T17:47:56 EST"
+    "current_price": 115.09,
+    "unrealized_pnl_pct": -3.59,
+    "unrealized_pnl_dollar": -8.98,
+    "last_checked_est": "2026-09-23T18:08:00 EST"
+  },
+  {
+    "id": "crash_DOT_20260923_1808",
+    "symbol": "DOT",
+    "strategy": "crash_reversal",
+    "strategy_name": "Crash Reversal Bounce",
+    "strategy_description": "Triggers when a coin drops more than 10% in 24 hours. Large single-day drops tend to mean-revert within 3-7 days due to short covering and bargain hunting. Tighter targets and stops than extreme_fear because crash bounces are faster but less reliable.",
+    "strategy_edge": "Short squeeze + bargain hunting after >10% daily drop",
+    "direction": "LONG",
+    "confidence": 0.6,
+    "confidence_explanation": "base=0.55 + momentum=0.05(24h=-10.4%) = 0.60",
+    "entry_price": 1.097,
+    "tp_price": 1.1519,
+    "sl_price": 1.0531,
+    "risk_reward_ratio": 1.25,
+    "position_pct": 0.03,
+    "reason": "DOT crashed -10.4% in 24h \u2014 mean reversion bounce expected",
+    "timestamp_est": "2026-09-23T18:08:00 EST",
+    "data_source": "coingecko",
+    "fg_value": 71,
+    "change_24h_pct": -10.43,
+    "status": "ACTIVE"
   }
 ]
