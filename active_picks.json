@@ -20,10 +20,10 @@
     "fg_value": 56,
     "change_24h_pct": 5.15,
     "status": "ACTIVE",
-    "current_price": 84024,
-    "unrealized_pnl_pct": 3.94,
-    "unrealized_pnl_dollar": 9.85,
-    "last_checked_est": "2026-09-23T22:32:33 EST"
+    "current_price": 83943,
+    "unrealized_pnl_pct": 3.84,
+    "unrealized_pnl_dollar": 9.6,
+    "last_checked_est": "2026-09-23T22:50:28 EST"
   },
   {
     "id": "momentum_ETH_20260918_1447",
@@ -46,10 +46,10 @@
     "fg_value": 56,
     "change_24h_pct": 7.85,
     "status": "ACTIVE",
-    "current_price": 2674.96,
-    "unrealized_pnl_pct": 1.42,
-    "unrealized_pnl_dollar": 3.55,
-    "last_checked_est": "2026-09-23T22:32:33 EST"
+    "current_price": 2674.38,
+    "unrealized_pnl_pct": 1.4,
+    "unrealized_pnl_dollar": 3.5,
+    "last_checked_est": "2026-09-23T22:50:28 EST"
   },
   {
     "id": "momentum_BNB_20260921_0911",
@@ -72,10 +72,10 @@
     "fg_value": 70,
     "change_24h_pct": 5.33,
     "status": "ACTIVE",
-    "current_price": 769.97,
-    "unrealized_pnl_pct": -3.0,
-    "unrealized_pnl_dollar": -7.5,
-    "last_checked_est": "2026-09-23T22:32:33 EST"
+    "current_price": 767.99,
+    "unrealized_pnl_pct": -3.25,
+    "unrealized_pnl_dollar": -8.12,
+    "last_checked_est": "2026-09-23T22:50:28 EST"
   },
   {
     "id": "momentum_SOL_20260921_1648",
@@ -98,10 +98,10 @@
     "fg_value": 70,
     "change_24h_pct": 8.76,
     "status": "ACTIVE",
-    "current_price": 114.76,
-    "unrealized_pnl_pct": -3.87,
-    "unrealized_pnl_dollar": -9.68,
-    "last_checked_est": "2026-09-23T22:32:33 EST"
+    "current_price": 114.69,
+    "unrealized_pnl_pct": -3.93,
+    "unrealized_pnl_dollar": -9.83,
+    "last_checked_est": "2026-09-23T22:50:28 EST"
   },
   {
     "id": "crash_DOT_20260923_1808",
@@ -127,6 +127,28 @@
     "current_price": 1.12,
     "unrealized_pnl_pct": 2.1,
     "unrealized_pnl_dollar": 6.3,
-    "last_checked_est": "2026-09-23T22:32:33 EST"
+    "last_checked_est": "2026-09-23T22:50:28 EST"
+  },
+  {
+    "id": "crash_DOGE_20260923_2250",
+    "symbol": "DOGE",
+    "strategy": "crash_reversal",
+    "strategy_name": "Crash Reversal Bounce",
+    "strategy_description": "Triggers when a coin drops more than 10% in 24 hours. Large single-day drops tend to mean-revert within 3-7 days due to short covering and bargain hunting. Tighter targets and stops than extreme_fear because crash bounces are faster but less reliable.",
+    "strategy_edge": "Short squeeze + bargain hunting after >10% daily drop",
+    "direction": "LONG",
+    "confidence": 0.6,
+    "confidence_explanation": "base=0.55 + momentum=0.05(24h=-10.4%) = 0.60",
+    "entry_price": 0.093354,
+    "tp_price": 0.098022,
+    "sl_price": 0.08962,
+    "risk_reward_ratio": 1.25,
+    "position_pct": 0.03,
+    "reason": "DOGE crashed -10.4% in 24h \u2014 mean reversion bounce expected",
+    "timestamp_est": "2026-09-23T22:50:28 EST",
+    "data_source": "coingecko",
+    "fg_value": 71,
+    "change_24h_pct": -10.41,
+    "status": "ACTIVE"
   }
 ]
