@@ -20,10 +20,10 @@
     "fg_value": 56,
     "change_24h_pct": 5.15,
     "status": "ACTIVE",
-    "current_price": 83596,
-    "unrealized_pnl_pct": 3.41,
-    "unrealized_pnl_dollar": 8.53,
-    "last_checked_est": "2026-10-07T06:40:25 EST"
+    "current_price": 83583,
+    "unrealized_pnl_pct": 3.4,
+    "unrealized_pnl_dollar": 8.5,
+    "last_checked_est": "2026-10-07T06:51:01 EST"
   },
   {
     "id": "momentum_ETH_20260918_1447",
@@ -46,10 +46,10 @@
     "fg_value": 56,
     "change_24h_pct": 7.85,
     "status": "ACTIVE",
-    "current_price": 2573.14,
-    "unrealized_pnl_pct": -2.44,
-    "unrealized_pnl_dollar": -6.1,
-    "last_checked_est": "2026-10-07T06:40:25 EST"
+    "current_price": 2574.24,
+    "unrealized_pnl_pct": -2.39,
+    "unrealized_pnl_dollar": -5.98,
+    "last_checked_est": "2026-10-07T06:51:01 EST"
   },
   {
     "id": "momentum_BNB_20260921_0911",
@@ -72,10 +72,10 @@
     "fg_value": 70,
     "change_24h_pct": 5.33,
     "status": "ACTIVE",
-    "current_price": 766.13,
-    "unrealized_pnl_pct": -3.48,
-    "unrealized_pnl_dollar": -8.7,
-    "last_checked_est": "2026-10-07T06:40:25 EST"
+    "current_price": 765.84,
+    "unrealized_pnl_pct": -3.52,
+    "unrealized_pnl_dollar": -8.8,
+    "last_checked_est": "2026-10-07T06:51:01 EST"
   },
   {
     "id": "momentum_SOL_20260921_1648",
@@ -98,10 +98,10 @@
     "fg_value": 70,
     "change_24h_pct": 8.76,
     "status": "ACTIVE",
-    "current_price": 117.14,
-    "unrealized_pnl_pct": -1.88,
-    "unrealized_pnl_dollar": -4.7,
-    "last_checked_est": "2026-10-07T06:40:25 EST"
+    "current_price": 117.17,
+    "unrealized_pnl_pct": -1.85,
+    "unrealized_pnl_dollar": -4.63,
+    "last_checked_est": "2026-10-07T06:51:01 EST"
   },
   {
     "id": "momentum_AVAX_20261006_0716",
@@ -124,9 +124,31 @@
     "fg_value": 73,
     "change_24h_pct": 6.4,
     "status": "ACTIVE",
-    "current_price": 11.0,
-    "unrealized_pnl_pct": -5.66,
-    "unrealized_pnl_dollar": -14.15,
-    "last_checked_est": "2026-10-07T06:40:25 EST"
+    "current_price": 10.99,
+    "unrealized_pnl_pct": -5.75,
+    "unrealized_pnl_dollar": -14.38,
+    "last_checked_est": "2026-10-07T06:51:01 EST"
+  },
+  {
+    "id": "crash_DOT_20261007_0651",
+    "symbol": "DOT",
+    "strategy": "crash_reversal",
+    "strategy_name": "Crash Reversal Bounce",
+    "strategy_description": "Triggers when a coin drops more than 10% in 24 hours. Large single-day drops tend to mean-revert within 3-7 days due to short covering and bargain hunting. Tighter targets and stops than extreme_fear because crash bounces are faster but less reliable.",
+    "strategy_edge": "Short squeeze + bargain hunting after >10% daily drop",
+    "direction": "LONG",
+    "confidence": 0.6,
+    "confidence_explanation": "base=0.55 + momentum=0.05(24h=-10.3%) = 0.60",
+    "entry_price": 1.11,
+    "tp_price": 1.1655,
+    "sl_price": 1.0656,
+    "risk_reward_ratio": 1.25,
+    "position_pct": 0.03,
+    "reason": "DOT crashed -10.3% in 24h \u2014 mean reversion bounce expected",
+    "timestamp_est": "2026-10-07T06:51:01 EST",
+    "data_source": "coingecko",
+    "fg_value": 71,
+    "change_24h_pct": -10.28,
+    "status": "ACTIVE"
   }
 ]
